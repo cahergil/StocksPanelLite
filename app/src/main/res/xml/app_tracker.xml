@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <string name="ga_trackingId">UA-76114734-1</string>
+    <string name="ga_autoActivityTracking">false</string>
+
+
+    <!-- The screen names that will appear in reports -->
+    <screenName name="com.carlos.capstone.MainActivity">MainActivity</screenName>
+    <screenName name="com.carlos.capstone.DetailIndexActivity">DetailIndexActivity</screenName>
+    <screenName name="com.carlos.capstone.DetailStockActivity">DetailStockActivity</screenName>
+    <screenName name="com.carlos.capstone.DetailNewsActivity">WebViewNewsActivity</screenName>
+    <screenName name="com.carlos.capstone.SettingsActivity">SettingsActivity</screenName>
+    <screenName name="com.carlos.capstone.SplashActivity">SplashActivity</screenName>
+</resources>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardRanges"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:contentPadding="16dp"
+    card_view:cardBackgroundColor="@color/tab_card_color"
+    card_view:cardCornerRadius="@dimen/fist_cornerradius"
+    card_view:cardElevation="@dimen/fist_elevation"
+    card_view:cardUseCompatPadding="true">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="*">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+
+                android:id="@+id/day_high_label"
+                android:text="@string/fist_day_high_text"
+                android:textColor="@color/tab_labels_color" />
+
+            <TextView
+                android:id="@+id/day_high"
+                android:gravity="center"
+                android:textColor="@color/tab_number_colors" />
+
+            <TextView
+
+                android:id="@+id/year_high_label"
+                android:text="@string/fist_year_high_text"
+                android:textColor="@color/tab_labels_color" />
+
+            <TextView
+                android:id="@+id/year_high"
+                android:gravity="center"
+                android:textColor="@color/tab_number_colors" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+
+                android:id="@+id/day_low_label"
+                android:text="@string/fist_day_low_text"
+                android:textColor="@color/tab_labels_color" />
+
+            <TextView
+                android:id="@+id/day_low"
+                android:gravity="center"
+                android:textColor="@color/tab_number_colors" />
+
+            <TextView
+
+                android:id="@+id/year_low_label"
+                android:text="@string/fist_year_low_text"
+                android:textColor="@color/tab_labels_color" />
+
+            <TextView
+                android:id="@+id/year_low"
+                android:gravity="center"
+                android:textColor="@color/tab_number_colors" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+
+                android:id="@+id/volume_label"
+                android:text="@string/fist_volume"
+                android:textColor="@color/tab_labels_color" />
+
+            <TextView
+                android:id="@+id/volume"
+                android:gravity="center"
+                android:textColor="@color/tab_number_colors" />
+
+        </TableRow>
+
+
+    </TableLayout>
+</android.support.v7.widget.CardView>

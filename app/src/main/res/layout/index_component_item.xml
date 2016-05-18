@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/ici_marginTop"
+    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+    android:layout_marginStart="@dimen/activity_horizontal_margin"
+    android:layout_marginRight="@dimen/activity_horizontal_margin"
+    android:layout_marginEnd="@dimen/activity_horizontal_margin"
+    android:background="@drawable/selector_index_components"
+    android:orientation="horizontal"
+    android:focusable="true"
+
+
+    >
+    <!-- android:background="?android:attr/selectableItemBackground"
+     to highlight when the user clicks on a company-->
+
+    <LinearLayout
+        android:layout_width="@dimen/ici_layout_width"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+
+        <TextView
+            android:id="@+id/tvIcon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity=""
+            android:text="@string/triangle_up"
+            android:textSize="@dimen/ici_icon_text_size"
+            android:textAlignment="center"
+            android:textScaleX="1"
+            android:textColor="@color/triangle_up_color"
+
+
+
+            />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/companyName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="end"
+                style="@style/TextAppearance.AppCompat.Body2"
+                tools:text="ACCOR" />
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="end"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/components_price"
+                tools:text="34,12" />
+
+            <TextView
+                android:id="@+id/percentChange"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:gravity="end"
+                tools:text="1,12%" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:textColor="@color/gray400"
+                style="@style/TextAppearance.AppCompat.Body1"
+                tools:text="12/02" />
+
+            <TextView
+                android:id="@+id/volume"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:paddingRight="@dimen/ici_padding_volume"
+                android:textColor="@color/gray400"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:gravity="end"
+                tools:text="156m" />
+
+            <TextView
+                android:id="@+id/change"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:gravity="end"
+                tools:text="4" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

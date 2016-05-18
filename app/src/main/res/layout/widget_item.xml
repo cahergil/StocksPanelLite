@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+<!-- http://stackoverflow.com/questions/16278159/why-linearlayouts-margin-is-being-ignored-if-used-as-listview-row-view
+ crear segundo LinearLayout, para que acepte los margenes-->
+    <LinearLayout
+        android:id="@+id/widgetItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:focusable="true"
+        android:layout_marginTop="@dimen/wi_marginTop"
+        android:layout_marginLeft="@dimen/wi_marginLeft"
+        android:layout_marginStart="@dimen/wi_marginLeft"
+        android:layout_marginRight="@dimen/wi_marginRight"
+        android:layout_marginEnd="@dimen/wi_marginRight"
+
+        android:layout_marginBottom="@dimen/wi_marginBottom">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/securityTicker"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textColor="@color/widget_item_text_color_main"
+                tools:textColor="@color/black"
+                tools:text="GOOG"
+                />
+            <TextView
+                android:id="@+id/securityType"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:textColor="@color/widget_item_text_color_main"
+                tools:textColor="@color/black"
+                android:textSize="@dimen/wi_stringSize_small"
+                tools:text="equity"
+                />
+            <TextView
+                android:id="@+id/securityPrice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="end"
+                tools:text="707,88"
+                android:textColor="@color/widget_item_text_color_main"
+                tools:textColor="@color/black"
+                 />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/securityDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/widget_item_text_color_secondary"
+                tools:textColor="@color/black"
+                android:textSize="@dimen/wi_stringSize_small"
+                tools:text="05/05/2016" />
+
+            <TextView
+                android:id="@+id/securityChange"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                tools:text="5,10"
+                tools:textColor="@color/black"
+                android:textSize="@dimen/wi_stringSize_small" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

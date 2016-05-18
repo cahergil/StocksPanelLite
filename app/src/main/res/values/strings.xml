@@ -1,0 +1,367 @@
+<resources xmlns:xliff="http://schemas.android.com/tools">
+    <string name="app_name" translatable="false">Stocks Panel Lite</string>
+    <string name="action_settings" translatable="true">Settings</string>
+    <string name="title_activity_settings" translatable="true">Settings</string>
+    <string name="log_tag" translatable="false">VILLANUEVA</string>
+    <string name="banner1_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="banner2_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="banner3_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+
+    <!-- Strings related to Settings -->
+    <string name="pref_animation_key" >animation</string>
+    <string name="pref_animation_default">true</string>
+    <string name="pref_share_title">Share screenshot of:</string>
+    <string name="pref_share_key">share</string>
+    <string name="pref_share_default">chart</string>
+    <string name="pref_share_screen">screen</string>
+    <string name="pref_share_chart">chart</string>
+    <string name="pref_share_value_change">value_change</string>
+    <string name="pref_share_trading_info">trading_info</string>
+    <string-array name="pref_share_entries" translatable="true">
+        <item>entire screen</item>
+        <item>only chart</item>
+        <item>only value/change</item>
+        <item>only stock trading info</item>
+    </string-array>
+    <string-array name="pref_share_values" translatable="false">
+        <item>@string/pref_share_screen</item>
+        <item>@string/pref_share_chart</item>
+        <item>@string/pref_share_value_change</item>
+        <item>@string/pref_share_trading_info</item>
+    </string-array>
+    <!-- strings related to Sync Adapter -->
+    <string name="sync_account_type">captsone.carlos.com</string>
+    <string name="content_authority">com.carlos.capstone</string>
+    <string name="rss_america" translatable="false">https://uk.finance.yahoo.com/news/category-us/?format=rss</string>
+    <string name="rss_europe" translatable="false">https://uk.finance.yahoo.com/news/category-europe/?format=rss</string>
+    <string name="rss_asia" translatable="false">https://uk.finance.yahoo.com/news/category-asia/?format=rss</string>
+    <string name="first_launch" translatable="false">first_launch</string>
+    <string name="ticker_nasdaq" translatable="false">^IXIC</string>
+    <string name="ticker_dow_jones" translatable="false">^DJI</string>
+    <string name="ticker_sp500" translatable="false">^GSPC</string>
+    <string name="ticker_ibex35" translatable="false">^IBEX</string>
+    <string name="ticker_dax" translatable="false">^GDAXI</string>
+    <string name="ticker_ftse" translatable="false">^FTSE</string>
+    <string name="ticker_sse_composite" translatable="false">000001.SS</string>
+    <string name="ticker_hsi" translatable="false">^HSI</string>
+    <string name="ticker_nikkei" translatable="false">^N225</string>
+    <string name="index_event" translatable="false">index_event</string>
+    <string name="last_deleted_america" translatable="false">last_deleted_america</string>
+    <string name="last_deleted_europe" translatable="false">last_deleted_europe</string>
+    <string name="last_deleted_asia" translatable="false">last_deleted_asia</string>
+    <string name="mask_date_with_time_zone" translatable="false">EEE, dd MMM yyyy kk:mm:ss ZZZ</string>
+    <string name="last_sync_key" translatable="false">last_sync</string>
+    <string name="needs_europe_sync_key" translatable="false">europe_needs_sync</string>
+    <string name="needs_asia_sync_key" translatable="false">asia_needs_sync</string>
+    <string name="comma_string" translatable="false">,</string>
+
+    <!-- strings related to MainActivity -->
+    <string name="two_pane_key" translatable="false">two_pane_key</string>
+    <string name="index_ga_category" translatable="false">Index click</string>
+
+    <!-- strings related to FragmentMain -->
+    <string name="region_america" translatable="false">AMERICA</string>
+    <string name="region_europe" translatable="false">EUROPE</string>
+    <string name="region_asia" translatable="false">ASIA</string>
+    <string name="region" translatable="false">region</string>
+    <string name="sent_list" translatable="false">list</string>
+    <string name="failure" translatable="false">failure</string>
+    <string name="talback_fm_image" translatable="true">line chart of 3 indexes</string>
+    <string name="talkback_fm_fab" translatable="true">add security</string>
+    <string name="talkback_fm_admob" translatable="true">Advertisement</string>
+    <string name="ga_fm_page_favorites" translatable="false">Page Favorites</string>
+    <string name="ga_fm_page_america" translatable="false">Page America</string>
+    <string name="ga_fm_page_europe" translatable="false">Page Europe</string>
+    <string name="ga_fm_page_asia" translatable="false">Page Asia</string>
+    <string name="fm_favorites">Favorites</string>
+    <string name="fm_america">America</string>
+    <string name="fm_europe">Europe</string>
+    <string name="fm_asia">Asia</string>
+
+    <!-- strings related to FragmentRegion -->
+    <string name="news_ga_category" translatable="false">News click</string>
+    <string name="date_mask_ga" translatable="false">yyyy/MM/dd kk:mm:ss</string>
+    <string name="region_key" translatable="false">region</string>
+    <string name="search_filter_key" translatable="false">search_filter</string>
+
+
+
+    <!-- strings related to FragmentIndexDetail-->
+    <string name="tab_summary_string" translatable="true">Summary</string>
+    <string name="tab_componets_string" translatable="true">Components</string>
+    <string name="index_tab_summary_intent_filter" translatable="false">summary_selected</string>
+    <string name="index_tab_components_intent_filter" translatable="false">components_selected</string>
+    <string name="index_ga_summary_screen_name" translatable="false">Page Index Summary</string>
+    <string name="index_ga_components_screen_name" translatable="false">Page Index Components</string>
+
+    <!-- strings related to FragmentIndexSummary-->
+    <string name="format_change"><xliff:g id="change">%1$1.2f</xliff:g></string>
+    <string name="format_change_percent">(<xliff:g id="change_percent">%1$1.2f</xliff:g>%%)</string>
+    <string name="format_open">(<xliff:g id="change_percent">%1$1.2f</xliff:g>)</string>
+    <string name="na_index_fund_name" translatable="true">Name:n/a</string>
+    <string name="no_internet_conextion" translatable="true">No internet conexion</string>
+    <string name="ticker_key" translatable="false">ticker_key</string>
+    <!-- strings related to FragmentIndexSummary-->
+    <string name="format_integer_value">###,###,###,###,###</string>
+    <string name="format_decimal_value">##,###.##</string>
+
+    <!-- strings related to index launch detail-->
+    <string name="ticker_bundle_key" translatable="false">ticker</string>
+    <!-- strings related to FragmentIndexComponents-->
+    <string name="qParam" translatable="false">use%20%22https%3A%2F%2Fraw.githubusercontent.com%2Fdavidayalas%2Fyql-stocks%2Fmaster%2Fstocks.xml%22%20as%20bolsa%3B%20select%20*%20from%20bolsa%20where%20url%3D%22http%3A%2F%2Fwww.eleconomista.es/indice/</string>
+    <string name="triangle_up" translatable="false">\u25B2</string>
+    <string name="triangle_down" translatable="false">\u25BC</string>
+    <string name="triangle_equal" translatable="false">\u25BA</string>
+    <string name="ticker_name_key" translatable="false">tickerIndex_key</string>
+    <string name="search_filter_key_components" translatable="false">search_filter_key</string>
+    <string name="manager_key" translatable="false">manager_key</string>
+    <string name="ticker_query_key" translatable="false">ticker_query_key</string>
+    <!-- strings related to ComponentsAdapter-->
+    <string name="percent_string" translatable="false">%</string>
+    <string name="empty_string" translatable="false"></string>
+    <string name="plus_string" translatable="false">+</string>
+    <string name="minus_string" translatable="false">-</string>
+    <string name="format_change_percent_without_parenthesis"><xliff:g id="change_percent">%1$1.2f</xliff:g>%%</string>
+    <string name="locale_es" translatable="false">es</string>
+    <string name="locale_ES" translatable="false">ES</string>
+
+    <!-- strings related to IndexesAdapter-->
+    <string name="volume_plus_point" translatable="true">Vol.</string>
+    <string name="talkback_ia_ticker" translatable="true">ticker:</string>
+    <string name="talkback_ia_decorative_element" translatable="true">decorative element</string>
+    <string name="talkback_ia_index_name" translatable="true">index name:</string>
+    <string name="talkback_ia_country" translatable="true">country:</string>
+    <string name="talkback_ia_eye" translatable="true">image index shows components page</string>
+    <string name="talkback_is_price" translatable="true">Last traded price:</string>
+    <string name="talkback_is_change_percent" translatable="true">change percent:</string>
+    <string name="talkback_change" translatable="true">change:</string>
+    <!-- strings related to RssNewsAdapter-->
+    <string name="talkback_ra_title" translatable="true">news title:</string>
+    <string name="talkback_ra_date" translatable="true">published date:</string>
+    <string name="talkback_ra_content" translatable="true">news content:</string>
+    <string name="talkback_ra_image" translatable="true">news image</string>
+
+    <!-- strings related to DownloadSymbol-->
+    <string name="downloadsymbol_url_nyse" translatable="false">http://www.nasdaq.com/screening/companies-by-name.aspx?letter=0\u0026exchange=nyse\u0026render=download</string>
+    <string name="downloadsymbol_url_nasdaq" translatable="false">http://www.nasdaq.com/screening/companies-by-name.aspx?letter=0\u0026exchange=nasdaq\u0026render=download</string>
+    <string name="downloadsymbol_url_amex" translatable="false">http://www.nasdaq.com/screening/companies-by-name.aspx?letter=0\u0026exchange=amex\u0026render=download</string>
+
+    <!-- strings related to FragmentFavorite-->
+    <string name="search_filter_fav_key" translatable="false">search_filter__fav_key</string>
+    <string name="symbol_key" translatable="false">symbol_key</string>
+    <string name="company_name_key" translatable="false">company_name_key</string>
+    <!-- strings related to FragmentStockDetail-->
+    <string name="stock_tab_summary_intent_filter" translatable="false">summary_selected</string>
+    <string name="stock_ga_summary_screen_name" translatable="false">Page Stock Summary</string>
+    <string name="stock_ga_stats_screen_name" translatable="false">Page Stock Statistics</string>
+    <string name="stock_ga_news_screen_name" translatable="false">Page Stock News</string>
+    <string name="stock_from_widget_key" translatable="false">from_widget_key</string>
+    <string name="stock_dialog_link" translatable="false">\u003ca href="https://help.yahoo.com/kb/finance/SLN2347.html?impressions=true"\u003elink \u003c/a\u003e</string>
+    <string name="stock_indicator_definitions" translatable="true">Indicators definitions:</string>
+    <string name="stock_dialog_title" translatable="true">Key Statistic Help</string>
+    <string name="stock_summary">Summary</string>
+    <string name="stock_statistics">Statistics</string>
+    <string name="stock_news">News</string>
+    <!-- strings related to FragmentStockSummary-->
+    <string name="stock_qParam_left" translatable="false" formatted="false">select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22</string>
+    <string name="stock_qParam_right" translatable="false" formatted="false">%22)%0A%09%09</string>
+    <string name="chart_mode_key" translatable="false">chart_mode_key</string>
+    <string name="button_id_key" translatable="false">button_id_key</string>
+    <string name="serie_key" translatable="false">serie_key</string>
+    <string name="ticker" translatable="false">ticker</string>
+    <string name="open" translatable="true" >Open</string>
+    <string name="volume" translatable="true">Volume</string>
+    <string name="decimal_format_volume" translatable="false">###,###,###,###,###</string>
+    <string name="decimal_format_price">##,###.##</string>
+    <string name="added_security" translatable="true">Security added to favorites</string>
+    <string name="removed_security" translatable="true">Security deleted from favorites</string>
+    <string name="na_company_name" translatable="true">Company Name:n/a</string>
+    <string name="na_market" translatable="true">Market:n/a</string>
+    <string name="na_price" translatable="true">Price:n/a</string>
+    <string name="na_date" translatable="true">Date:n/a</string>
+    <string name="na_change" translatable="true">Change:n/a</string>
+    <string name="highlighs_key" translatable="false">highlights</string>
+    <string name="fss_talkback_chart" translatable="true">chart</string>
+    <string name="fss_button_1_day" translatable="true"> 1 day</string>
+    <string name="fss_button_1_week" translatable="true">1 week</string>
+    <string name="fss_button_1_month" translatable="true">1 month</string>
+    <string name="fss_button_6_months" translatable="true">6 months</string>
+    <string name="fss_button_2_year" translatable="true"> 2 years</string>
+    <string name="fss_button_5_year" translatable="true"> 5 years</string>
+    <string name="fss_button_max" translatable="true"> max</string>
+    <string name="fss_button_fit" translatable="true"> fit graphic</string>
+
+    <!-- strings related to ActivitySettings-->
+    <string name="settings_title">Settings</string>
+
+    <!-- strings related to Utilities-->
+    <string name="format_change_percent_without_parenthesis2"><xliff:g id="change_percent">%1$1s</xliff:g>%%</string>
+
+    <!-- strings related to Utilities-->
+    <string name="format_billions"><xliff:g id="quantity">%1$1.2f</xliff:g>B</string>
+    <string name="format_millions"><xliff:g id="quantity">%1$1.2f</xliff:g>M</string>
+    <string name="format_thounsands"><xliff:g id="quantity">%1$1.2f</xliff:g>K</string>
+    <!-- strings related to FragmentStockStats-->
+    <string name="na" translatable="true">N/A</string>
+    <string name="stats_qParam_left" translatable="false" formatted="false">select%20*%20from%20yahoo.finance.keystats%20where%20symbol%3D%22</string>
+    <string name="stats_qParam_right" translatable="false" formatted="false">%22</string>
+    <string-array name="stats_header" translatable="true">
+        <item>Valuation Measures</item>
+        <item>Profitability</item>
+        <item>Management Effectiveness</item>
+        <item>Income Statements</item>
+        <item>Balance Sheet</item>
+        <item>Cash Flow Statement</item>
+        <item>Stock Price History</item>
+        <item>Share Statistics</item>
+    </string-array>
+    <string name="enterprise_value" translatable="true">Enterprise Value</string>
+    <string name="trailing_pe" translatable="true">Trailing P/E(ttm)</string>
+    <string name="forward_pe" translatable="true">Forward P/E</string>
+    <string name="peg_ratio" translatable="true">PEG Ratio(5y expected)</string>
+    <string name="price_sales" translatable="true">Price/Sales(ttm)</string>
+    <string name="price_book" translatable="true">Price/Book(mrq)</string>
+    <string name="enterprise_value_revenue" translatable="true">Enterprise Value/Revenue(ttm)</string>
+    <string name="enterprise_value_ebitda" translatable="true">Enterprise Value/EBITDA(ttm)</string>
+    <string name="profit_margin" translatable="true">Profit Margin(ttm)</string>
+    <string name="operating_margin" translatable="true">Operating Margin(ttm)</string>
+    <string name="return_on_assets" translatable="true">Return on Assets(ttm)</string>
+    <string name="return_on_equity" translatable="true">Return on Equity(ttm)</string>
+    <string name="revenue" translatable="true">Revenue(ttm)</string>
+    <string name="revenue_per_share" translatable="true">Revenue Per Share(ttm)</string>
+    <string name="qtrly_revenue_growth" translatable="true">Qtrly Revenue Growth (yoy)</string>
+    <string name="gross_profit" translatable="true">Gross Profit (ttm)</string>
+    <string name="ebitda" translatable="true">EBITDA (ttm)</string>
+    <string name="net_income_avl_to_common" translatable="true">Net Income Avl to Common (ttm)</string>
+    <string name="diluted_eps" translatable="true">Diluted EPS (ttm)</string>
+    <string name="qtrly_earnings_growth" translatable="true">Qtrly Earnings Growth (yoy)</string>
+    <string name="total_cash" translatable="true">Total Cash (mrq)</string>
+    <string name="total_cash_per_share" translatable="true">Total Cash Per Share (mrq)</string>
+    <string name="total_debt" translatable="true">Total Debt (mrq)</string>
+    <string name="total_debt_equity" translatable="true">Total Debt/Equity (mrq)</string>
+    <string name="current_ratio" translatable="true">Current Ratio (mrq)</string>
+    <string name="book_value_per_share" translatable="true">Book Value Per Share (mrq)</string>
+    <string name="operating_cash_flow" translatable="true">Operating Cash Flow (ttm)</string>
+    <string name="levered_free_cash_flow" translatable="true">Levered Free Cash Flow (ttm)</string>
+    <string name="beta" translatable="true">Beta</string>
+    <string name="n_52_week_change" translatable="true">52-Week Change</string>
+    <string name="sp500_52_week_change" translatable="true">S\u0026P500 52-Week Change</string>
+    <string name="n_52_week_high" translatable="true">52-Week High</string>
+    <string name="n_52_week_low" translatable="true">52-Week Low</string>
+    <string name="n_50_day_moving_average" translatable="true">50-Day Moving Average</string>
+    <string name="n_200_day_moving_average" translatable="true">200-Day Moving Average</string>
+    <string name="avg_vol_3_month" translatable="true">Avg Vol (3 month)</string>
+    <string name="avg_vol_10_day" translatable="true">Avg Vol (10 day)</string>
+    <string name="share_outstanding" translatable="true">Shares Outstanding</string>
+    <string name="floatt" translatable="true">Float</string>
+    <string name="percentage_held_by_insiders" formatted="false" translatable="true">% Held by Insiders</string>
+    <string name="percentage_held_by_institutions" formatted="false" translatable="true">% Held by Institutions</string>
+    <string name="short_ratio" translatable="true">Short Ratio</string>
+    <string name="fss_empty_view" translatable="true">:( \n No statistics available</string>
+    <!-- strings related to IndexComponentsService-->
+    <string name="index_components_qParam_right" translatable="false" formatted="false">%22</string>
+    <!-- strings related to Utilities-->
+    <string name="day_range_split_string" translatable="false">\u0020-\u0020</string>
+    <!-- strings related to DownloadSecurityFromTxt-->
+    <string name="equity" translatable="true">Equity</string>
+    <string name="index" translatable="true">Index</string>
+    <string name="etf" translatable="true">Etf</string>
+    <!-- strings related to SplashActivity-->
+    <string name="data_ready" translatable="false">chart_ready</string>
+
+    <!-- strings related to AdvertisementListener-->
+    <string name="ad_ga_category" translatable="false">Ad click</string>
+
+    <!-- strings related to fragment_stock_summary.xml-->
+    <string name="fss_market_cap" translatable="true">Market Cap.</string>
+    <string name="fss_days_range" translatable="true">Days Range</string>
+    <string name="fss_previous_close" translatable="true">Previous Close</string>
+    <string name="fss_open" translatable="true">Open</string>
+    <string name="fss_ask" translatable="true">Ask</string>
+    <string name="fss_bid" translatable="true">Bid</string>
+    <string name="fss_volume" translatable="true">Volume</string>
+    <string name="fss_avg_daily_volume" translatable="true">Avg. Daily Volume</string>
+    <string name="fss_earnings_share" translatable="true">Earnings Share</string>
+    <string name="fss_eps_stimate_current_year" translatable="true">EPS estimate current year</string>
+    <string name="fss_eps_stimate_next_year" translatable="true">EPS estimate next year</string>
+    <string name="fss_eps_stimate_next_quarter" translatable="true">EPS estimate next quarter</string>
+    <string name="fss_year_low" translatable="true">Year Low</string>
+    <string name="fss_year_high" translatable="true">Year High</string>
+    <string name="fss_change_from_year_low" translatable="true">Change from year low</string>
+    <string name="fss_percent_change_from_year_low" translatable="true">Percent change from year low</string>
+    <string name="fss_change_from_year_high" translatable="true">Change from year high</string>
+    <string name="fss_percent_change_from_year_high" translatable="true">Percent change from year high</string>
+    <string name="fss_per_ratio" translatable="true">PER ratio</string>
+    <string name="fss_peg_ratio" translatable="true">PEG ratio</string>
+    <string name="fss_1y_target_price" translatable="true">1y Target Price</string>
+    <!-- strings related to index_item.xml-->
+
+    <!-- strings related to info_key_stats.xml-->
+    <string name="iks_abreviation_guide" translatable="true">Abbreviations guide:</string>
+    <string name="iks_measure" translatable="true">K=Thousands;M=Millions;B=Billions</string>
+    <string name="iks_mrq" translatable="true">mrq = Most Recent Quarter</string>
+    <string name="iks_ttm" translatable="true">ttm = Trailing Twelve Months</string>
+    <string name="iks_yoy" translatable="true">yoy = Year Over Year</string>
+    <string name="iks_lfy" translatable="true">lfy = Last Fiscal Year</string>
+    <string name="iks_fye" translatable="true">fye = Fiscal Year Ending</string>
+    <!-- strings related to activity_splash.xml-->
+    <string name="as_appname" translatable="false">@string/app_name</string>
+    <string name="as_loading" translatable="true">Loading...</string>
+    <!-- strings related to buttons_bar.xml-->
+    <string name="bb_1d" translatable="true">1d</string>
+    <string name="bb_1w" translatable="true">1w</string>
+    <string name="bb_1m" translatable="true">1m</string>
+    <string name="bb_6m" translatable="true">6m</string>
+    <string name="bb_2y" translatable="true">2y</string>
+    <string name="bb_5y" translatable="true">5y</string>
+    <string name="bb_max" translatable="true">mx</string>
+    <string name="bb_fit" translatable="true">fit</string>
+    <!-- strings related to custom_index_markerview_rtl.xml-->
+    <string name="cim_var" translatable="true">var:</string>
+    <string name="cim_value" translatable="true">value:</string>
+    <string name="cim_time" translatable="true">time:</string>
+    <!-- strings related to custom_security_markerview.xml-->
+    <string name="csm_value" translatable="true">value:</string>
+    <string name="csm_time" translatable="true">time:</string>
+    <!-- strings related to fragment_favorites.xml-->
+    <string name="ff_text" translatable="true">You have no favorite in your list, click + to add securities or press heart icon in details</string>
+    <!-- strings related to fragment_index_summary_tab.xml-->
+    <string name="fist_day_high_text" translatable="true">day high</string>
+    <string name="fist_day_low_text" translatable="true">day low</string>
+    <string name="fist_year_high_text" translatable="true">year high</string>
+    <string name="fist_year_low_text" translatable="true">year low</string>
+    <string name="fist_volume" translatable="true">volume</string>
+    <!-- strings related to ListProviderFactory.xml-->
+    <string name="lpf_security_type_key" translatable="false">security_type_key</string>
+    <!-- strings related to widget_details.xml-->
+    <string name="wd_progressbar_text" translatable="true">Loading...</string>
+    <string name="wd_empty_message" translatable="true">No stocks in list</string>
+    <string name="wd_title" translatable="false">SPL</string>
+    <!-- strings related to ListProviderFactory-->
+    <string name="lpf_ticker" translatable="true">ticker:</string>
+    <string name="lpf_type" translatable="true">security type:</string>
+    <string name="lpf_price" translatable="true">last trade price:</string>
+    <string name="lpf_date" translatable="true">last trade date:</string>
+    <string name="lpf_change" translatable="true">change:</string>
+    <!-- strings related to StockWidgetProvider-->
+    <string name="swp_update_widget_img" translatable="true">update widget image</string>
+    <!-- strings related to SecurityAdapter-->
+    <string name="sa_talkback_ticker" translatable="true">ticker:</string>
+    <string name="sa_talkback_security_type" translatable="true">security type:</string>
+    <string name="sa_talkback_overflow_icon" translatable="true">more options:</string>
+    <string name="sa_talkback_security_name" translatable="true">security name:</string>
+    <string name="sa_talkback_price" translatable="true">price</string>
+    <string name="sa_talkback_change_percent" translatable="true">change percent</string>
+    <string name="sa_talkback_day_max" translatable="true">day max</string>
+    <string name="sa_talkback_day_min" translatable="true">day min</string>
+    <!-- strings related to SuggestionsAdapter-->
+    <string name="sua_talkback_ticker" translatable="true">ticker:</string>
+    <string name="sua_talkback_exchange" translatable="true">exchange:</string>
+    <string name="sua_talkback_security_name" translatable="true">security name:</string>
+    <string name="sua_talkback_security_type" translatable="true">security type:</string>
+    <!-- strings related to Utilities-->
+    <string name="u_icon_up">icon up arrow</string>
+    <string name="u_icon_down">icon down arrow</string>
+    <string name="u_icon_equal">icon equal arrow</string>
+
+</resources>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:alpha="0.9"
+    android:id="@+id/widget"
+    android:background="@color/colorPrimary"
+    android:focusable="true"
+    android:clickable="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/wd_hight_bar"
+        android:background="@color/orange_900"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0.5"
+            android:gravity="start"
+            android:text="@string/wd_title"
+            android:textColor="@color/white"
+
+
+            />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:paddingLeft="30dp"
+            android:text="03/05/16 12:37"
+            android:textColor="@color/white"
+
+
+            />
+
+        <ImageView
+            android:id="@+id/imgUpdate"
+            android:layout_width="0dp"
+            android:layout_height="24dp"
+            android:layout_weight="0.3"
+            android:src="@drawable/refresh" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2">
+
+        <RelativeLayout
+            android:id="@+id/llprogressBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="@android:style/Widget.ProgressBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/wd_paddingLeft_progressbar">
+
+            </ProgressBar>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/progressBar"
+                android:background="@color/colorPrimary"
+                android:text="@string/wd_progressbar_text"
+                android:textColor="@color/white"
+
+                />
+        </RelativeLayout>
+
+        <ListView
+
+            android:id="@+id/widgetList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@drawable/widget_divider"
+            android:dividerHeight="1dp"
+            tools:listitem="@layout/widget_item"
+
+            >
+
+        </ListView>
+
+        <TextView
+            android:id="@+id/widgetEmpty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:text="@string/wd_empty_message"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+    </FrameLayout>
+</LinearLayout>

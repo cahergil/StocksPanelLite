@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<CheckBoxPreference
+    android:key="@string/pref_animation_key"
+    android:title="Show chart animation"
+    android:summary="enabled"
+    android:defaultValue="true" />
+    <ListPreference
+        android:key="@string/pref_share_key"
+        android:title="@string/pref_share_title"
+        android:entries="@array/pref_share_entries"
+        android:entryValues="@array/pref_share_values"
+        android:defaultValue="@string/pref_share_default"
+
+
+        >
+
+    </ListPreference>
+
+</PreferenceScreen>

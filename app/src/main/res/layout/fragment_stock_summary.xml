@@ -1,0 +1,805 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/verticalScrollview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+
+        <LinearLayout
+            android:id="@+id/llScreenshotValueChange"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.carlos.capstone.customcomponents.AutoResizeTextView
+                    android:id="@+id/txtCompanyName"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/fss_company_name_height"
+                    android:layout_weight="4"
+                    android:textColor="@color/gray800"
+                    android:textSize="@dimen/fss_text_size_upper"
+                    android:gravity="left"
+                    tools:text="ALPHABET INC" />
+
+                <com.carlos.capstone.customcomponents.AutoResizeTextView
+                    android:id="@+id/txtMarket"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="end"
+                    android:paddingRight="@dimen/fss_price_padding_right"
+                    android:textColor="@color/gray800"
+                    android:textSize="@dimen/fss_text_size_upper"
+                    tools:text="Nasdaq" />
+
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtSymbol"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:textColor="?android:attr/textColorPrimary"
+                    android:textSize="@dimen/fss_text_size_middle"
+                    tools:text="GOOG" />
+
+                <TextView
+                    android:id="@+id/txtLastTradePrice"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:gravity="end"
+                    android:paddingRight="@dimen/fss_price_padding_right"
+                    android:textColor="?android:attr/textColorPrimary"
+                    android:textSize="@dimen/fss_text_size_middle"
+                    tools:text="748,15" />
+
+                <ImageView
+                    android:id="@+id/ivLastTradePrice"
+                    android:paddingTop="@dimen/fss_icon_padding_top"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:gravity="end"
+
+                    tools:src="@drawable/up"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.carlos.capstone.customcomponents.AutoResizeTextView
+                    android:id="@+id/txtlasTradeDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:maxLines="2"
+                    android:textColor="@color/gray700"
+                    android:textSize="@dimen/fss_text_size_down"
+                    tools:text="25 December 2015" />
+
+                <TextView
+                    android:id="@+id/txtChange"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.82"
+                    android:gravity="right"
+                    android:textColor="?android:attr/textColorPrimary"
+                    android:textSize="@dimen/fss_text_size_down"
+                    android:textStyle="bold"
+                    tools:text="2,5 (0,93)%" />
+
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.github.mikephil.charting.charts.CombinedChart
+                android:id="@+id/chart"
+                android:visibility="invisible"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fss_chart_height"
+                tools:visibility="visible"/>
+            <ProgressBar
+                tools:visibility="visible"
+                android:visibility="gone"
+                android:background="@drawable/progress"
+                android:id="@+id/progressBar"
+                android:layout_width="@dimen/fss_progress_bar"
+                android:layout_height="@dimen/fss_progress_bar"
+                android:layout_gravity="center">
+            </ProgressBar>
+        </FrameLayout>
+
+       <include layout="@layout/buttons_bar"></include>
+        <!-- Measures -->
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fss_card_view_margin"
+            app:contentPadding="@dimen/fss_card_view_padding">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:orientation="vertical">
+
+                <com.carlos.capstone.customcomponents.AutoResizeTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/fss_trading_botton_margin"
+                    android:background="@android:color/black"
+                    android:maxLines="1"
+                    android:text="Stock Trading Info"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/fss_trading_text_size" />
+                <!-- MARKET CAP -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.carlos.capstone.customcomponents.AutoResizeTextView
+
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:maxLines="1"
+                        android:text="@string/fss_market_cap"
+                        android:textSize="@dimen/fss_summary_text_size" />
+
+
+                    <com.carlos.capstone.customcomponents.AutoResizeTextView
+
+                        android:id="@+id/txtMarketCap"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+
+                        android:maxLines="1"
+                        android:textSize="@dimen/fss_summary_text_size" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/separator" />
+                <!-- DAYS RANGE -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.carlos.capstone.customcomponents.AutoResizeTextView
+
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:maxLines="1"
+                        android:text="@string/fss_days_range"
+                        android:textSize="@dimen/fss_summary_text_size" />
+
+                    <com.carlos.capstone.customcomponents.AutoResizeTextView
+
+                        android:id="@+id/txtDaysRange"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:maxLines="1"
+                        android:textSize="@dimen/fss_summary_text_size" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/separator" />
+                <!-- PREVIOUS CLOSE -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.carlos.capstone.customcomponents.AutoResizeTextView
+
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:maxLines="1"
+                        android:text="@string/fss_previous_close"
+                        android:textSize="@dimen/fss_summary_text_size" />
+
+                    <com.carlos.capstone.customcomponents.AutoResizeTextView
+
+                        android:id="@+id/txtPreviousClose"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:maxLines="1"
+                        android:textSize="@dimen/fss_summary_text_size" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/separator" />
+                <!-- OPEN -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.carlos.capstone.customcomponents.AutoResizeTextView
+
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:maxLines="1"
+                        android:text="@string/fss_open"
+                        android:textSize="@dimen/fss_summary_text_size" />
+
+                    <com.carlos.capstone.customcomponents.AutoResizeTextView
+
+                        android:id="@+id/txtOpen"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:maxLines="1"
+                        android:textSize="@dimen/fss_summary_text_size" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/separator" />
+                <!--ASK -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.carlos.capstone.customcomponents.AutoResizeTextView
+
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:maxLines="1"
+                        android:text="@string/fss_ask"
+                        android:textSize="@dimen/fss_summary_text_size" />
+
+                    <com.carlos.capstone.customcomponents.AutoResizeTextView
+
+                        android:id="@+id/txtAsk"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:maxLines="1"
+                        android:textSize="@dimen/fss_summary_text_size" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/separator" />
+                <!--BID -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.carlos.capstone.customcomponents.AutoResizeTextView
+
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:maxLines="1"
+                        android:text="@string/fss_bid"
+                        android:textSize="@dimen/fss_summary_text_size" />
+
+                    <com.carlos.capstone.customcomponents.AutoResizeTextView
+
+                        android:id="@+id/txtBid"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:maxLines="1"
+                        android:textSize="@dimen/fss_summary_text_size" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/separator" />
+                <!-- VOLUME -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.carlos.capstone.customcomponents.AutoResizeTextView
+
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:maxLines="1"
+                        android:text="@string/fss_volume"
+                        android:textSize="@dimen/fss_summary_text_size" />
+
+                    <com.carlos.capstone.customcomponents.AutoResizeTextView
+
+                        android:id="@+id/txtVolume"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:maxLines="1"
+                        android:textSize="@dimen/fss_summary_text_size" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/separator" />
+                <!--AVGERAGE DAILY VOLUME -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.carlos.capstone.customcomponents.AutoResizeTextView
+
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:maxLines="1"
+                        android:text="@string/fss_avg_daily_volume"
+                        android:textSize="@dimen/fss_summary_text_size" />
+
+                    <com.carlos.capstone.customcomponents.AutoResizeTextView
+
+                        android:id="@+id/txtAverageDailyVolume"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:maxLines="1"
+                        android:textSize="@dimen/fss_summary_text_size" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/separator" />
+                <!--EARNINGS SHARE -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.carlos.capstone.customcomponents.AutoResizeTextView
+
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:maxLines="1"
+                        android:text="@string/fss_earnings_share"
+                        android:textSize="@dimen/fss_summary_text_size" />
+
+                    <com.carlos.capstone.customcomponents.AutoResizeTextView
+
+                        android:id="@+id/txtEarningsShare"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:maxLines="1"
+                        android:textSize="@dimen/fss_summary_text_size" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/separator" />
+                <!--EPS EST CURRENT YEAR -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.carlos.capstone.customcomponents.AutoResizeTextView
+
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:maxLines="1"
+                        android:text="@string/fss_eps_stimate_current_year"
+                        android:textSize="@dimen/fss_summary_text_size" />
+
+                    <com.carlos.capstone.customcomponents.AutoResizeTextView
+
+                        android:id="@+id/txtEPSEstimateCurrentYear"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:maxLines="1"
+                        android:textSize="@dimen/fss_summary_text_size" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/separator" />
+                <!--EPS EST NEXT YEAR -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.carlos.capstone.customcomponents.AutoResizeTextView
+
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:maxLines="1"
+                        android:text="@string/fss_eps_stimate_next_year"
+                        android:textSize="@dimen/fss_summary_text_size" />
+
+                    <com.carlos.capstone.customcomponents.AutoResizeTextView
+
+                        android:id="@+id/txtEPSEstimateNextYear"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:maxLines="1"
+                        android:textSize="@dimen/fss_summary_text_size" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/separator" />
+                <!--EPS EST NEXT QUARTER -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.carlos.capstone.customcomponents.AutoResizeTextView
+
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:maxLines="1"
+                        android:text="@string/fss_eps_stimate_next_quarter"
+                        android:textSize="@dimen/fss_summary_text_size" />
+
+                    <com.carlos.capstone.customcomponents.AutoResizeTextView
+
+                        android:id="@+id/txtEPSEstimateNextQuarter"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:maxLines="1"
+                        android:textSize="@dimen/fss_summary_text_size" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/separator" />
+                <!--YEAR LOW -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.carlos.capstone.customcomponents.AutoResizeTextView
+
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:maxLines="1"
+                        android:text="@string/fss_year_low"
+                        android:textSize="@dimen/fss_summary_text_size" />
+
+                    <com.carlos.capstone.customcomponents.AutoResizeTextView
+
+                        android:id="@+id/txtYearLow"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:maxLines="1"
+                        android:textSize="@dimen/fss_summary_text_size" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/separator" />
+                <!--YEAR HIGH -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.carlos.capstone.customcomponents.AutoResizeTextView
+
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:maxLines="1"
+                        android:text="@string/fss_year_high"
+                        android:textSize="@dimen/fss_summary_text_size" />
+
+                    <com.carlos.capstone.customcomponents.AutoResizeTextView
+
+                        android:id="@+id/txtYearHigh"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:maxLines="1"
+                        android:textSize="@dimen/fss_summary_text_size" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/separator" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.carlos.capstone.customcomponents.AutoResizeTextView
+
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:maxLines="1"
+                        android:text="@string/fss_change_from_year_low"
+                        android:textSize="@dimen/fss_summary_text_size" />
+
+                    <com.carlos.capstone.customcomponents.AutoResizeTextView
+
+                        android:id="@+id/txtChangeFromYearLow"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:maxLines="1"
+                        android:textSize="@dimen/fss_summary_text_size" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/separator" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.carlos.capstone.customcomponents.AutoResizeTextView
+
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:maxLines="1"
+                        android:text="@string/fss_percent_change_from_year_low"
+                        android:textSize="@dimen/fss_summary_text_size" />
+
+                    <com.carlos.capstone.customcomponents.AutoResizeTextView
+
+                        android:id="@+id/txtPercentChangeFromYearLow"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:maxLines="1"
+                        android:textSize="@dimen/fss_summary_text_size" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/separator" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.carlos.capstone.customcomponents.AutoResizeTextView
+
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:maxLines="1"
+                        android:text="@string/fss_change_from_year_high"
+                        android:textSize="@dimen/fss_summary_text_size" />
+
+                    <com.carlos.capstone.customcomponents.AutoResizeTextView
+
+                        android:id="@+id/txtChangeFromYearHigh"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:maxLines="1"
+                        android:textSize="@dimen/fss_summary_text_size" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/separator" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.carlos.capstone.customcomponents.AutoResizeTextView
+
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:maxLines="1"
+                        android:text="@string/fss_percent_change_from_year_high"
+                        android:textSize="@dimen/fss_summary_text_size" />
+
+                    <com.carlos.capstone.customcomponents.AutoResizeTextView
+
+                        android:id="@+id/txtPercebtChangeFromYearHigh"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:maxLines="1"
+                        android:textSize="@dimen/fss_summary_text_size" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/separator" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.carlos.capstone.customcomponents.AutoResizeTextView
+
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:maxLines="1"
+                        android:text="@string/fss_per_ratio"
+                        android:textSize="@dimen/fss_summary_text_size" />
+
+                    <com.carlos.capstone.customcomponents.AutoResizeTextView
+
+                        android:id="@+id/txtPERatio"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:maxLines="1"
+                        android:textSize="@dimen/fss_summary_text_size" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/separator" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.carlos.capstone.customcomponents.AutoResizeTextView
+
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:maxLines="1"
+                        android:text="@string/fss_peg_ratio"
+
+                        android:textSize="@dimen/fss_summary_text_size" />
+
+                    <com.carlos.capstone.customcomponents.AutoResizeTextView
+
+                        android:id="@+id/txtPEGRatio"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:maxLines="1"
+                        android:textSize="@dimen/fss_summary_text_size" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/separator" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.carlos.capstone.customcomponents.AutoResizeTextView
+
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:maxLines="1"
+                        android:text="@string/fss_1y_target_price"
+                        android:textSize="@dimen/fss_summary_text_size" />
+
+                    <com.carlos.capstone.customcomponents.AutoResizeTextView
+
+                        android:id="@+id/txtOneYearTargetPrice"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:maxLines="1"
+                        android:textSize="@dimen/fss_summary_text_size" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+</ScrollView>

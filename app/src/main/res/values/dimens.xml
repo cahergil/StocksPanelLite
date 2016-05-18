@@ -1,0 +1,149 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="text_index_name">15sp</dimen>
+    <dimen name="text_index_name_large">26sp</dimen>
+    <dimen name="button_bar_text_size">11sp</dimen>
+
+    <!-- dimens related to fragment_stock_sumary.xml -->
+    <dimen name="fss_company_name_height">30dp</dimen>
+    <dimen name="fss_text_size_upper">16sp</dimen>
+    <dimen name="fss_text_size_middle">25sp</dimen>
+    <dimen name="fss_text_size_down">15sp</dimen>
+    <dimen name="fss_price_padding_right">5dp</dimen>
+    <dimen name="fss_icon_padding_top">7dp</dimen>
+    <dimen name="fss_chart_height">200dp</dimen>
+    <dimen name="fss_progress_bar">60dp</dimen>
+    <dimen name="fss_card_view_margin">16dp</dimen>
+    <dimen name="fss_card_view_padding">5dp</dimen>
+    <dimen name="fss_trading_text_size">18sp</dimen>
+    <dimen name="fss_trading_botton_margin">5dp</dimen>
+    <dimen name="fss_summary_text_size">15sp</dimen>
+
+    <!-- dimens related to stats_row.xml -->
+    <dimen name="sr_text_size">15sp</dimen>
+    <dimen name="sr_measure_width">30dp</dimen>
+    <dimen name="sr_value_width">20dp</dimen>
+
+    <!-- dimens related to stats_parent.xml -->
+    <dimen name="sp_stats_text_size">16sp</dimen>
+    <dimen name="sp_icon_width">15dp</dimen>
+    <dimen name="sp_icon_height">15dp</dimen>
+    <dimen name="sp_margin">8dp</dimen>
+    <dimen name="sp_padding">5dp</dimen>
+
+    <!-- dimens related to news_item.xml -->
+    <dimen name="ni_margin">6dp</dimen>
+
+    <!-- dimens related to security_item.xml -->
+    <dimen name="si_percent_text_size">20sp</dimen>
+    <dimen name="si_percent_margin_top">8dp</dimen>
+    <dimen name="si_price_text_size">25sp</dimen>
+    <dimen name="si_label_day">12sp</dimen>
+    <dimen name="si_min_padding_top">5dp</dimen>
+    <dimen name="si_card_view_content_padding">5dp</dimen>
+    <dimen name="si_card_view_elevation">1dp</dimen>
+    <!-- dimens related to fragment_stock_detail.xml -->
+    <dimen name="fsd_indicator_thickness">3dp</dimen>
+    <dimen name="fsd_indicator_corner_radius">1.5dp</dimen>
+    <dimen name="fsd_underline_thickness">3dp</dimen>
+    <dimen name="fsd_fab_marginBottom">60dp</dimen>
+    <dimen name="fsd_fab_marginEndRight">16dp</dimen>
+    <!-- dimens related to fragment_stock_news.xml -->
+    <dimen name="fsn_emty_text">25sp</dimen>
+    <!-- dimens related to fragment_stock_stats.xml -->
+    <dimen name="fss_emty_text">25sp</dimen>
+    <!-- dimens related to index_component_item.xml -->
+    <dimen name="ici_marginTop">8dp</dimen>
+    <dimen name="ici_layout_width">56dp</dimen>
+    <dimen name="ici_icon_text_size">20sp</dimen>
+    <dimen name="ici_padding_volume">18dp</dimen>
+
+    <!-- dimens related to index_item_no_card.xml -->
+    <dimen name="ii_content_padding">2dp</dimen>
+    <dimen name="ii_card_elevation">1dp</dimen>
+    <dimen name="ii_layout_margin">4dp</dimen>
+    <dimen name="ii_padder_height">52dp</dimen>
+    <dimen name="ii_second_ll_marginLeft">3dp</dimen>
+    <dimen name="ii_eye_width">16dp</dimen>
+    <dimen name="ii_eye_height">16dp</dimen>
+    <dimen name="ii_third_ll_marginLeft">10dp</dimen>
+    <dimen name="ii_date_width">116dp</dimen>
+    <dimen name="ii_date_height">16dp</dimen>
+    <!-- dimens related to info_key_stats.xml-->
+    <dimen name="iks_padding">20dp</dimen>
+    <dimen name="iks_text_size">15sp</dimen>
+    <!-- dimens related to rss_news_item.xml-->
+    <dimen name="rni_card_elevation">4dp</dimen>
+    <dimen name="rni_card_corner">3dp</dimen>
+    <dimen name="rni_content_padding">5dp</dimen>
+    <dimen name="rni_image_height">200dp</dimen>
+    <dimen name="rni_card_margin">10dp</dimen>
+    <!-- dimens related to activity_settings.xml-->
+    <dimen name="as_elevation">8dp</dimen>
+    <dimen name="as_appname_text_size">20sp</dimen>
+    <dimen name="as_loading_text_size">18sp</dimen>
+    <!-- dimens related to buttons_bar.xml-->
+    <dimen name="bb_margin">8dp</dimen>
+    <!-- dimens related to custom_index_markerview_rtl.xml-->
+    <dimen name="cim_width">100dp</dimen>
+    <dimen name="cim_padding">5dp</dimen>
+    <dimen name="cim_text_size">12sp</dimen>
+    <!-- dimens related to custom_security_markerview.xml-->
+    <dimen name="csm_text_size">12sp</dimen>
+    <dimen name="csm_width">120dp</dimen>
+    <dimen name="csm_padding">5dp</dimen>
+    <!-- dimens related to fragment_favorites.xml-->
+    <dimen name="ff_text_size">25sp</dimen>
+    <!-- dimens related to fragment_index_detail.xml-->
+    <dimen name="fid_viewpager_marginBottom">60dp</dimen>
+    <!-- dimens related to fragment_index_summary.xml-->
+    <dimen name="fis_tickerName_text_size">26sp</dimen>
+    <dimen name="fis_price_text_size">24sp</dimen>
+    <dimen name="fis_change_text_size">18sp</dimen>
+    <dimen name="fis_percentchange_text_size">20sp</dimen>
+    <dimen name="fis_cardview_cornerradius">3dp</dimen>
+    <dimen name="fis_cardview_elevation">2dp</dimen>
+    <dimen name="fis_paddingLeft">5dp</dimen>
+    <dimen name="fis_icon_paddingTop">6dp</dimen>
+    <dimen name="fis_graphic_width">200dp</dimen>
+    <dimen name="fis_progressbar_width">60dp</dimen>
+    <dimen name="fis_progressbar_height">60dp</dimen>
+    <!-- dimens related to fragment_index_summary_tab.xml-->
+    <dimen name="fist_cornerradius">3dp</dimen>
+    <dimen name="fist_elevation">2dp</dimen>
+
+    <!-- dimens related to suggestion_item.xml-->
+    <dimen name="si_ll_layout_margin">10dp</dimen>
+    <dimen name="si_symbol_paddingLeft">10dp</dimen>
+    <dimen name="si_symbol_paddingTop">5dp</dimen>
+    <dimen name="si_medium_text_size">14sp</dimen>
+    <dimen name="si_small_text_size">12sp</dimen>
+    <dimen name="si_name_paddingLeft">10dp</dimen>
+    <dimen name="si_name_paddingBottom">5dp</dimen>
+    <dimen name="si_securityType_padingRight">15dp</dimen>
+    <dimen name="si_stockExchange_paddingRight">15dp</dimen>
+    <!-- dimens related to widget_item.xml-->
+    <dimen name="wi_marginLeft">10dp</dimen>
+    <dimen name="wi_marginRight">10dp</dimen>
+    <dimen name="wi_marginTop">5dp</dimen>
+    <dimen name="wi_marginBottom">5dp</dimen>
+    <dimen name="wi_stringSize_small">12sp</dimen>
+    <!-- dimens related to widget_details.xml-->
+    <dimen name="wd_hight_bar">26dp</dimen>
+    <dimen name="wd_paddingLeft_progressbar">30dp</dimen>
+
+
+
+
+
+
+
+
+
+
+
+</resources>

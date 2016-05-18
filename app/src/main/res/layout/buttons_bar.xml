@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/bb_margin"
+    android:id="@+id/llbuttons"
+    >
+
+    <Button
+        android:id="@+id/btn1d"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/bb_1d"
+        style="@style/ButtonsBarStyle"
+         />
+
+    <Button
+        android:id="@+id/btn1w"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/bb_1w"
+        style="@style/ButtonsBarStyle"
+         />
+
+    <Button
+
+        android:id="@+id/btn1m"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/bb_1m"
+        style="@style/ButtonsBarStyle"
+        />
+
+    <Button
+        android:id="@+id/btn6m"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/bb_6m"
+        style="@style/ButtonsBarStyle"
+       />
+
+    <Button
+        android:id="@+id/btn2y"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/bb_2y"
+        style="@style/ButtonsBarStyle"
+       />
+    <Button
+        android:id="@+id/btn5y"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/bb_5y"
+        style="@style/ButtonsBarStyle"
+        />
+    <Button
+        android:id="@+id/btnMax"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/bb_max"
+        style="@style/ButtonsBarStyle"
+        />
+
+    <Button
+        android:id="@+id/btnFit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/bb_fit"
+        style="@style/ButtonsBarStyle"
+       />
+</LinearLayout>

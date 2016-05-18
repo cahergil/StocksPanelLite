@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ltgray"
+    android:id="@+id/llMain"
+    android:padding="@dimen/iks_padding"
+    >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/iks_text_size"
+        android:gravity="right"
+        android:text="@string/iks_abreviation_guide"
+        android:textColor="@color/black" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/iks_text_size"
+        android:gravity="right"
+        android:text="@string/iks_measure"
+        android:textColor="@color/black" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/iks_text_size"
+        android:gravity="right"
+        android:text="@string/iks_mrq"
+        android:textColor="@color/black" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/iks_text_size"
+        android:gravity="right"
+        android:text="@string/iks_ttm"
+        android:textColor="@color/black" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:textSize="@dimen/iks_text_size"
+        android:text="@string/iks_yoy"
+        android:textColor="@color/black" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/iks_text_size"
+        android:gravity="right"
+        android:text="@string/iks_lfy"
+        android:textColor="@color/black" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/iks_text_size"
+        android:gravity="right"
+        android:text="@string/iks_fye"
+        android:textColor="@color/black" />
+
+
+</LinearLayout>

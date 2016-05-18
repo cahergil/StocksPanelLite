@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:id="@+id/verticalScrollview">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:contentPadding="10dp"
+            card_view:cardCornerRadius="@dimen/fis_cardview_cornerradius"
+            card_view:cardElevation="@dimen/fis_cardview_elevation"
+            card_view:cardUseCompatPadding="true"
+            android:id="@+id/cardViewTop">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tickerName"
+                    android:textSize="@dimen/fis_tickerName_text_size"
+                    android:textColor="@android:color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="IBEX 35" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.carlos.capstone.customcomponents.AutoResizeTextView
+                        android:id="@+id/price"
+                        android:textSize="@dimen/fis_price_text_size"
+                        android:textStyle="bold"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        tools:text="8922" />
+
+                    <com.carlos.capstone.customcomponents.AutoResizeTextView
+                        android:id="@+id/change"
+                        android:textSize="@dimen/fis_change_text_size"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:layout_width="0dp"
+                        android:maxLines="1"
+                        android:ellipsize="none"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:gravity="end"
+                        tools:text="-4,63" />
+
+                    <com.carlos.capstone.customcomponents.AutoResizeTextView
+                        android:paddingStart="@dimen/fis_paddingLeft"
+                        android:paddingLeft="@dimen/fis_paddingLeft"
+                        android:id="@+id/percentChange"
+                        android:textSize="@dimen/fis_percentchange_text_size"
+                        android:textStyle="bold"
+                        android:maxLines="1"
+                        android:ellipsize="none"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3.5"
+                        android:gravity="start"
+                        tools:text="-0,68%" />
+
+                    <ImageView
+                        android:id="@+id/ivIcon"
+                        android:paddingTop="@dimen/fis_icon_paddingTop"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1.3"
+
+                        tools:src="@drawable/down"/>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvtime"
+                    style="@style/TextAppearance.AppCompat.Small"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/gray700"
+                    tools:text="10/02/2016 11:00" />
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.github.mikephil.charting.charts.CombinedChart
+                android:id="@+id/chart"
+                android:visibility="invisible"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fis_graphic_width"
+                tools:visibility="visible"/>
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:background="@drawable/progress"
+                android:layout_width="@dimen/fis_progressbar_width"
+                android:layout_height="@dimen/fis_progressbar_height"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+            </ProgressBar>
+
+
+        </FrameLayout>
+
+        <include layout="@layout/buttons_bar"></include>
+
+        <include layout="@layout/fragment_index_summary_tab"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </include>
+    </LinearLayout>
+</ScrollView>

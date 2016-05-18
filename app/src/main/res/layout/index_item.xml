@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:contentPadding="@dimen/ii_content_padding"
+    card_view:cardCornerRadius="0dp"
+    card_view:cardElevation="@dimen/ii_card_elevation"
+    card_view:cardUseCompatPadding="true">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/ticker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/ii_layout_margin"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:orientation="vertical">
+
+            <com.carlos.capstone.customcomponents.AutoResizeTextView
+                android:id="@+id/padder"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ii_padder_height" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="8"
+            android:layout_marginLeft="@dimen/ii_second_ll_marginLeft"
+            android:orientation="vertical">
+
+            <com.carlos.capstone.customcomponents.AutoResizeTextView
+                android:id="@+id/txtindexName"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textSize="@dimen/text_index_name"
+                android:textStyle="bold"
+                tools:text="Nasdaq 100" />
+
+            <com.carlos.capstone.customcomponents.AutoResizeTextView
+                android:id="@+id/txtCountry"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/gray700"
+                tools:text="Usa" />
+
+            <ImageView
+                android:id="@+id/ivEye"
+                android:layout_width="@dimen/ii_eye_width"
+                android:layout_height="@dimen/ii_eye_height"
+                android:layout_gravity="left"
+                tools:src="@drawable/eye" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/ii_third_ll_marginLeft"
+            android:layout_weight="4"
+            android:orientation="vertical">
+
+            <com.carlos.capstone.customcomponents.AutoResizeTextView
+                android:id="@+id/txtValue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="2125" />
+
+            <com.carlos.capstone.customcomponents.AutoResizeTextView
+                android:id="@+id/txtVolume"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:textColor="@color/gray400"
+                android:textSize="10sp"
+                tools:text="123,53m" />
+
+            <com.carlos.capstone.customcomponents.AutoResizeTextView
+                android:id="@+id/txtDate"
+                android:layout_width="@dimen/ii_date_width"
+                android:layout_height="@dimen/ii_date_height"
+                android:maxLines="1"
+                android:textColor="@color/gray400"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.carlos.capstone.customcomponents.AutoResizeTextView
+                    android:id="@+id/txtChangePercent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:gravity="right"
+                    android:text="-120" />
+
+                <ImageView
+                    android:id="@+id/ivIcon"
+                    android:layout_width="0dp"
+                    android:layout_height="15dp"
+                    android:layout_weight="1"
+                    android:paddingTop="3dp"
+                    android:src="@drawable/down" />
+
+            </LinearLayout>
+
+            <com.carlos.capstone.customcomponents.AutoResizeTextView
+                android:id="@+id/txtChange"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:textColor="@color/gray400"
+                tools:text="-5%" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>

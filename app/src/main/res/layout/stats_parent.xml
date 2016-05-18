@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:focusable="true"
+    android:background="@drawable/selector_stats_parent"
+    >
+
+    <TextView
+        android:id="@+id/parent_list_item_title_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/sp_padding"
+        android:textStyle="bold"
+        android:text="Stat"
+        android:textSize="@dimen/sp_stats_text_size"
+        android:layout_alignBaseline="@+id/parent_list_item_expand_arrow"
+        android:textColor="@android:color/white"/>
+
+    <ImageButton
+
+        android:background="?attr/colorPrimary"
+        android:id="@+id/parent_list_item_expand_arrow"
+        android:layout_width="@dimen/sp_icon_width"
+        android:layout_height="@dimen/sp_icon_height"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="@dimen/sp_margin"
+        android:src="@drawable/ic_action_expand" />
+
+</RelativeLayout>
