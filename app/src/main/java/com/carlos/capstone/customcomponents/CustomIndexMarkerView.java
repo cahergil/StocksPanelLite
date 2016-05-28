@@ -54,9 +54,16 @@ public class CustomIndexMarkerView extends MarkerView {
         lineDataSet.setColor(ContextCompat.getColor(context,R.color.white));
         //remove previos highlight if there is one
         int count=chart.getLineData().getDataSetCount();
-        if(count>3) {
+
+        //America and Europe
+        if(count==4) {
             chart.getLineData().removeDataSet(count-1);
         }
+        //Asia
+        if(count==2) {
+            chart.getLineData().removeDataSet(count-1);
+        }
+
         chart.getLineData().addDataSet(lineDataSet);
         chart.notifyDataSetChanged();
         chart.invalidate();
@@ -66,7 +73,7 @@ public class CustomIndexMarkerView extends MarkerView {
 
     @Override
     public void refreshContent(Entry e, Highlight highlight) {
-        tvPercent.setText("\u200e"+String.format("%.2f",e.getVal())+"%"); // set the entry-value as the display text
+        tvPercent.setText(String.format("%.2f",e.getVal())+"%"); // set the entry-value as the display text
         tvValue.setText(""+ String.format("%.2f",list.get(highlight.getDataSetIndex()).getyValuesMarkerView().get(highlight.getXIndex()).floatValue()));
         //     Entry entry=dataSets.get(highlight.getDataSetIndex()).getEntryForXIndex(e.getXIndex());
         //      list.get(highlight.getDataSetIndex()).getyValuesMarkerView().get(highlight.getXIndex()).floatValue();
@@ -76,6 +83,7 @@ public class CustomIndexMarkerView extends MarkerView {
 
     @Override
     public int getXOffset(float xpos) {
+
         return -(getWidth() / 2);
     }
 

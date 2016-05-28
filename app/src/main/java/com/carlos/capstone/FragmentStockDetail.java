@@ -70,7 +70,10 @@ public class FragmentStockDetail extends Fragment implements TabLayout.OnTabSele
         mViewPager.setOffscreenPageLimit(2);
         final PagerAdapter pagerAdapter=new Adapter(getActivity(),getChildFragmentManager());
         mViewPager.setAdapter(pagerAdapter);
-
+        mTabLayout = (TabLayout) view.findViewById(R.id.tabs);
+        mTabLayout.setupWithViewPager(mViewPager);
+        mTabLayout.setOnTabSelectedListener(this);
+        setTabIcons();
 
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbarRightPane);
         if(Utilities.hasOnePane(getActivity())) {
@@ -124,10 +127,7 @@ public class FragmentStockDetail extends Fragment implements TabLayout.OnTabSele
 
         mAdView.setAdListener(new AdvertisementListener(getActivity(),"banner 2 click"));
 
-        mTabLayout = (TabLayout) view.findViewById(R.id.tabs);
-        mTabLayout.setupWithViewPager(mViewPager);
-        mTabLayout.setOnTabSelectedListener(this);
-        setTabIcons();
+
 
         //seems not to work, except if I change the color
         mFab = (FloatingActionButton) view.findViewById(R.id.fab);
@@ -181,8 +181,8 @@ public class FragmentStockDetail extends Fragment implements TabLayout.OnTabSele
         mTabLayout.getTabAt(PAGE_NEWS).setIcon(R.drawable.rss);
 
         mTabLayout.getTabAt(PAGE_SUMMARY).getIcon().setColorFilter(ContextCompat.getColor(getActivity(),R.color.white),PorterDuff.Mode.SRC_IN);
-        mTabLayout.getTabAt(PAGE_STATS).getIcon().setColorFilter(ContextCompat.getColor(getActivity(),R.color.gray600),PorterDuff.Mode.SRC_IN);
-        mTabLayout.getTabAt(PAGE_NEWS).getIcon().setColorFilter(ContextCompat.getColor(getActivity(),R.color.gray600),PorterDuff.Mode.SRC_IN);
+        mTabLayout.getTabAt(PAGE_STATS).getIcon().setColorFilter(ContextCompat.getColor(getActivity(),R.color.blue_gray_700),PorterDuff.Mode.SRC_IN);
+        mTabLayout.getTabAt(PAGE_NEWS).getIcon().setColorFilter(ContextCompat.getColor(getActivity(),R.color.blue_gray_700),PorterDuff.Mode.SRC_IN);
 
     }
     public void showhelpKeyStats(){
@@ -254,7 +254,7 @@ public class FragmentStockDetail extends Fragment implements TabLayout.OnTabSele
 
     @Override
     public void onTabUnselected(TabLayout.Tab tab) {
-        int tabIconColor=ContextCompat.getColor(getContext(),R.color.gray600);
+        int tabIconColor=ContextCompat.getColor(getContext(),R.color.blue_gray_700);
         tab.getIcon().setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN);
     }
 

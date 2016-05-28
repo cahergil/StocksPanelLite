@@ -86,11 +86,13 @@ public class CustomSecurityMarkerView extends MarkerView {
 
     @Override
     public int getXOffset(float xpos) {
+
         return -(getWidth() / 2);
     }
 
     @Override
     public int getYOffset(float ypos) {
+
         return -(getHeight());
     }
 }

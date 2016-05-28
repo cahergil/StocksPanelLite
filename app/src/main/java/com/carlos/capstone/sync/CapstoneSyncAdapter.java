@@ -67,7 +67,7 @@ public class CapstoneSyncAdapter extends AbstractThreadedSyncAdapter {
     // Interval at which to sync , in seconds.
     // 60 seconds (1 minute) * 7 = 7 minutes
 
-    public static final int SYNC_INTERVAL=60*7;
+    public static final int SYNC_INTERVAL=60*3;
     //  public static final int SYNC_FLEXTIME = SYNC_INTERVAL/3;
     public static final int SYNC_FLEXTIME = 0;
     private static final long DAY_IN_MILLIS = 1000 * 60 * 60 * 24;
@@ -260,21 +260,21 @@ public class CapstoneSyncAdapter extends AbstractThreadedSyncAdapter {
             tm.log("======== BEGIN LoadFeedsASIA");
             rssLoaderASIA.loadFeeds();
             tm.log("======== BEGIN LoadFavorites");
-            loadFavorites(true,false,null,getContext(),tm);
+            loadFavorites(true,null,getContext(),tm);
 
             return;
         }
     }
 
-    public static void UpdateWidgetFavorites(Context context,TimeMeasure tm){
-        tm.log("======== BEGIN LoadFavorites");
+    public static void UpdateWidgetFavorites(Context context){
+
         setProgressBarWidgetVisibility(View.VISIBLE,context);
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        loadFavorites(true,true,null,context,tm);
+        updateWidget(context);
         setProgressBarWidgetVisibility(View.GONE,context);
         setUpdatedDateOnWidget(context);
     }
@@ -305,7 +305,6 @@ public class CapstoneSyncAdapter extends AbstractThreadedSyncAdapter {
      * and by the Widget
     */
     public static void loadFavorites(final boolean belongsToSyncAdapter,
-                                     final boolean belongsToUpdateWidget,
                                      String varTicker,
                                      final Context context,
                                      final TimeMeasure tm) {
@@ -321,9 +320,8 @@ public class CapstoneSyncAdapter extends AbstractThreadedSyncAdapter {
                     null);
             if (c != null && c.getCount() < 1) {
                 tm.log("END LOAD FAVORITES");
-                if(!belongsToUpdateWidget) {
-                    testEndLoads(context, tm);
-                }
+                testEndLoads(context, tm);
+
                 return;
             }
             StringBuilder tickerBuilder = new StringBuilder();
@@ -383,16 +381,14 @@ public class CapstoneSyncAdapter extends AbstractThreadedSyncAdapter {
                     Log.d(LOG_TAG,"insert Security into Favorites Succesfully Inserted : " + inserted_data);
                     if(belongsToSyncAdapter) {
                         tm.log("END LOAD FAVORITES");
-                        if(!belongsToUpdateWidget) {
-                            testEndLoads(context, tm);
-                        }
+                        testEndLoads(context, tm);
+
                     }
                 } else {
                     if(belongsToSyncAdapter) {
                         tm.log("END LOAD FAVORITES WITH FAILURE");
-                        if(!belongsToUpdateWidget) {
-                            testEndLoads(context, tm);
-                        }
+                        testEndLoads(context, tm);
+
                     }
                 }
             }
@@ -401,9 +397,8 @@ public class CapstoneSyncAdapter extends AbstractThreadedSyncAdapter {
             public void onFailure(Throwable t) {
                if(belongsToSyncAdapter) {
                     tm.log("END LOAD FAVORITES WITH FAILURE");
-                   if(!belongsToUpdateWidget) {
-                       testEndLoads(context, tm);
-                   }
+                    testEndLoads(context, tm);
+
                 }
             }
         });

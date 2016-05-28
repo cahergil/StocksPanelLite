@@ -190,6 +190,7 @@
     <string name="fss_button_5_year" translatable="true"> 5 years</string>
     <string name="fss_button_max" translatable="true"> max</string>
     <string name="fss_button_fit" translatable="true"> fit graphic</string>
+    <string name="fss_shared_file_key" translatable="false">shared_file_name_key</string>
 
     <!-- strings related to ActivitySettings-->
     <string name="settings_title">Settings</string>

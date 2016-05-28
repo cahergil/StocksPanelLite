@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.carlos.capstone.sync.CapstoneSyncAdapter;
-import com.carlos.capstone.utils.TimeMeasure;
 
 /**
  * Created by Carlos on 04/05/2016.
@@ -26,8 +25,7 @@ public class UpdateWidgetService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
         Log.d(LOG_TAG,"onUpdateWidgetService");
-        TimeMeasure tm=new TimeMeasure(LOG_TAG);
-        CapstoneSyncAdapter.UpdateWidgetFavorites(getApplicationContext(),tm);
+        CapstoneSyncAdapter.UpdateWidgetFavorites(getApplicationContext());
 
     }
 }

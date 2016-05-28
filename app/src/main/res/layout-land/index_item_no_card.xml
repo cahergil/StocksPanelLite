@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:textColor="@android:color/black"
+                android:textColor="@color/blue_gray_700"
                 android:textSize="@dimen/text_index_name"
                 android:textStyle="bold"
                 android:transitionName="shared_element"

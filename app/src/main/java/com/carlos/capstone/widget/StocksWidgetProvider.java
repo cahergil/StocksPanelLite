@@ -29,6 +29,7 @@ public class StocksWidgetProvider extends AppWidgetProvider {
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         Log.d(LOG_TAG,"onUpdate");
         for (int appWidgetId : appWidgetIds) {
+
             RemoteViews view=new RemoteViews(context.getPackageName(), R.layout.widget_details);
 
             //create an intent to lauch MainActivity when the user clicks
@@ -97,8 +98,7 @@ public class StocksWidgetProvider extends AppWidgetProvider {
     }
     @SuppressWarnings("deprecation")
     private void setRemoteAdapterV11(Context context, @NonNull final RemoteViews views) {
-        views.setRemoteAdapter(0, R.id.widgetList,
-                new Intent(context, WidgetRemoteViewService.class));
+        views.setRemoteAdapter(0, R.id.widgetList,new Intent(context, WidgetRemoteViewService.class));
     }
 
 }

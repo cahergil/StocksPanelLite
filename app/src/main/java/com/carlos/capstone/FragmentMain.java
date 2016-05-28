@@ -478,7 +478,8 @@ public class FragmentMain extends Fragment  implements OnChartGestureListener,
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
         int pos=tab.getPosition();
-
+       //remove previous highlights
+        mChart.highlightValue(null);
         switch (pos) {
             case PAGE_FAVORITES:
                  mFab.show();
@@ -508,6 +509,7 @@ public class FragmentMain extends Fragment  implements OnChartGestureListener,
                     intentAmerica.setAction(RegionChartAndIndexLoaderService.FETCH_EUROPE_DATA);
                     getActivity().startService(intentAmerica);
                 } else {
+                    mProgressBar.setVisibility(View.INVISIBLE);
                     drawChart(listEurope);
                 }
                 Utilities.analyticsTrackScreen(getActivity().getApplication(),getString(R.string.ga_fm_page_europe));
@@ -521,6 +523,7 @@ public class FragmentMain extends Fragment  implements OnChartGestureListener,
                     intentAsia.setAction(RegionChartAndIndexLoaderService.FETCH_ASIA_DATA);
                     getActivity().startService(intentAsia);
                 } else {
+                    mProgressBar.setVisibility(View.INVISIBLE);
                     drawChart(listAsia);
                 }
                 Utilities.analyticsTrackScreen(getActivity().getApplication(),getString(R.string.ga_fm_page_asia));
