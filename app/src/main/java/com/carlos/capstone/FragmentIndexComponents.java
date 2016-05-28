@@ -55,7 +55,7 @@ public class FragmentIndexComponents extends Fragment implements LoaderManager.L
     private BroadcastReceiver mMessageReceiver=new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            //  String message=intent.getStringExtra("tab_summary");
+
 
             mToolbar = (Toolbar) getActivity().findViewById(R.id.toolbarRightPane);
             Menu menu=mToolbar.getMenu();
@@ -145,6 +145,7 @@ public class FragmentIndexComponents extends Fragment implements LoaderManager.L
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+
 
         if(getActivity() instanceof DetailIndexActivity) {
             inflater.inflate(R.menu.menu_search, menu);

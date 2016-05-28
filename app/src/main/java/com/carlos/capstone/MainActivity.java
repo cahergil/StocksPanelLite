@@ -14,7 +14,6 @@ import android.widget.Toast;
 import com.carlos.capstone.interfaces.Callback;
 import com.carlos.capstone.utils.MyApplication;
 import com.carlos.capstone.utils.Utilities;
-import com.facebook.stetho.Stetho;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
@@ -33,38 +32,18 @@ public class MainActivity extends AppCompatActivity implements Callback {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Intent intent=getIntent();
-        if (intent != null) {
-            if(intent.getBooleanExtra("from_widget_key",false)) {
-                String symbol=intent.getStringExtra(getString(R.string.symbol_key));
-                String company=intent.getStringExtra(getString(R.string.company_name_key));
-                String type=intent.getStringExtra("security_type_key");
-                this.onItemSelected(symbol,company,type);
-
-            }
-        }
-
-
-
-
 
         if (savedInstanceState==null) {
 
-            Stetho.initializeWithDefaults(this);
-            //inmediatly after installation, extract from shared preferences
+         //   Stetho.initializeWithDefaults(this);
 
-//            SharedPreferences sp=PreferenceManager.getDefaultSharedPreferences(this);
-//            SharedPreferences.Editor editor=sp.edit();
-//            if(findViewById(R.id.main_activity_container)!=null) {
-//
-//                editor.putBoolean(getString(R.string.two_pane_key),true);
-//
-//            } else {
-//
-//                editor.putBoolean(getString(R.string.two_pane_key),false);
-//            }
-//            editor.apply();
-
+            //if bundleWidget ==null not comming from widget, and onCreate means this Activity isn't in background.
+            //if bundleWidget !=null it comes from widget,and onCreate means this Activity isn't in background.
+            if(Utilities.hasTwoPane(this)) {
+                Intent widgetIntent=getIntent();
+                Bundle bundleWidget = widgetIntent.getExtras();
+                widgetLauncher(bundleWidget);
+            }
 
         }
 
@@ -73,6 +52,62 @@ public class MainActivity extends AppCompatActivity implements Callback {
 
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        Log.d(LOG_TAG,"onNewIntent");
+        setIntent(intent);
+        //hasTwoPane==false then do nothing
+        if(Utilities.hasTwoPane(this)) {
+            Intent widgetIntent=getIntent();
+            Bundle bundleWidget = widgetIntent.getExtras();
+            //if bundleWidget==null then the app doesn't come from Widget and this
+            //activity is at top of the stack(because onNewIntent has executed)
+            //in this case do nothing, just after this method executes onResume().
+            if(bundleWidget!=null) {
+                widgetLauncher(bundleWidget);
+            }
+        }
+    }
+
+    private void widgetLauncher(Bundle bundleWidget){
+        if(bundleWidget!=null) {
+            String securityType = bundleWidget.getString(getString(R.string.lpf_security_type_key));
+            if (securityType != null) {
+                if (securityType.equals(getString(R.string.equity).toUpperCase())) {
+
+                    FragmentStockDetail fragmentStockDetail=new FragmentStockDetail();
+                    fragmentStockDetail.setArguments(bundleWidget);
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.main_activity_container,fragmentStockDetail)
+                            .commit();
+
+                } else {
+
+                    FragmentIndexDetail fragmentIndexDetail = new FragmentIndexDetail();
+
+                    fragmentIndexDetail.setArguments(bundleWidget);
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.main_activity_container, fragmentIndexDetail)
+                            .commit();
+                }
+
+
+            }
+        } else {
+            String ticker = "TX60.TS";
+            Bundle bundle = new Bundle();
+            bundle.putString(getString(R.string.ticker_bundle_key), ticker);
+            //not neccesary to remove fragment since replace removes the previous fragment
+            // http://stackoverflow.com/questions/20682248/difference-between-fragmenttransaction-add-and-fragmenttransaction-replace
+            FragmentIndexDetail fragmentIndexDetail = new FragmentIndexDetail();
+            fragmentIndexDetail.setArguments(bundle);
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.main_activity_container, fragmentIndexDetail)
+                    .commit();
+        }
+
+    }
     @Override
     protected void onStart() {
         super.onStart();

@@ -10,6 +10,7 @@ import android.os.Binder;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.widget.AdapterView;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
@@ -24,6 +25,7 @@ import java.text.DecimalFormat;
  * Created by Carlos on 01/05/2016.
  */
 public class ListProviderFactory implements RemoteViewsService.RemoteViewsFactory {
+    private static final String LOG_TAG=ListProviderFactory.class.getSimpleName();
     private Context context;
     private int appWidgetId;
     private Cursor mCursor;
@@ -50,6 +52,7 @@ public class ListProviderFactory implements RemoteViewsService.RemoteViewsFactor
     // notifyAppWidgetViewDataChanged method to trigger this handler
     @Override
     public void onDataSetChanged() {
+        Log.d(LOG_TAG,"onDataSetChanged");
         if(mCursor!=null) {
             mCursor.close();
         }
@@ -68,8 +71,8 @@ public class ListProviderFactory implements RemoteViewsService.RemoteViewsFactor
                 projection, //projection
                 null, //selection
                 null, //selectionArgs
-                null); //sortOrder
-
+                CapstoneContract.FavoritesEntity.COMPANY_NAME + " ASC"); //sortOrder
+        Log.d(LOG_TAG,"onDataSetChanged, cursor is !=null?"+ String.valueOf(mCursor!=null));
         Binder.restoreCallingIdentity(identityToken);
 
     }
@@ -91,7 +94,9 @@ public class ListProviderFactory implements RemoteViewsService.RemoteViewsFactor
     public RemoteViews getViewAt(int position) {
         if (position == AdapterView.INVALID_POSITION ||
                 mCursor == null || !mCursor.moveToPosition(position)) {
+            Log.d(LOG_TAG,"inside getViewAt returning at the beggining");
             return null;
+
         }
 
         RemoteViews row=new RemoteViews(context.getPackageName(), R.layout.widget_item);

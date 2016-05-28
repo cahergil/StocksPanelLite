@@ -189,7 +189,7 @@ public class FragmentFavorites extends Fragment implements LoaderManager.LoaderC
                     String securityType = c.getString(SuggestionsAdapter.COL_SECURITY_TYPE);
                     ((Callback) getActivity()).onItemSelected(symbol, companyName, securityType.toUpperCase());
                 } else {
-                    CapstoneSyncAdapter.loadFavorites(false,false,symbol,getActivity(),null);
+                    CapstoneSyncAdapter.loadFavorites(false,symbol,getActivity(),null);
                 }
 
                 searchView.setQuery("", false);
@@ -238,7 +238,7 @@ public class FragmentFavorites extends Fragment implements LoaderManager.LoaderC
                     null,
                     null,
                     null,
-                    null);
+                    CapstoneContract.FavoritesEntity.COMPANY_NAME + " ASC");
         }
         return null;
     }

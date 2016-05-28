@@ -2,6 +2,7 @@ package com.carlos.capstone.utils;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
@@ -11,9 +12,12 @@ import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.media.MediaScannerConnection;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.annotation.DrawableRes;
 import android.support.v4.content.ContextCompat;
@@ -33,7 +37,12 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
 import java.text.DateFormat;
@@ -453,7 +462,7 @@ public class Utilities {
                 view.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
         if (drawBackground) {
-            view.setBackgroundColor(ContextCompat.getColor(context, R.color.ltgray));
+            view.setBackgroundColor(ContextCompat.getColor(context, R.color.white));
         }
         view.draw(canvas);
         return bitmap;
@@ -938,5 +947,83 @@ public class Utilities {
         tracker.setScreenName(screenName);
         tracker.send(new HitBuilders.ScreenViewBuilder().build());
 
+    }
+
+    public static Intent getSharedIntent(String fileName) {
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+
+        File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+
+        File sharedFile = new File(path,fileName);
+        Uri uri = Uri.fromFile(sharedFile);
+
+        shareIntent.setType("image/*");
+        shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+        return shareIntent;
+    }
+    public static  void saveImageToSD(Context context,Bitmap sourceBitmap,String fileName) {
+        Bitmap bm= sourceBitmap;
+        OutputStream outStream = null;
+        try {
+            outStream = new FileOutputStream(Utilities.getTempFile(fileName));
+            bm.compress(Bitmap.CompressFormat.PNG, 100, outStream);
+            outStream.flush();
+            outStream.close();
+  //          bm.recycle();
+//            MediaScannerConnection.scanFile(context,
+//                    new String[] { Utilities.getTempFile(fileName).toString() }, null,
+//                    new MediaScannerConnection.OnScanCompletedListener() {
+//                        public void onScanCompleted(String path, Uri uri) {
+//                            Log.i("ExternalStorage", "Scanned " + path + ":");
+//                            Log.i("ExternalStorage", "-> uri=" + uri);
+//                        }
+//                    });
+        } catch (FileNotFoundException e) {
+            Log.d(LOG_TAG,"error in saveImageToSD:"+e.getMessage());
+        } catch (IOException e) {
+            Log.d(LOG_TAG,"error in saveImageToSD:"+e.getMessage());
+        }
+
+
+    }
+
+    public static File getTempFile(String fileName) {
+
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+
+            File path=Environment.getExternalStoragePublicDirectory(
+                    Environment.DIRECTORY_PICTURES);
+            File file = new File(path ,fileName);
+
+            try  {
+                file.createNewFile();
+            }  catch (IOException e) {
+                Log.d(LOG_TAG,"error in getTempFile:"+e.getMessage());
+            }
+
+            return file;
+        } else  {
+            return null;
+        }
+    }
+
+
+    public static void deleteFileFromSD(String fileName) {
+
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+
+            File path=Environment.getExternalStoragePublicDirectory(
+                    Environment.DIRECTORY_PICTURES);
+            File file = new File(path ,fileName);
+
+            if(file.exists()) {
+                file.delete();
+            }
+
+
+
+        } else  {
+            Log.d(LOG_TAG,"External storage not mounted,couldn't delete file");
+        }
     }
 }

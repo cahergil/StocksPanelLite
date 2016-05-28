@@ -5,6 +5,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/linearParent"
     android:focusable="true"
     android:layout_marginLeft="8dp"
@@ -48,7 +49,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/selector_overflow_mini"
                 android:tint="@color/gray700"
-                android:src="@drawable/ic_overflow"/>
+                app:srcCompat="@drawable/ic_overflow"/>
         </LinearLayout>
 
         <LinearLayout
@@ -61,6 +62,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
+                android:textColor="@color/blue_gray_700"
                 android:textStyle="bold"
                 android:gravity="right"
                 tools:text="Alphabet Inc." />
