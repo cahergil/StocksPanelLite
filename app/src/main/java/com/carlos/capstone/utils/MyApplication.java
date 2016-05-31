@@ -12,7 +12,6 @@ import com.carlos.capstone.models.IndexDataUnit;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Logger;
 import com.google.android.gms.analytics.Tracker;
-import com.squareup.leakcanary.LeakCanary;
 import com.squareup.okhttp.Dispatcher;
 import com.squareup.okhttp.OkHttpClient;
 
@@ -46,7 +45,7 @@ public class MyApplication extends Application {
     public static Observable<Response<HistoricalDataResponseDate>> mObservableMonths=Observable.empty();
     @Override public void onCreate() {
         super.onCreate();
-        LeakCanary.install(this);
+      //  LeakCanary.install(this);
 
     }
     //http://stackoverflow.com/questions/33035867/android-app-crashes-on-pre-lollipop-devices/33041346

@@ -67,7 +67,7 @@ public class CapstoneSyncAdapter extends AbstractThreadedSyncAdapter {
     // Interval at which to sync , in seconds.
     // 60 seconds (1 minute) * 7 = 7 minutes
 
-    public static final int SYNC_INTERVAL=60*3;
+    public static final int SYNC_INTERVAL=60*7;
     //  public static final int SYNC_FLEXTIME = SYNC_INTERVAL/3;
     public static final int SYNC_FLEXTIME = 0;
     private static final long DAY_IN_MILLIS = 1000 * 60 * 60 * 24;
@@ -227,13 +227,7 @@ public class CapstoneSyncAdapter extends AbstractThreadedSyncAdapter {
 
                 return;
             }
-//            tm.log("======== BEGIN LOAD1dDataChart");
-//            total_loads = LOAD_PARTIAL;
-//            load1dDataChartAmerica();
-//            //in case the user exit the app an enter few time later again before the next sync
-//            Utilities.setNeedEuropeSync(mContext,true);
-//            Utilities.setNeedAsiaSync(mContext,true);
-           // mInformSplash=true;
+
            // Intent intent=new Intent(mContext, DownloadSymbolFromExcel.class);
            // getContext().startService(intent);
            // Intent intent=new Intent(mContext, DownloadSymbol.class);
