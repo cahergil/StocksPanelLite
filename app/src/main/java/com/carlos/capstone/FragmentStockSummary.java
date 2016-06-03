@@ -2,7 +2,6 @@ package com.carlos.capstone;
 
 
 import android.Manifest;
-import android.annotation.TargetApi;
 import android.content.BroadcastReceiver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -32,7 +31,6 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.ShareActionProvider;
 import android.support.v7.widget.Toolbar;
-import android.transition.Transition;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -41,7 +39,6 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -182,8 +179,6 @@ public class FragmentStockSummary extends Fragment implements View.OnClickListen
     public static final int CHART_MODE_MAX = 6;
 
     private boolean mInvalidateMenu = false;
-    private boolean mAfterDeviceRotation = false;
-    private boolean mFirstNetworkRequest = true;
     private boolean mFromWidget = false;
     private Bitmap mSourceBitmap;
     private String mSharedFileName = "";
@@ -244,7 +239,7 @@ public class FragmentStockSummary extends Fragment implements View.OnClickListen
     @Override
     public void onChartTranslate(MotionEvent me, float dX, float dY) {
         Log.i(LOG_TAG, "onChartTranslate");
-        //  updateShareActionProvider();
+
     }
 
 
@@ -361,11 +356,6 @@ public class FragmentStockSummary extends Fragment implements View.OnClickListen
         if (savedInstanceState != null) {
 
             mSharedFileName = savedInstanceState.getString(getString(R.string.fss_shared_file_key));
-
-            mAfterDeviceRotation = true;
-            //it is initialized to true by default, thus on rotation gets true, for that reason set here to false
-            mFirstNetworkRequest = false;
-            mChart.setVisibility(View.VISIBLE);
             //Loader needs it when to make a CursorLoader object after rotating
             mSymbol = savedInstanceState.getString(getString(R.string.symbol_key));
             //  getLoaderManager().restartLoader(STOCK_LOADER,null,this);
@@ -423,13 +413,11 @@ public class FragmentStockSummary extends Fragment implements View.OnClickListen
                 if (Utilities.isNetworkAvailable(getActivity())) {
                     intent.putExtras(bundle);
                     getActivity().startService(intent);
-                } else {
-                    checkRunTransition();
                 }
 
             }
 
-            // getLoaderManager().initLoader(STOCK_LOADER,null,this);
+
             loadData();
         }
 
@@ -868,7 +856,7 @@ public class FragmentStockSummary extends Fragment implements View.OnClickListen
         lineDataSetTicker.setLabel(mSymbol);
         //lineDataSetTicker.setDrawHighlightIndicators();
         lineDataSetTicker.setHighlightEnabled(true);
-        lineDataSetTicker.setHighLightColor(ContextCompat.getColor(getActivity(), R.color.gray800));
+        lineDataSetTicker.setHighLightColor(ContextCompat.getColor(getActivity(), R.color.colorPrimary));
         lineDataSetTicker.setHighlightLineWidth(1f);
         LineData d = new LineData();
         d.addDataSet(lineDataSetTicker);
@@ -1148,7 +1136,8 @@ public class FragmentStockSummary extends Fragment implements View.OnClickListen
         public void onError(Throwable e) {
             Log.i(LOG_TAG, "On error  WrapperObserbable days:" + e.getMessage());
             mProgressBar.setVisibility(View.GONE);
-            checkRunTransition();
+            mChart.setVisibility(View.VISIBLE);
+
         }
 
         @Override
@@ -1156,6 +1145,7 @@ public class FragmentStockSummary extends Fragment implements View.OnClickListen
             //there is a case(e.g:NA7.BE) trying to load graphic data, the response here is ok code=200 but in web there is an error
             Log.i(LOG_TAG, "On next WrapperObserbable Days:" + response.raw());
             mProgressBar.setVisibility(View.GONE);
+            mChart.setVisibility(View.VISIBLE);
             if (response.isSuccess()) {
                 HistoricalDataResponseTimestamp resp = response.body();
                 if (resp != null && resp.getSeries() != null && resp.getMeta() != null) {
@@ -1163,13 +1153,10 @@ public class FragmentStockSummary extends Fragment implements View.OnClickListen
                     fillCombinatedChartTimestampData(resp.getSeries(), chartMode);
                     String chartDescription = Utilities.formatChartDescription(chartMode, resp.getMeta().getTicker());
                     drawCombinatedChart(chartDescription, chartMode);
-                    checkRunTransition();
 
                 }
-                checkRunTransition();
-            } else {
-            }
 
+            }
         }
     }
 
@@ -1192,7 +1179,7 @@ public class FragmentStockSummary extends Fragment implements View.OnClickListen
         public void onError(Throwable e) {
             Log.i(LOG_TAG, "On error WrapperObserbable months:" + e.getMessage());
             mProgressBar.setVisibility(View.GONE);
-            //     checkRunTransition(); no need to put it here since will never be the first network request
+
         }
 
         @Override
@@ -1207,10 +1194,9 @@ public class FragmentStockSummary extends Fragment implements View.OnClickListen
                     fillCombinatedChartDateData(resp.getSeries(), chartMode);
                     String chartDescription = Utilities.formatChartDescription(chartMode, resp.getMeta().getTicker());
                     drawCombinatedChart(chartDescription, chartMode);
-                    //            checkRunTransition();
+
 
                 }
-            } else {
             }
 
         }
@@ -1219,7 +1205,6 @@ public class FragmentStockSummary extends Fragment implements View.OnClickListen
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        mChart.setVisibility(View.INVISIBLE);
         Log.d(LOG_TAG, "OnDestroyView FragmentStockSummary");
         if (subscription != null) subscription.unsubscribe();
         LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(mMessageReceiver);
@@ -1337,74 +1322,7 @@ public class FragmentStockSummary extends Fragment implements View.OnClickListen
 
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public void setTransitionListenerV21() {
 
-        final Transition slide = getActivity().getWindow().getEnterTransition();
-        slide.addListener(new Transition.TransitionListener() {
-            @Override
-            public void onTransitionStart(Transition transition) {
-
-            }
-
-            @Override
-            public void onTransitionEnd(Transition transition) {
-                mChart.setVisibility(View.VISIBLE);
-                slide.removeListener(this);
-            }
-
-            @Override
-            public void onTransitionCancel(Transition transition) {
-
-            }
-
-            @Override
-            public void onTransitionPause(Transition transition) {
-
-            }
-
-            @Override
-            public void onTransitionResume(Transition transition) {
-
-            }
-        });
-
-    }
-
-    private void scheduleStartPostponedTransition() {
-        mScrollView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-            @Override
-            public boolean onPreDraw() {
-                mScrollView.getViewTreeObserver().removeOnPreDrawListener(this);
-                getActivity().supportStartPostponedEnterTransition();
-                return true;
-            }
-        });
-
-    }
-
-    private void checkRunTransition() {
-
-        if (getActivity() instanceof DetailStockActivity) {
-            if (mFromWidget) {
-                mChart.setVisibility(View.VISIBLE);
-                return;
-            }
-            //
-            if (mAfterDeviceRotation == false && mFirstNetworkRequest == true) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    setTransitionListenerV21();
-                    scheduleStartPostponedTransition();
-                } else {
-                    mChart.setVisibility(View.VISIBLE);
-                }
-                mFirstNetworkRequest = !mFirstNetworkRequest;
-            } else if (mAfterDeviceRotation == true) {
-                mChart.setVisibility(View.VISIBLE);
-                mAfterDeviceRotation = !mAfterDeviceRotation;
-            }
-        }
-    }
 
     private void askForPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

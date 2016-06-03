@@ -130,10 +130,11 @@
 
             <com.github.mikephil.charting.charts.CombinedChart
                 android:id="@+id/chart"
-                android:visibility="invisible"
                 android:layout_width="match_parent"
+                android:visibility="invisible"
                 android:layout_height="@dimen/fss_chart_height"
-                tools:visibility="visible"/>
+                tools:visibility="visible"
+                />
             <ProgressBar
                 tools:visibility="visible"
                 android:visibility="gone"

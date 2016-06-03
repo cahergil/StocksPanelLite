@@ -1,15 +1,12 @@
 package com.carlos.capstone;
 
-import android.app.ActivityOptions;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.carlos.capstone.interfaces.Callback;
 import com.carlos.capstone.utils.MyApplication;
@@ -159,26 +156,15 @@ public class MainActivity extends AppCompatActivity implements Callback {
                 .setLabel(region)
                 .build());
 
+        Bundle bundle=new Bundle();
+        bundle.putString(getString(R.string.ticker_bundle_key), ticker);
         if(Utilities.hasOnePane(this)) {
-            Bundle bundle;
             Intent intent = new Intent(this, DetailIndexActivity.class);
-            if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP) {
-                bundle= ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
-                bundle.putString(getString(R.string.ticker_bundle_key), ticker);
-                intent.putExtras(bundle);
-                startActivity(intent,bundle);
-            } else {
-                bundle=new Bundle();
-                bundle.putString(getString(R.string.ticker_bundle_key), ticker);
-                intent.putExtras(bundle);
-                startActivity(intent);
-            }
-
+            intent.putExtras(bundle);
+            startActivity(intent);
 
         } else {
-            Bundle bundle = new Bundle();
-            bundle.putString(getString(R.string.ticker_bundle_key), ticker);
-            //not neccesary to remove fragment since replace removes the previous fragment
+            //not neccesary to remove fragment since "replace" already removes the previous fragment
            // http://stackoverflow.com/questions/20682248/difference-between-fragmenttransaction-add-and-fragmenttransaction-replace
             FragmentIndexDetail fragmentIndexDetail = new FragmentIndexDetail();
             fragmentIndexDetail.setArguments(bundle);
@@ -200,47 +186,24 @@ public class MainActivity extends AppCompatActivity implements Callback {
         Bundle bundleEquity=new Bundle();
         bundleEquity.putString(getString(R.string.symbol_key),ticker);
         bundleEquity.putString(getString(R.string.company_name_key),companyName);
-
+        Bundle bundleIndexEtf=new Bundle();
+        bundleIndexEtf.putString(getString(R.string.ticker_bundle_key),ticker);
         //phone mode
         if(Utilities.hasOnePane(this)){
             //EQUITY
             if(securityType!=null && securityType.equals(getString(R.string.equity).toUpperCase())) {
                 Intent intent=new Intent(this,DetailStockActivity.class);
-                if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP) {
-
-                    bundleEquity=ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
-                    bundleEquity.putString(getString(R.string.symbol_key),ticker);
-                    bundleEquity.putString(getString(R.string.company_name_key),companyName);
-                    intent.putExtras(bundleEquity);
-                    startActivity(intent,bundleEquity);
-
-                } else {
-
-                    intent.putExtras(bundleEquity);
-                    startActivity(intent);
-                }
-
-
-
-
-            //INDEX or ETF
+                intent.putExtras(bundleEquity);
+                startActivity(intent);
+             //INDEX or ETF
             } else {
-                Bundle bundleIndexEtf=new Bundle();
                 Intent intent = new Intent(this, DetailIndexActivity.class);
-                if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP) {
-                    bundleIndexEtf= ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
-                    bundleIndexEtf.putString(getString(R.string.ticker_bundle_key),ticker);
-                    intent.putExtras(bundleIndexEtf);
-                    startActivity(intent,bundleIndexEtf);
+                intent.putExtras(bundleIndexEtf);
+                startActivity(intent);
 
-                } else {
-                    bundleIndexEtf.putString(getString(R.string.ticker_bundle_key),ticker);
-                    intent.putExtras(bundleIndexEtf);
-                    startActivity(intent);
-                }
             }
-            Toast.makeText(this, "click card", Toast.LENGTH_SHORT).show();
-        //tablet device
+
+        //tablet mode
         } else {
             //EQUITY
             if(securityType!=null && securityType.equals(getString(R.string.equity).toUpperCase())) {
@@ -251,10 +214,8 @@ public class MainActivity extends AppCompatActivity implements Callback {
                         .commit();
             //INDEX OR ETF
             } else {
-                Bundle bundleIndexEtfTab=new Bundle();
-                bundleIndexEtfTab.putString(getString(R.string.ticker_bundle_key),ticker);
                 FragmentIndexDetail fragmentIndexDetail=new FragmentIndexDetail();
-                fragmentIndexDetail.setArguments(bundleIndexEtfTab);
+                fragmentIndexDetail.setArguments(bundleIndexEtf);
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.main_activity_container,fragmentIndexDetail)
                         .commit();
