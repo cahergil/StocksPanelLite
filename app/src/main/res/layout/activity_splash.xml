@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/rootSplash"
-    android:background="@color/gray800"
+    android:background="@color/colorPrimary"
     >
 <ImageView
     android:id="@+id/img"

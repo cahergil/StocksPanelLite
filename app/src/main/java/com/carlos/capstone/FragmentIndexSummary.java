@@ -1,7 +1,6 @@
 package com.carlos.capstone;
 
 import android.Manifest;
-import android.annotation.TargetApi;
 import android.content.BroadcastReceiver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -30,7 +29,6 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.ShareActionProvider;
 import android.support.v7.widget.Toolbar;
-import android.transition.Transition;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -39,7 +37,6 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -155,8 +152,6 @@ public class FragmentIndexSummary extends Fragment implements View.OnClickListen
     private Subscription subscription;
     private MenuItem mFavoriteMenuItem;
     private boolean mIsInFavorite = false;
-    private boolean mAfterDeviceRotation = false;
-    private boolean mFirstNetworkRequest = true;
     private boolean mInvalidateMenu = false;
     private boolean mFromWidget = false;
 
@@ -390,10 +385,8 @@ public class FragmentIndexSummary extends Fragment implements View.OnClickListen
 
             mSharedFileName = savedInstanceState.getString(getString(R.string.fss_shared_file_key));
 
-            mAfterDeviceRotation = true;
-            mChart.setVisibility(View.VISIBLE);
-            //it is initialized to true by default, thus on rotation gets true, for that reason set here to false
-            mFirstNetworkRequest = false;
+
+
             //Retrofit needs the ticker when rotating again
             mTicker = savedInstanceState.getString(getString(R.string.ticker_key));
 
@@ -449,8 +442,9 @@ public class FragmentIndexSummary extends Fragment implements View.OnClickListen
                 if (Utilities.isNetworkAvailable(getActivity())) {
                     intent.putExtras(bundle);
                     getActivity().startService(intent);
-                } else {
-                    checkRunTransition();
+//                } else {
+//                    checkRunTransition();
+//                }
                 }
             }
 
@@ -820,7 +814,7 @@ public class FragmentIndexSummary extends Fragment implements View.OnClickListen
         lineDataSetTicker.setValueTextColor(ContextCompat.getColor(getActivity(), android.R.color.black));
         lineDataSetTicker.setLabel(mTicker);
         lineDataSetTicker.setHighlightEnabled(true);
-        lineDataSetTicker.setHighLightColor(ContextCompat.getColor(getActivity(), R.color.gray800));
+        lineDataSetTicker.setHighLightColor(ContextCompat.getColor(getActivity(), R.color.colorPrimary));
         lineDataSetTicker.setHighlightLineWidth(1f);
 
         LineData d = new LineData();
@@ -928,25 +922,25 @@ public class FragmentIndexSummary extends Fragment implements View.OnClickListen
         @Override
         public void onError(Throwable e) {
             mProgressBar.setVisibility(View.GONE);
-            checkRunTransition();
+            mChart.setVisibility(View.VISIBLE);
+
         }
 
         @Override
         public void onNext(Response<HistoricalDataResponseTimestamp> response) {
+            Log.i(LOG_TAG, "On next WrapperObserbable Days:" + response.raw());
+            mProgressBar.setVisibility(View.GONE);
+            mChart.setVisibility(View.VISIBLE);
             if (response.isSuccess()) {
                 HistoricalDataResponseTimestamp resp = response.body();
                 if (resp != null && resp.getSeries() != null && resp.getMeta() != null) {
                     resetCombinatedChartState();
                     fillCombinatedChartTimestampData(resp.getSeries(), chartMode);
-                    mProgressBar.setVisibility(View.GONE);
                     String chartDescription = Utilities.formatChartDescription(chartMode, resp.getMeta().getTicker());
                     drawCombinatedChart(chartDescription, chartMode);
-                    checkRunTransition();
 
                 }
-                checkRunTransition();
 
-            } else {
             }
 
         }
@@ -970,22 +964,22 @@ public class FragmentIndexSummary extends Fragment implements View.OnClickListen
         @Override
         public void onError(Throwable e) {
             mProgressBar.setVisibility(View.GONE);
-            //        checkRunTransition();no need to put it here since will never be the first network request
+
         }
 
         @Override
         public void onNext(Response<HistoricalDataResponseDate> response) {
+            Log.i(LOG_TAG, "On next WrapperObserbable Month:" + response.raw());
+            mProgressBar.setVisibility(View.GONE);
             if (response.isSuccess()) {
                 HistoricalDataResponseDate resp = response.body();
                 if (resp != null && resp.getSeries() != null && resp.getMeta() != null) {
                     resetCombinatedChartState();
                     fillCombinatedChartDateData(resp.getSeries(), chartMode);
-                    mProgressBar.setVisibility(View.GONE);
                     String chartDescription = Utilities.formatChartDescription(chartMode, resp.getMeta().getTicker());
                     drawCombinatedChart(chartDescription, chartMode);
-                    //       checkRunTransition(); no need to put it here since will never be the first network request
+
                 }
-            } else {
             }
 
         }
@@ -1046,7 +1040,7 @@ public class FragmentIndexSummary extends Fragment implements View.OnClickListen
     public void onDestroyView() {
         super.onDestroyView();
 
-        mChart.setVisibility(View.INVISIBLE);
+
         if (subscription != null) subscription.unsubscribe();
         if (Utilities.hasTwoPane(getActivity())) {
             LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(mMessageReceiver);
@@ -1213,73 +1207,7 @@ public class FragmentIndexSummary extends Fragment implements View.OnClickListen
 
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public void setTransitionListenerV21() {
 
-        final Transition slide = getActivity().getWindow().getEnterTransition();
-        slide.addListener(new Transition.TransitionListener() {
-            @Override
-            public void onTransitionStart(Transition transition) {
-
-            }
-
-            @Override
-            public void onTransitionEnd(Transition transition) {
-                mChart.setVisibility(View.VISIBLE);
-                slide.removeListener(this);
-            }
-
-            @Override
-            public void onTransitionCancel(Transition transition) {
-
-            }
-
-            @Override
-            public void onTransitionPause(Transition transition) {
-
-            }
-
-            @Override
-            public void onTransitionResume(Transition transition) {
-
-            }
-        });
-
-    }
-
-    private void scheduleStartPostponedTransition() {
-        mScrollView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-            @Override
-            public boolean onPreDraw() {
-                mScrollView.getViewTreeObserver().removeOnPreDrawListener(this);
-                getActivity().supportStartPostponedEnterTransition();
-
-                return true;
-            }
-        });
-
-    }
-
-    private void checkRunTransition() {
-        if (getActivity() instanceof DetailIndexActivity) {
-            if (mFromWidget) {
-                mChart.setVisibility(View.VISIBLE);
-                return;
-            }
-            if (mAfterDeviceRotation == false && mFirstNetworkRequest == true) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    setTransitionListenerV21();
-                    scheduleStartPostponedTransition();
-                } else {
-                    mChart.setVisibility(View.VISIBLE);
-                }
-                mFirstNetworkRequest = !mFirstNetworkRequest;
-            } else if (mAfterDeviceRotation == true) {
-                mChart.setVisibility(View.VISIBLE);
-                mAfterDeviceRotation = !mAfterDeviceRotation;
-            }
-        }
-    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
