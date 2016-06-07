@@ -536,25 +536,25 @@ public class CapstoneSyncAdapter extends AbstractThreadedSyncAdapter {
         long ts=System.currentTimeMillis();
 
         long lastDeleteAmerica=sp.getLong(mContext.getString(R.string.last_deleted_america),0);
-        if (System.currentTimeMillis()- lastDeleteAmerica >=HOUR_IN_MILLIS*2){
+        if (System.currentTimeMillis()- lastDeleteAmerica >=HOUR_IN_MILLIS*3){
             rowsDeleted=mContext.getContentResolver()
                     .delete(uri,selection,new String[]{mContext.getString(R.string.region_america)});
             sp.edit().putLong(mContext.getString(R.string.last_deleted_america), ts).commit();
         }
 
         long lastDeleteEurope=sp.getLong(mContext.getString(R.string.last_deleted_europe),0);
-        if (System.currentTimeMillis()-lastDeleteEurope>=DAY_IN_MILLIS*2) {
+        if (System.currentTimeMillis()-lastDeleteEurope>=DAY_IN_MILLIS*3) {
             mContext.getContentResolver().delete(uri,selection,new String[]{mContext.getString(R.string.region_europe)});
             sp.edit().putLong(mContext.getString(R.string.last_deleted_europe), ts).commit();
 
         }
 
         long lastDeleteAsia=sp.getLong(mContext.getString(R.string.last_deleted_asia),0);
-        if (System.currentTimeMillis()-lastDeleteAsia>=DAY_IN_MILLIS*2) {
+        if (System.currentTimeMillis()-lastDeleteAsia>=DAY_IN_MILLIS*4) {
             mContext.getContentResolver().delete(uri,selection,new String[]{mContext.getString(R.string.region_asia)} );
             sp.edit().putLong(mContext.getString(R.string.last_deleted_asia),ts);
         }
-       // Log.d(LOG_TAG,"rows deleted from NEWS:"+rowsDeleted);
+
     }
 
 

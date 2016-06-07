@@ -179,7 +179,6 @@ public class FragmentStockSummary extends Fragment implements View.OnClickListen
     public static final int CHART_MODE_MAX = 6;
 
     private boolean mInvalidateMenu = false;
-    private boolean mFromWidget = false;
     private Bitmap mSourceBitmap;
     private String mSharedFileName = "";
     private static final String FILE_EXTENSION = ".jpg";
@@ -408,7 +407,7 @@ public class FragmentStockSummary extends Fragment implements View.OnClickListen
             if (bundle != null) {
                 mSymbol = bundle.getString(getString(R.string.symbol_key));
                 mCompanyName = bundle.getString(getString(R.string.company_name_key));
-                mFromWidget = bundle.getBoolean(getString(R.string.stock_from_widget_key));
+
 
                 if (Utilities.isNetworkAvailable(getActivity())) {
                     intent.putExtras(bundle);
