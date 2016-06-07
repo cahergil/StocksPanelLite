@@ -5,9 +5,9 @@ android {
     signingConfigs {
         config {
             keyAlias 'udacity'
-            keyPassword 'password'
-            storeFile file('mykeystore.jks')
-            storePassword 'password'
+            keyPassword 'naci1978'
+            storeFile file('keystore.jks')
+            storePassword 'naci1978'
         }
     }
     compileSdkVersion 23
@@ -28,6 +28,17 @@ android {
             minifyEnabled false
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            applicationVariants.all { variant ->
+                variant.outputs.each { output ->
+                    project.ext { appName = 'StocksPanelLite' }
+                    def formattedDate = new Date().format('yyyyMMddHHmmss')
+                    def newName = output.outputFile.name
+                    newName = newName.replace("app-", "$project.ext.appName-") //"MyAppName" -> I set my app variables in the root project
+                    newName = newName.replace("-release", "-release" + formattedDate)
+                    //noinspection GroovyAssignabilityCheck
+                    output.outputFile = new File(output.outputFile.parent, newName)
+                }
+            }
             signingConfig signingConfigs.config
         }
     }
