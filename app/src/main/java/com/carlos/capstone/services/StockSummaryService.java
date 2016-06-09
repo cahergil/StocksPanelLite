@@ -52,8 +52,10 @@ public class StockSummaryService extends IntentService {
 
         QueryRApi.IQuery myService=QueryRApi.getMyQueryService();
         Call<StockDataResponse> call=null;
-        String qParam=getString(R.string.stock_qParam_left)+ mSymbol + getString(R.string.stock_qParam_right);
-        call=myService.getDataByStock(qParam);
+        String alternativQParam="use%20%22http%3A%2F%2Fgithub.com%2Fspullara%2Fyql-tables%2Fraw%2Fd60732fd4fbe72e5d5bd2994ff27cf58ba4d3f84%2Fyahoo%2Ffinance%2Fyahoo.finance.quotes.xml%22%20as%20quotes%0A%09%09select%20*%20from%20quotes%20where%20symbol%20in%20(%22"+mSymbol+"%22)";
+
+//        String qParam=getString(R.string.stock_qParam_left)+ mSymbol + getString(R.string.stock_qParam_right);
+        call=myService.getDataByStock(alternativQParam);
         call.enqueue(retrofitCallbackStockData());
     }
     public Callback<StockDataResponse> retrofitCallbackStockData() {

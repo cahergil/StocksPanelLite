@@ -12,7 +12,6 @@ import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.media.MediaScannerConnection;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -242,10 +241,12 @@ public class Utilities {
 
     public static String formatLastTradeDateSummary(String lastTradeDate, String lastTradeTime) {
         SimpleDateFormat parser = new SimpleDateFormat("MM/dd/yyyy h:mma", Locale.US);
-        parser.setTimeZone(TimeZone.getTimeZone("EST"));
-        DateFormat dateTimeFormatter = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.MEDIUM);
-        // SimpleDateFormat formatter = new SimpleDateFormat("MMMM dd yyyy hh:mm aa");
-        //  formatter.setTimeZone(TimeZone.getDefault());
+        //parser.setTimeZone(TimeZone.getTimeZone("EST"));//incorrect
+        //http://www.timeanddate.com/time/zones/na
+        //to handle appropriately daylight saving time  http://stackoverflow.com/questions/10545960/how-to-tackle-daylight-savings-using-timezone-in-java
+        parser.setTimeZone(TimeZone.getTimeZone("America/New_York"));
+
+        DateFormat dateTimeFormatter = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.SHORT);
         String str = lastTradeDate + " " + lastTradeTime;
 
 

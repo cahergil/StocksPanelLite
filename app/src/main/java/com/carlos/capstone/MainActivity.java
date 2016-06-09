@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import com.carlos.capstone.interfaces.Callback;
 import com.carlos.capstone.utils.MyApplication;
 import com.carlos.capstone.utils.Utilities;
+import com.facebook.stetho.Stetho;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements Callback {
 
         if (savedInstanceState==null) {
 
-         //   Stetho.initializeWithDefaults(this);
+            Stetho.initializeWithDefaults(this);
 
             //if bundleWidget ==null not comming from widget, and onCreate means this Activity isn't in background.
             //if bundleWidget !=null it comes from widget,and onCreate means this Activity isn't in background.
