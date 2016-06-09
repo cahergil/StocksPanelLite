@@ -73,7 +73,7 @@
     <string name="ga_fm_page_america" translatable="false">Page America</string>
     <string name="ga_fm_page_europe" translatable="false">Page Europe</string>
     <string name="ga_fm_page_asia" translatable="false">Page Asia</string>
-    <string name="fm_favorites">Favorites</string>
+    <string name="fm_favorites">Watchlist</string>
     <string name="fm_america">America</string>
     <string name="fm_europe">Europe</string>
     <string name="fm_asia">Asia</string>

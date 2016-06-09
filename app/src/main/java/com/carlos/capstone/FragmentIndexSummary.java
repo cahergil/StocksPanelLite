@@ -700,7 +700,8 @@ public class FragmentIndexSummary extends Fragment implements View.OnClickListen
     }
 
     private void drawCombinatedChart(String description, @ChartMode int chartMode) {
-
+        //remove marker view
+        mChart.highlightValues(null);
         mChart.setDescription(description);
         mChart.setDescriptionTextSize(12f);
         mChart.setDescriptionColor(Color.BLACK);
