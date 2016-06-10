@@ -7,38 +7,42 @@
     android:layout_height="match_parent"
     android:fillViewport="true">
 
-        <FrameLayout
-            android:id="@+id/frame"
+    <FrameLayout
+        android:id="@+id/frame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/swipeContainer"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
+            android:layout_height="match_parent">
             <!-- afterDescendats so that the focus goes to
             fab again(it follows a system order-down to up-?-->
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/securitiesList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:descendantFocusability="afterDescendants"
-             />
+                android:descendantFocusability="afterDescendants" />
+        </android.support.v4.widget.SwipeRefreshLayout>
 
-            <TextView
+        <TextView
 
-                android:id="@+id/emptyView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:gravity="center_horizontal"
-                android:paddingEnd="@dimen/activity_horizontal_margin"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingStart="@dimen/activity_horizontal_margin"
-                android:text="@string/ff_text"
-                android:textSize="@dimen/ff_text_size"
-                android:visibility="gone"
-                tools:visibility="visible" />
+            android:id="@+id/emptyView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_horizontal"
+            android:paddingEnd="@dimen/activity_horizontal_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingStart="@dimen/activity_horizontal_margin"
+            android:text="@string/ff_text"
+            android:textSize="@dimen/ff_text_size"
+            android:visibility="gone"
+            tools:visibility="visible" />
 
 
-        </FrameLayout>
+    </FrameLayout>
 
 
 </ScrollView>

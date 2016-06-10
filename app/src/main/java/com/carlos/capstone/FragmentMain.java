@@ -285,7 +285,7 @@ public class FragmentMain extends Fragment  implements OnChartGestureListener,
 
         if(list==null) return;
 
-
+        mChart.setDescription("");
         Legend legend=mChart.getLegend();
         legend.setEnabled(true);
         legend.setTextColor(Color.BLACK);
@@ -314,7 +314,7 @@ public class FragmentMain extends Fragment  implements OnChartGestureListener,
         ArrayList<LineDataSet> dataSets=new ArrayList<LineDataSet>(); // v. 2.1.6
         List<String> xLabelVal=new ArrayList<String>();
 
-        // for logging porpouses
+        // for logging purposes
         StringBuilder string =new StringBuilder();
         for (int i = 0; i < list.size(); i++) {
              if(i==0) {

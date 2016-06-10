@@ -12,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -31,11 +32,13 @@ import com.carlos.capstone.database.CapstoneContract;
 import com.carlos.capstone.interfaces.Callback;
 import com.carlos.capstone.sync.CapstoneSyncAdapter;
 import com.carlos.capstone.utils.DividerItemDecoration;
+import com.carlos.capstone.utils.TimeMeasure;
 
 /**
  * Created by Carlos on 19/01/2016.
  */
-public class FragmentFavorites extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
+public class FragmentFavorites extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>,
+        SwipeRefreshLayout.OnRefreshListener{
     public static final String LOG_TAG=FragmentFavorites.class.getSimpleName();
     public static final int SUGGESTIONS_LOADER=0;
     private static final int SECURITIES_LOADER=1;
@@ -47,6 +50,7 @@ public class FragmentFavorites extends Fragment implements LoaderManager.LoaderC
     private String mSearchFilter;
     private FloatingActionButton mFab;
     private boolean mAddToFavoritIntent;
+    private SwipeRefreshLayout mSwipeContainer;
 
 
 
@@ -62,6 +66,9 @@ public class FragmentFavorites extends Fragment implements LoaderManager.LoaderC
         mSecurityAdapter=new SecurityAdapter(getActivity(),emptyView);
         securityList.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+        mSwipeContainer = (SwipeRefreshLayout)view.findViewById(R.id.swipeContainer);
+        mSwipeContainer.setOnRefreshListener(this);
+        mSwipeContainer.setColorSchemeColors(R.color.colorPrimary);
         //for api>=21 set elevation in layout security_item.xml and disable DividerItemDecoration
         if(Build.VERSION.SDK_INT<Build.VERSION_CODES.LOLLIPOP) {
             securityList.addItemDecoration(new DividerItemDecoration(getActivity()));
@@ -212,6 +219,13 @@ public class FragmentFavorites extends Fragment implements LoaderManager.LoaderC
     }
 
     @Override
+    public void onRefresh() {
+        TimeMeasure tm=new TimeMeasure(LOG_TAG);
+        tm.log("START REFRESHING FAVORITES");
+        CapstoneSyncAdapter.loadFavorites(true,getString(R.string.sa_helper_var),getActivity(),tm);
+        mSwipeContainer.setRefreshing(false);
+    }
+    @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         if(id==SUGGESTIONS_LOADER) {
             Uri uri = CapstoneContract.SecurityExcelEntity.CONTENT_URI;
@@ -280,4 +294,6 @@ public class FragmentFavorites extends Fragment implements LoaderManager.LoaderC
         super.onDestroy();
 
     }
+
+
 }

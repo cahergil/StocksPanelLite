@@ -54,6 +54,13 @@
     <string name="needs_europe_sync_key" translatable="false">europe_needs_sync</string>
     <string name="needs_asia_sync_key" translatable="false">asia_needs_sync</string>
     <string name="comma_string" translatable="false">,</string>
+    <string name="sa_helper_var" translatable="false">refresh</string>
+    <string-array name="preLoadedQuotes">
+        <item>GOOG</item>
+        <item>AMZN</item>
+        <item>^NDX</item>
+        <item>ORCL</item>
+    </string-array>
 
     <!-- strings related to MainActivity -->
     <string name="two_pane_key" translatable="false">two_pane_key</string>

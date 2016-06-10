@@ -61,11 +61,19 @@
                 android:id="@+id/securityName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="5"
+                android:layout_weight="3"
                 android:textColor="@color/blue_gray_700"
                 android:textStyle="bold"
                 android:gravity="right"
                 tools:text="Alphabet Inc." />
+            <TextView
+                android:id="@+id/tvDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="end"
+                android:textSize="@dimen/si_label_date"
+                tools:text="Mon 22:00" />
 
             <TextView
                 android:layout_width="0dp"

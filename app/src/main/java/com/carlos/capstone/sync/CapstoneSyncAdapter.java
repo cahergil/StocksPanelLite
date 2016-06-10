@@ -89,6 +89,7 @@ public class CapstoneSyncAdapter extends AbstractThreadedSyncAdapter {
     private ExecutorService mExecutorIndexes;
     private ExecutorService mExecutorChart;
     private boolean mInformSplash;
+    private static boolean  preLoadWatchList=false;
 
     public static final String ACTION_DATA_UPDATED ="com.carlos.capstone.ACTION_DATA_UPDATED";
 
@@ -224,6 +225,7 @@ public class CapstoneSyncAdapter extends AbstractThreadedSyncAdapter {
                 Intent intent=new Intent(mContext, DownloadSecurityFromTxt.class);
                 getContext().startService(intent);
                 mInformSplash=true;
+                preLoadWatchList=true;
 
                 return;
             }
@@ -293,31 +295,49 @@ public class CapstoneSyncAdapter extends AbstractThreadedSyncAdapter {
 
     }
 
-    /**
-     * Refactorized method to reuse it in FragmentFavorites
-     * Used in CapstonSyncAdapter,FragmentFavorites(to load from directly from SearchView)
-     * and by the Widget
-    */
+     /***/
     public static void loadFavorites(final boolean belongsToSyncAdapter,
-                                     String varTicker,
+                                     final String helperVar,
                                      final Context context,
                                      final TimeMeasure tm) {
         IndexOrShortInfoRApi.IIndexOrShortInfoData service= IndexOrShortInfoRApi.getMyService();
         Call<IndexOrShortInfoDataResponse> call;
         if(belongsToSyncAdapter) {
+            Cursor c=null;
+
+            //pre load watchlist with 4 symbols
+            if(preLoadWatchList) {
+                String[] preLoadedQuotes=context.getResources().getStringArray(R.array.preLoadedQuotes);
+                Uri uri=CapstoneContract.FavoritesEntity.CONTENT_URI;
+                Vector<ContentValues> values=new Vector<ContentValues>();
+                for(int i=0;i<4;i++) {
+                    ContentValues contentValues=new ContentValues();
+                    contentValues.put(CapstoneContract.FavoritesEntity.COMPANY_TICKER,preLoadedQuotes[i]);
+                    values.add(contentValues);
+                }
+                ContentValues[] arrayValues=new ContentValues[values.size()];
+                values.toArray(arrayValues);
+
+                context.getContentResolver().bulkInsert(uri,arrayValues);
+                preLoadWatchList=false;
+            }
             //if the list of favorites is empty return
-            Cursor c = context.getContentResolver().query(
+             c = context.getContentResolver().query(
                     CapstoneContract.FavoritesEntity.CONTENT_URI,
                     new String[]{CapstoneContract.FavoritesEntity.COMPANY_TICKER},
                     null,
                     null,
                     null);
             if (c != null && c.getCount() < 1) {
-                tm.log("END LOAD FAVORITES");
-                testEndLoads(context, tm);
-
+                if (helperVar != null && helperVar.equals(context.getString(R.string.sa_helper_var))) {
+                    tm.log("END REFRESHING FAVORITES");
+                } else {
+                    tm.log("END LOAD FAVORITES");
+                    testEndLoads(context, tm);
+                }
                 return;
             }
+
             StringBuilder tickerBuilder = new StringBuilder();
             String ticker;
             while (c.moveToNext()) {
@@ -332,7 +352,7 @@ public class CapstoneSyncAdapter extends AbstractThreadedSyncAdapter {
             c.close();
              call = service.getSecurityShortInfoByTicker(tickerBuilder.toString());
         } else {
-             call = service.getSecurityShortInfoByTicker(varTicker);
+             call = service.getSecurityShortInfoByTicker(helperVar);
         }
         call.enqueue(new Callback<IndexOrShortInfoDataResponse>() {
             @Override
@@ -374,14 +394,22 @@ public class CapstoneSyncAdapter extends AbstractThreadedSyncAdapter {
                     inserted_data=context.getContentResolver().bulkInsert(CapstoneContract.FavoritesEntity.CONTENT_URI,insert_data);
                     Log.d(LOG_TAG,"insert Security into Favorites Succesfully Inserted : " + inserted_data);
                     if(belongsToSyncAdapter) {
-                        tm.log("END LOAD FAVORITES");
-                        testEndLoads(context, tm);
+                        if(helperVar!=null && helperVar.equals(context.getString(R.string.sa_helper_var))) {
+                            tm.log("END REFRESHING FAVORITES");
+                        } else {
+                            tm.log("END LOAD FAVORITES");
+                            testEndLoads(context, tm);
+                        }
 
                     }
                 } else {
                     if(belongsToSyncAdapter) {
-                        tm.log("END LOAD FAVORITES WITH FAILURE");
-                        testEndLoads(context, tm);
+                        if(helperVar!=null && helperVar.equals(context.getString(R.string.sa_helper_var))) {
+                            tm.log("END REFRESHING FAVORITES");
+                        } else {
+                            tm.log("END LOAD FAVORITES");
+                            testEndLoads(context, tm);
+                        }
 
                     }
                 }
