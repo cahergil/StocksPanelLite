@@ -52,6 +52,7 @@ import com.carlos.capstone.customcomponents.CustomSecurityMarkerView;
 import com.carlos.capstone.database.CapstoneContract;
 import com.carlos.capstone.models.HistoricalDataResponseDate;
 import com.carlos.capstone.models.HistoricalDataResponseTimestamp;
+import com.carlos.capstone.services.IndexEtfOrShortInfoSummaryService;
 import com.carlos.capstone.services.StockSummaryService;
 import com.carlos.capstone.utils.MyApplication;
 import com.carlos.capstone.utils.Utilities;
@@ -72,8 +73,10 @@ import com.github.mikephil.charting.listener.OnChartGestureListener;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import retrofit.Response;
@@ -113,6 +116,21 @@ public class FragmentStockSummary extends Fragment implements View.OnClickListen
     private String mSymbol;
     private String mCompanyName;
     private static final int STOCK_LOADER = 0;
+    private static final int SHORT_INFO_LOADER=1;
+
+    public static final int COL_SHORT_INFO_STOCK_TICKER = 1;
+    public static final int COL_SHORT_INFO_STOCK_NAME = 2;
+    public static final int COL_SHORT_INFO_PRICE = 3;
+    public static final int COL_SHORT_INFO_CHANGE = 4;
+    public static final int COL_SHORT_INFO_CHANGE_PERCENT = 5;
+    public static final int COL_SHORT_INFO_TIMESTAMP = 6;
+    public static final int COL_SHORT_INFO_UTCTIME = 7;
+    public static final int COL_SHORT_INFO_DAY_HIGH = 8;
+    public static final int COL_SHORT_INFO_DAY_LOW = 9;
+    public static final int COL_SHORT_INFO_YEAR_HIGH = 10;
+    public static final int COL_SHORT_INFO_YEAR_LOW = 11;
+    public static final int COL_SHORT_INFO_VOLUME = 12;
+
 
     public static final int COL_TIMESTAMP = 1;
     public static final int COL_SYMBOL = 2;
@@ -402,16 +420,20 @@ public class FragmentStockSummary extends Fragment implements View.OnClickListen
         } else {
             mSharedFileName = String.valueOf(System.currentTimeMillis()) + FILE_EXTENSION;
             Bundle bundle = getArguments();
-            Intent intent = new Intent(getActivity(), StockSummaryService.class);
 
             if (bundle != null) {
                 mSymbol = bundle.getString(getString(R.string.symbol_key));
                 mCompanyName = bundle.getString(getString(R.string.company_name_key));
-
-
                 if (Utilities.isNetworkAvailable(getActivity())) {
-                    intent.putExtras(bundle);
-                    getActivity().startService(intent);
+                    Intent intentLongInfo = new Intent(getActivity(), StockSummaryService.class);
+                    intentLongInfo.putExtras(bundle);
+                    getActivity().startService(intentLongInfo);
+
+                    Intent intentShortInfo = new Intent(getActivity(), IndexEtfOrShortInfoSummaryService.class);
+                    Bundle bundle1=new Bundle();
+                    bundle1.putString(getString(R.string.ticker_bundle_key),mSymbol);
+                    intentShortInfo.putExtras(bundle1);
+                    getActivity().startService(intentShortInfo);
                 }
 
             }
@@ -515,6 +537,7 @@ public class FragmentStockSummary extends Fragment implements View.OnClickListen
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 
         getLoaderManager().restartLoader(STOCK_LOADER, null, this);
+        getLoaderManager().restartLoader(SHORT_INFO_LOADER,null,this);
         if (getActivity() instanceof DetailStockActivity) {
             setHasOptionsMenu(true);
         }
@@ -878,56 +901,60 @@ public class FragmentStockSummary extends Fragment implements View.OnClickListen
 
     private void bindView(Cursor quote) {
 
-
+        if(quote==null) return;
         //The data come in English format. It has to be localized.
         //company name
-        mTxtCompanyName.setText(quote.getString(COL_COMPANY_NAME));
+        //bindViewShortInfo mTxtCompanyName.setText(quote.getString(COL_COMPANY_NAME));
         mChart.setContentDescription(getString(R.string.fss_talkback_chart));
         //stock exchange
         String stock_exchange = quote.getString(COL_STOCK_EXCHANGE);
         mTxtMarket.setText(Utilities.stockExchangeMapper(stock_exchange));
 
+        //bindViewShortInfo
+        //mTxtSymbol.setText(quote.getString(COL_SYMBOL));
 
-        mTxtSymbol.setText(quote.getString(COL_SYMBOL));
-
+        //bindViewShortInfo
         //last trade price
         //DecimalFormat: symbol '#'(digit), ','(group separator) and '.'(decimal separator) all are localized
-        float price = quote.getFloat(COL_LAST_TRADE_PRICE);
-        mTxtLastTradePrice.setText(quote.isNull(COL_LAST_TRADE_PRICE) ? getString(R.string.na) : new DecimalFormat(getString(R.string.decimal_format_price)).format(price));
+        //float price = quote.getFloat(COL_LAST_TRADE_PRICE);
+        //mTxtLastTradePrice.setText(quote.isNull(COL_LAST_TRADE_PRICE) ? getString(R.string.na) : new DecimalFormat(getString(R.string.decimal_format_price)).format(price));
 
+        //bindViewShortInfo
         //icon
-        Utilities.setUpDownIcon(ivLastTradePrice, (double) quote.getFloat(COL_CHANGE), getActivity());
+        // Utilities.setUpDownIcon(ivLastTradePrice, (double) quote.getFloat(COL_CHANGE), getActivity());
 
+        //bindViewShortInfo
         //last trade date
-        mTxtLastTradeDate.setText(Utilities.
-                formatLastTradeDateSummary(quote.getString(COL_LAST_TRADE_DATE), quote.getString(COL_LAST_TRADE_TIME)));
+        //mTxtLastTradeDate.setText(Utilities.
+        //       formatLastTradeDateSummary(quote.getString(COL_LAST_TRADE_DATE), quote.getString(COL_LAST_TRADE_TIME)));
 
-
+        //bindViewShortInfo
         //change and percent change
-        String change_percent = quote.getString(COL_CHANGE_PERCENT);
-        if (change_percent != null) {
-            change_percent = change_percent.replace(getString(R.string.percent_string), getString(R.string.empty_string));
-        }
-        float change = quote.getFloat(COL_CHANGE);
-
-        change_percent = Utilities.localizePercentWithPrefixValue(getActivity(), change_percent);
-        String change_localized;
-        change_localized = Utilities.localizeDecimalValue(change);
-        if (quote.isNull(COL_CHANGE)) {
-            mTxtChange.setText(getString(R.string.na));
-        } else {
-            Utilities.formatChangeSummary(getActivity(),
-                    mTxtChange,
-                    change_localized,
-                    change_percent,
-                    change);
-        }
+//        String change_percent = quote.getString(COL_CHANGE_PERCENT);
+//        if (change_percent != null) {
+//            change_percent = change_percent.replace(getString(R.string.percent_string), getString(R.string.empty_string));
+//        }
+//        float change = quote.getFloat(COL_CHANGE);
+//
+//        change_percent = Utilities.localizePercentWithPrefixValue(getActivity(), change_percent);
+//        String change_localized;
+//        change_localized = Utilities.localizeDecimalValue(change);
+//        if (quote.isNull(COL_CHANGE)) {
+//            mTxtChange.setText(getString(R.string.na));
+//        } else {
+//            Utilities.formatChangeSummary(getActivity(),
+//                    mTxtChange,
+//                    change_localized,
+//                    change_percent,
+//                    change);
+//        }
 
 
         //market cap
         String market_cap = quote.getString(COL_MARKET_CAP);
         market_cap = Utilities.localizeMarket_Cap(getActivity(), market_cap);
         mTxtMarketCap.setText(market_cap);
+
 
         //days range
         String days_range = quote.getString(COL_DAYS_RANGE);
@@ -969,6 +996,47 @@ public class FragmentStockSummary extends Fragment implements View.OnClickListen
 
     }
 
+    private void bindViewShortInfo(Cursor data){
+
+        if(data==null) return;
+
+        //company name
+        mTxtCompanyName.setText(data.getString(COL_SHORT_INFO_STOCK_NAME));
+        //symbol
+        mTxtSymbol.setText(mSymbol);
+
+        //price
+        float price = data.isNull(COL_SHORT_INFO_PRICE) ? 0 : data.getFloat(COL_SHORT_INFO_PRICE);
+        mTxtLastTradePrice.setText(new DecimalFormat(getString(R.string.format_decimal_value)).format(price));
+
+        //change and percent change
+        String change_percent = data.getString(COL_SHORT_INFO_CHANGE_PERCENT);
+
+        float change = data.getFloat(COL_SHORT_INFO_CHANGE);
+
+        change_percent = Utilities.localizeDecimalValue(Float.parseFloat(change_percent));
+        String change_localized;
+        change_localized = Utilities.localizeDecimalValue(change);
+        if (data.isNull(COL_SHORT_INFO_CHANGE)) {
+            mTxtChange.setText(getString(R.string.na));
+        } else {
+            Utilities.formatChangeSummary(getActivity(),
+                    mTxtChange,
+                    change_localized,
+                    change_percent,
+                    change);
+        }
+
+        //icon
+        Utilities.setUpDownIcon(ivLastTradePrice, (double) change, getActivity());
+
+        //date
+        //date
+        //getDateTimeInstance comes with the default locale of the device
+        DateFormat formatter = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT);
+        Date date = new Date((long) data.getInt(COL_SHORT_INFO_TIMESTAMP) * 1000);
+        mTxtLastTradeDate.setText(formatter.format(date));
+    }
 
     private void resetCombinatedChartState() {
         yValuesBar.clear();
@@ -1004,18 +1072,19 @@ public class FragmentStockSummary extends Fragment implements View.OnClickListen
 
     private Cursor getStockFromDb(String Symbol) {
         String[] projection = new String[]{
-                CapstoneContract.StockDetailEntity.SYMBOL,
-                CapstoneContract.StockDetailEntity.COMPANY_NAME,
-                CapstoneContract.StockDetailEntity.STOCK_EXCHANGE,
-                CapstoneContract.StockDetailEntity.LAST_TRADE_PRICE,
-                CapstoneContract.StockDetailEntity.CHANGE,
-                CapstoneContract.StockDetailEntity.CHANGE_PERCENT,
-                CapstoneContract.StockDetailEntity.DAYS_RANGE
+                CapstoneContract.IndexEtfOrShortInfoDetailEntity.INDEX_TICKER,
+                CapstoneContract.IndexEtfOrShortInfoDetailEntity.INDEX_NAME,
+                CapstoneContract.IndexEtfOrShortInfoDetailEntity.PRICE,
+                CapstoneContract.IndexEtfOrShortInfoDetailEntity.CHANGE,
+                CapstoneContract.IndexEtfOrShortInfoDetailEntity.CHANGE_PERCENT,
+                CapstoneContract.IndexEtfOrShortInfoDetailEntity.DAY_HIGHT,
+                CapstoneContract.IndexEtfOrShortInfoDetailEntity.DAY_LOW,
+                CapstoneContract.IndexEtfOrShortInfoDetailEntity.TIMESTAMP
         };
         return getContext().getContentResolver().query(
-                CapstoneContract.StockDetailEntity.buildStockDetailWithSymbol(Symbol),
+                CapstoneContract.IndexEtfOrShortInfoDetailEntity.buildIndexDetailWithSymbol(Symbol),
                 projection,
-                CapstoneContract.StockDetailEntity.SYMBOL + "=?",
+                CapstoneContract.IndexEtfOrShortInfoDetailEntity.INDEX_TICKER + "=?",
                 new String[]{Symbol},
                 null);
     }
@@ -1024,13 +1093,17 @@ public class FragmentStockSummary extends Fragment implements View.OnClickListen
         Cursor c = getStockFromDb(symbolString);
         ContentValues contentValues = new ContentValues();
         if (!c.moveToNext()) return;
-        String symbol = c.getString(c.getColumnIndex(CapstoneContract.StockDetailEntity.SYMBOL));
-        String companyName = c.getString(c.getColumnIndex(CapstoneContract.StockDetailEntity.COMPANY_NAME));
-        String stockMarket = c.getString(c.getColumnIndex(CapstoneContract.StockDetailEntity.STOCK_EXCHANGE));
-        float price = c.getFloat(c.getColumnIndex(CapstoneContract.StockDetailEntity.LAST_TRADE_PRICE));
-        float change = c.getFloat(c.getColumnIndex(CapstoneContract.StockDetailEntity.CHANGE));
-        float changePercent = c.getFloat(c.getColumnIndex(CapstoneContract.StockDetailEntity.CHANGE_PERCENT));
-
+        String symbol = c.getString(c.getColumnIndex(CapstoneContract.IndexEtfOrShortInfoDetailEntity.INDEX_TICKER));
+        String companyName = c.getString(c.getColumnIndex(CapstoneContract.IndexEtfOrShortInfoDetailEntity.INDEX_NAME));
+        //String stockMarket = c.getString(c.getColumnIndex(CapstoneContract.StockDetailEntity.STOCK_EXCHANGE));
+        float price = c.getFloat(c.getColumnIndex(CapstoneContract.IndexEtfOrShortInfoDetailEntity.PRICE));
+        float change = c.getFloat(c.getColumnIndex(CapstoneContract.IndexEtfOrShortInfoDetailEntity.CHANGE));
+        float changePercent = c.getFloat(c.getColumnIndex(CapstoneContract.IndexEtfOrShortInfoDetailEntity.CHANGE_PERCENT));
+        float hight=c.getFloat(c.getColumnIndex(CapstoneContract.IndexEtfOrShortInfoDetailEntity.DAY_HIGHT));
+        float low=c.getFloat(c.getColumnIndex(CapstoneContract.IndexEtfOrShortInfoDetailEntity.DAY_LOW));
+        //timestamp in IndexEtf.. is in real and in favorites is in string, a conversion is needed
+        long ts=c.getLong(c.getColumnIndex(CapstoneContract.IndexEtfOrShortInfoDetailEntity.TIMESTAMP));
+        String tsString=String.valueOf(ts);
 
         contentValues.put(CapstoneContract.FavoritesEntity.COMPANY_TICKER, symbol);
         contentValues.put(CapstoneContract.FavoritesEntity.COMPANY_NAME, companyName);
@@ -1039,15 +1112,18 @@ public class FragmentStockSummary extends Fragment implements View.OnClickListen
         contentValues.put(CapstoneContract.FavoritesEntity.CHANGE, change);
         contentValues.put(CapstoneContract.FavoritesEntity.CHANGE_PERCENT, changePercent);
         //test this for null
-        String dayRange = c.getString(c.getColumnIndex(CapstoneContract.StockDetailEntity.DAYS_RANGE));
-        if (dayRange != null) {
-            String[] maxminPrice = dayRange.split(getString(R.string.day_range_split_string));
-            contentValues.put(CapstoneContract.FavoritesEntity.MIN, maxminPrice[0]);
-            contentValues.put(CapstoneContract.FavoritesEntity.MAX, maxminPrice[1]);
-        } else {
-            contentValues.put(CapstoneContract.FavoritesEntity.MIN, (String) null);
-            contentValues.put(CapstoneContract.FavoritesEntity.MAX, (String) null);
-        }
+//        String dayRange = c.getString(c.getColumnIndex(CapstoneContract.StockDetailEntity.DAYS_RANGE));
+//        if (dayRange != null) {
+//            String[] maxminPrice = dayRange.split(getString(R.string.day_range_split_string));
+//            contentValues.put(CapstoneContract.FavoritesEntity.MIN, maxminPrice[0]);
+//            contentValues.put(CapstoneContract.FavoritesEntity.MAX, maxminPrice[1]);
+//        } else {
+//            contentValues.put(CapstoneContract.FavoritesEntity.MIN, (String) null);
+//            contentValues.put(CapstoneContract.FavoritesEntity.MAX, (String) null);
+//        }
+        contentValues.put(CapstoneContract.FavoritesEntity.MAX,hight);
+        contentValues.put(CapstoneContract.FavoritesEntity.MIN,low);
+        contentValues.put(CapstoneContract.FavoritesEntity.TRADE_DATE,tsString);
         c.close();
         getContext().getContentResolver().
                 insert(CapstoneContract.FavoritesEntity.buildFavoritesWithTicker(symbol), contentValues);
@@ -1212,16 +1288,28 @@ public class FragmentStockSummary extends Fragment implements View.OnClickListen
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        Uri uri = CapstoneContract.StockDetailEntity.buildStockDetailWithSymbol(mSymbol);
-        String selection = CapstoneContract.StockDetailEntity.SYMBOL + "=?";
-        return new CursorLoader(getActivity(),
-                uri,
-                null, //proyection
-                selection, //selection
-                new String[]{mSymbol}, //selection args
-                null //sortorder
-        );
-
+        if(id==STOCK_LOADER) {
+            Uri uri = CapstoneContract.StockDetailEntity.buildStockDetailWithSymbol(mSymbol);
+            String selection = CapstoneContract.StockDetailEntity.SYMBOL + "=?";
+            return new CursorLoader(getActivity(),
+                    uri,
+                    null, //proyection
+                    selection, //selection
+                    new String[]{mSymbol}, //selection args
+                    null //sortorder
+            );
+        } else if(id==SHORT_INFO_LOADER) {
+            Uri uri=CapstoneContract.IndexEtfOrShortInfoDetailEntity.buildIndexDetailWithSymbol(mSymbol);
+            String selection=CapstoneContract.IndexEtfOrShortInfoDetailEntity.INDEX_TICKER + "=?";
+            return new CursorLoader(getActivity(),
+                    uri,
+                    null,
+                    selection,
+                    new String[]{mSymbol},
+                    null
+            );
+        }
+        return null;
     }
 
     @Override
@@ -1248,7 +1336,13 @@ public class FragmentStockSummary extends Fragment implements View.OnClickListen
         mInvalidateMenu = false;
         //this will call onPrepareOptionsMenu
         getActivity().invalidateOptionsMenu();
-        bindView(data);
+        int id=loader.getId();
+        if (id == STOCK_LOADER) {
+            bindView(data);
+        } else if(id==SHORT_INFO_LOADER) {
+            bindViewShortInfo(data);
+        }
+
 
         if (!(getActivity() instanceof DetailStockActivity)) {
             Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbarRightPane);

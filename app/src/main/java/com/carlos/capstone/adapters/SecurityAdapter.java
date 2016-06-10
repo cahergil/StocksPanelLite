@@ -11,13 +11,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.carlos.capstone.R;
 import com.carlos.capstone.customcomponents.AutoResizeTextView;
 import com.carlos.capstone.database.CapstoneContract;
 import com.carlos.capstone.interfaces.Callback;
 import com.carlos.capstone.utils.Utilities;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by Carlos on 29/04/2016.
@@ -34,6 +36,7 @@ public class SecurityAdapter extends RecyclerView.Adapter<SecurityAdapter.ViewHo
     public static final int COL_CHANGE_PERCENT=6;
     public static final int COL_MAX=7;
     public static final int COL_MIN=8;
+    public static final int COL_TRADE_DATE=9;
 
     private Context context;
 
@@ -70,6 +73,11 @@ public class SecurityAdapter extends RecyclerView.Adapter<SecurityAdapter.ViewHo
         holder.tvMarket.setText(type);
         holder.tvMarket.setContentDescription(context.getString(R.string.sa_talkback_security_type)+type);
 
+        //date
+        Date date = new Date((long) mCursor.getInt(COL_TRADE_DATE) * 1000);
+        SimpleDateFormat formatter=new SimpleDateFormat("ccc HH:mm");
+        formatter.toLocalizedPattern();
+        holder.tvDate.setText(formatter.format(date));
         //price
         float price=mCursor.getFloat(COL_VALUE);
         String formattedPrice=Utilities.localizeDecimalValue(price);
@@ -86,7 +94,7 @@ public class SecurityAdapter extends RecyclerView.Adapter<SecurityAdapter.ViewHo
         String changePerct= Utilities.localizePercentValue(context,changePercent);
         holder.tvChangePercent.setText(mCursor.isNull(COL_CHANGE_PERCENT)?context.getString(R.string.na):
                 changePerct);
-       holder.tvChangePercent.setContentDescription(context.
+        holder.tvChangePercent.setContentDescription(context.
                 getString(R.string.sa_talkback_change_percent)+changePerct);
         Utilities.setUpDownColorsMaterial(holder.tvChangePercent,(double)change,context);
 
@@ -119,7 +127,7 @@ public class SecurityAdapter extends RecyclerView.Adapter<SecurityAdapter.ViewHo
 
     }
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView tvTicker,tvMarket,tvPrice;
+        public TextView tvTicker,tvMarket,tvPrice,tvDate;
         public AutoResizeTextView tvSecurityName,tvMax, tvMin,tvChangePercent;
         public ImageView ivOverflow;
 
@@ -133,6 +141,7 @@ public class SecurityAdapter extends RecyclerView.Adapter<SecurityAdapter.ViewHo
             this.tvMax= (AutoResizeTextView) v.findViewById(R.id.dayMax);
             this.tvMin= (AutoResizeTextView) v.findViewById(R.id.dayMin);
             this.ivOverflow= (ImageView) v.findViewById(R.id.overflow);
+            this.tvDate= (TextView) v.findViewById(R.id.tvDate);
             v.setOnClickListener(this);
 
 
@@ -145,7 +154,6 @@ public class SecurityAdapter extends RecyclerView.Adapter<SecurityAdapter.ViewHo
                     mCursor.moveToPosition(position);
                     String ticker=mCursor.getString(COL_COMPANY_TICKER);
                     if (item.getItemId() == R.id.action_delete) {
-                        Toast.makeText(context, "click delete", Toast.LENGTH_SHORT).show();
                         Uri uri= CapstoneContract.FavoritesEntity.buildFavoritesWithTicker(ticker);
                         context.getContentResolver().delete(uri,CapstoneContract.FavoritesEntity.COMPANY_TICKER + "=?",
                                 new String[]{ticker});

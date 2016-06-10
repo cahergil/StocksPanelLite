@@ -142,7 +142,7 @@
             android:exported="false" >
         </service>
         <service
-            android:name=".services.IndexSummaryService"
+            android:name=".services.IndexEtfOrShortInfoSummaryService"
             android:exported="false" >
         </service>
         <service

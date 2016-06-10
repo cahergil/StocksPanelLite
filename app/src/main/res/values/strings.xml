@@ -325,7 +325,7 @@
     <string name="csm_value" translatable="true">value:</string>
     <string name="csm_time" translatable="true">time:</string>
     <!-- strings related to fragment_favorites.xml-->
-    <string name="ff_text" translatable="true">You have no favorite in your list, click + to add securities or press heart icon in details</string>
+    <string name="ff_text" translatable="true">Your watchlist is empty, click + to add securities.</string>
     <!-- strings related to fragment_index_summary_tab.xml-->
     <string name="fist_day_high_text" translatable="true">day high</string>
     <string name="fist_day_low_text" translatable="true">day low</string>

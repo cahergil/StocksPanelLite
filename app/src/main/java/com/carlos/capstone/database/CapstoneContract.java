@@ -125,7 +125,7 @@ public class CapstoneContract {
         public static final String STOCK_EXCHANGE="stock_exchange";
     }
 
-    public static final class IndexDetailEntity implements BaseColumns {
+    public static final class IndexEtfOrShortInfoDetailEntity implements BaseColumns {
         public static final Uri CONTENT_URI = BASE_CONTENT_URI.buildUpon().appendPath(PATH_INDEX_DETAIL).build();
         public static final String CONTENT_TYPE =
                 "vnd.android.cursor.dir/" + CONTENT_AUTHORITY + "/" + PATH_INDEX_DETAIL;

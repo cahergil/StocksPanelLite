@@ -155,7 +155,7 @@ public class CapstoneProvider extends ContentProvider {
                 break;
             case INDEX_DETAIL_ID:
                 retCursor=mDbHelper.getReadableDatabase().query(
-                        CapstoneContract.IndexDetailEntity.TABLE_NAME,
+                        CapstoneContract.IndexEtfOrShortInfoDetailEntity.TABLE_NAME,
                         projection,
                         selection,
                         selectionArgs,
@@ -258,9 +258,9 @@ public class CapstoneProvider extends ContentProvider {
                 }
                 break;
             case INDEX_DETAIL_ID:
-                _id=db.insertWithOnConflict(CapstoneContract.IndexDetailEntity.TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_REPLACE);
+                _id=db.insertWithOnConflict(CapstoneContract.IndexEtfOrShortInfoDetailEntity.TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_REPLACE);
                 if(_id>0) {
-                    returnUri=CapstoneContract.IndexDetailEntity.buildIndexDetailUri(_id);
+                    returnUri= CapstoneContract.IndexEtfOrShortInfoDetailEntity.buildIndexDetailUri(_id);
                 } else {
                     throw new android.database.SQLException("Failed to insert row into " + uri);
                 }

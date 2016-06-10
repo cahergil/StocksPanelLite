@@ -251,7 +251,7 @@ public class Utilities {
 
 
         try {
-            // return  formatter.format(parser.parse(str));
+
             return dateTimeFormatter.format(parser.parse(str));
         } catch (ParseException e) {
             e.printStackTrace();
@@ -1020,8 +1020,6 @@ public class Utilities {
             if(file.exists()) {
                 file.delete();
             }
-
-
 
         } else  {
             Log.d(LOG_TAG,"External storage not mounted,couldn't delete file");

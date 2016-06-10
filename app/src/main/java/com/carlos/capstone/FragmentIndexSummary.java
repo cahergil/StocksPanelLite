@@ -49,7 +49,7 @@ import com.carlos.capstone.customcomponents.CustomSecurityMarkerView;
 import com.carlos.capstone.database.CapstoneContract;
 import com.carlos.capstone.models.HistoricalDataResponseDate;
 import com.carlos.capstone.models.HistoricalDataResponseTimestamp;
-import com.carlos.capstone.services.IndexSummaryService;
+import com.carlos.capstone.services.IndexEtfOrShortInfoSummaryService;
 import com.carlos.capstone.utils.MyApplication;
 import com.carlos.capstone.utils.Utilities;
 import com.github.mikephil.charting.charts.CombinedChart;
@@ -434,7 +434,7 @@ public class FragmentIndexSummary extends Fragment implements View.OnClickListen
         } else {
             mSharedFileName = String.valueOf(System.currentTimeMillis()) + FILE_EXTENSION;
             Bundle bundle = getArguments();
-            Intent intent = new Intent(getActivity(), IndexSummaryService.class);
+            Intent intent = new Intent(getActivity(), IndexEtfOrShortInfoSummaryService.class);
 
             if (bundle != null) {
                 mTicker = bundle.getString(getString(R.string.ticker_bundle_key));
@@ -442,9 +442,7 @@ public class FragmentIndexSummary extends Fragment implements View.OnClickListen
                 if (Utilities.isNetworkAvailable(getActivity())) {
                     intent.putExtras(bundle);
                     getActivity().startService(intent);
-//                } else {
-//                    checkRunTransition();
-//                }
+
                 }
             }
 
@@ -997,14 +995,17 @@ public class FragmentIndexSummary extends Fragment implements View.OnClickListen
         Cursor c = getIndexFromDb(mTicker);
         ContentValues contentValues = new ContentValues();
         if (!c.moveToNext()) return;
-        String ticker = c.getString(c.getColumnIndex(CapstoneContract.IndexDetailEntity.INDEX_TICKER));
-        String indexName = c.getString(c.getColumnIndex(CapstoneContract.IndexDetailEntity.INDEX_NAME));
+        String ticker = c.getString(c.getColumnIndex(CapstoneContract.IndexEtfOrShortInfoDetailEntity.INDEX_TICKER));
+        String indexName = c.getString(c.getColumnIndex(CapstoneContract.IndexEtfOrShortInfoDetailEntity.INDEX_NAME));
         String stockMarket = getString(R.string.index).toUpperCase();
-        float price = c.getFloat(c.getColumnIndex(CapstoneContract.IndexDetailEntity.PRICE));
-        float change = c.getFloat(c.getColumnIndex(CapstoneContract.IndexDetailEntity.CHANGE));
-        float changePercent = c.getFloat(c.getColumnIndex(CapstoneContract.IndexDetailEntity.CHANGE_PERCENT));
-        float max = c.getFloat(c.getColumnIndex(CapstoneContract.IndexDetailEntity.DAY_HIGHT));
-        float min = c.getFloat(c.getColumnIndex(CapstoneContract.IndexDetailEntity.DAY_LOW));
+        float price = c.getFloat(c.getColumnIndex(CapstoneContract.IndexEtfOrShortInfoDetailEntity.PRICE));
+        float change = c.getFloat(c.getColumnIndex(CapstoneContract.IndexEtfOrShortInfoDetailEntity.CHANGE));
+        float changePercent = c.getFloat(c.getColumnIndex(CapstoneContract.IndexEtfOrShortInfoDetailEntity.CHANGE_PERCENT));
+        float max = c.getFloat(c.getColumnIndex(CapstoneContract.IndexEtfOrShortInfoDetailEntity.DAY_HIGHT));
+        float min = c.getFloat(c.getColumnIndex(CapstoneContract.IndexEtfOrShortInfoDetailEntity.DAY_LOW));
+        //timestamp in IndexEtf.. is in real and in favorites is in string, a conversion is needed
+        long ts=c.getLong(c.getColumnIndex(CapstoneContract.IndexEtfOrShortInfoDetailEntity.TIMESTAMP));
+        String tsString=String.valueOf(ts);
         contentValues.put(CapstoneContract.FavoritesEntity.COMPANY_TICKER, ticker);
         contentValues.put(CapstoneContract.FavoritesEntity.COMPANY_NAME, indexName);
         contentValues.put(CapstoneContract.FavoritesEntity.MARKET, stockMarket);
@@ -1013,6 +1014,7 @@ public class FragmentIndexSummary extends Fragment implements View.OnClickListen
         contentValues.put(CapstoneContract.FavoritesEntity.CHANGE_PERCENT, changePercent);
         contentValues.put(CapstoneContract.FavoritesEntity.MAX, max);
         contentValues.put(CapstoneContract.FavoritesEntity.MIN, min);
+        contentValues.put(CapstoneContract.FavoritesEntity.TRADE_DATE,tsString);
         c.close();
         getContext().getContentResolver()
                 .insert(CapstoneContract.FavoritesEntity.buildFavoritesWithTicker(ticker), contentValues);
@@ -1020,18 +1022,19 @@ public class FragmentIndexSummary extends Fragment implements View.OnClickListen
 
     private Cursor getIndexFromDb(String ticker) {
         String[] projection = new String[]{
-                CapstoneContract.IndexDetailEntity.INDEX_TICKER,
-                CapstoneContract.IndexDetailEntity.INDEX_NAME,
-                CapstoneContract.IndexDetailEntity.PRICE,
-                CapstoneContract.IndexDetailEntity.CHANGE,
-                CapstoneContract.IndexDetailEntity.CHANGE_PERCENT,
-                CapstoneContract.IndexDetailEntity.DAY_HIGHT,
-                CapstoneContract.IndexDetailEntity.DAY_LOW
+                CapstoneContract.IndexEtfOrShortInfoDetailEntity.INDEX_TICKER,
+                CapstoneContract.IndexEtfOrShortInfoDetailEntity.INDEX_NAME,
+                CapstoneContract.IndexEtfOrShortInfoDetailEntity.PRICE,
+                CapstoneContract.IndexEtfOrShortInfoDetailEntity.CHANGE,
+                CapstoneContract.IndexEtfOrShortInfoDetailEntity.CHANGE_PERCENT,
+                CapstoneContract.IndexEtfOrShortInfoDetailEntity.DAY_HIGHT,
+                CapstoneContract.IndexEtfOrShortInfoDetailEntity.DAY_LOW,
+                CapstoneContract.IndexEtfOrShortInfoDetailEntity.TIMESTAMP
         };
         return getContext().getContentResolver().query(
-                CapstoneContract.IndexDetailEntity.buildIndexDetailWithSymbol(ticker),
+                CapstoneContract.IndexEtfOrShortInfoDetailEntity.buildIndexDetailWithSymbol(ticker),
                 projection,
-                CapstoneContract.IndexDetailEntity.INDEX_TICKER + "=?",
+                CapstoneContract.IndexEtfOrShortInfoDetailEntity.INDEX_TICKER + "=?",
                 new String[]{ticker},
                 null
         );
@@ -1051,9 +1054,9 @@ public class FragmentIndexSummary extends Fragment implements View.OnClickListen
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return new CursorLoader(getActivity(), CapstoneContract.IndexDetailEntity.buildIndexDetailWithSymbol(mTicker),
+        return new CursorLoader(getActivity(), CapstoneContract.IndexEtfOrShortInfoDetailEntity.buildIndexDetailWithSymbol(mTicker),
                 null,
-                CapstoneContract.IndexDetailEntity.INDEX_TICKER + "=?",
+                CapstoneContract.IndexEtfOrShortInfoDetailEntity.INDEX_TICKER + "=?",
                 new String[]{mTicker},
                 null);
     }

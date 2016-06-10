@@ -238,7 +238,7 @@ public class FragmentFavorites extends Fragment implements LoaderManager.LoaderC
                     null,
                     null,
                     null,
-                    CapstoneContract.FavoritesEntity.COMPANY_NAME + " ASC");
+                    CapstoneContract.FavoritesEntity.COMPANY_NAME + " COLLATE NOCASE ASC");
         }
         return null;
     }

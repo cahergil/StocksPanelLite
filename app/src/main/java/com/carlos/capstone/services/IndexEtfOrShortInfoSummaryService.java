@@ -23,18 +23,18 @@ import retrofit.Retrofit;
 /**
  * Created by Carlos on 02/03/2016.
  */
-public class IndexSummaryService extends IntentService {
+public class IndexEtfOrShortInfoSummaryService extends IntentService {
     private String mTicker;
-    public static final String TAG=IndexSummaryService.class.getSimpleName();
+    public static final String TAG=IndexEtfOrShortInfoSummaryService.class.getSimpleName();
     /**
      * Creates an IntentService.  Invoked by your subclass's constructor.
      *
      * @param name Used to name the worker thread, important only for debugging.
      */
-    public IndexSummaryService(String name) {
+    public IndexEtfOrShortInfoSummaryService(String name) {
         super(name);
     }
-    public IndexSummaryService() {
+    public IndexEtfOrShortInfoSummaryService() {
         super(TAG);
     }
 
@@ -62,20 +62,20 @@ public class IndexSummaryService extends IntentService {
                         IndexOrShortInfoDataResponse.ListEntity.ResourcesEntity.ResourceEntity.
                                 FieldsEntity fieldsEntity = resourceEntity.getFields();
                         ContentValues contentValues = new ContentValues();
-                        contentValues.put(CapstoneContract.IndexDetailEntity.INDEX_TICKER, fieldsEntity.getSymbol());
+                        contentValues.put(CapstoneContract.IndexEtfOrShortInfoDetailEntity.INDEX_TICKER, fieldsEntity.getSymbol());
                         String indexName = Html.fromHtml(fieldsEntity.getName()).toString();
-                        contentValues.put(CapstoneContract.IndexDetailEntity.INDEX_NAME, indexName);
-                        contentValues.put(CapstoneContract.IndexDetailEntity.PRICE, fieldsEntity.getPrice());
-                        contentValues.put(CapstoneContract.IndexDetailEntity.CHANGE, fieldsEntity.getChange());
-                        contentValues.put(CapstoneContract.IndexDetailEntity.CHANGE_PERCENT, fieldsEntity.getChg_percent());
-                        contentValues.put(CapstoneContract.IndexDetailEntity.TIMESTAMP, fieldsEntity.getTs());
-                        contentValues.put(CapstoneContract.IndexDetailEntity.UTCTIME, fieldsEntity.getUtctime());
-                        contentValues.put(CapstoneContract.IndexDetailEntity.DAY_HIGHT, fieldsEntity.getDay_high());
-                        contentValues.put(CapstoneContract.IndexDetailEntity.DAY_LOW, fieldsEntity.getDay_low());
-                        contentValues.put(CapstoneContract.IndexDetailEntity.YEAR_HIGHT, fieldsEntity.getYear_high());
-                        contentValues.put(CapstoneContract.IndexDetailEntity.YEAR_LOW, fieldsEntity.getYear_low());
-                        contentValues.put(CapstoneContract.IndexDetailEntity.VOLUME, fieldsEntity.getVolume());
-                        Uri uri = CapstoneContract.IndexDetailEntity.buildIndexDetailWithSymbol(fieldsEntity.getSymbol());
+                        contentValues.put(CapstoneContract.IndexEtfOrShortInfoDetailEntity.INDEX_NAME, indexName);
+                        contentValues.put(CapstoneContract.IndexEtfOrShortInfoDetailEntity.PRICE, fieldsEntity.getPrice());
+                        contentValues.put(CapstoneContract.IndexEtfOrShortInfoDetailEntity.CHANGE, fieldsEntity.getChange());
+                        contentValues.put(CapstoneContract.IndexEtfOrShortInfoDetailEntity.CHANGE_PERCENT, fieldsEntity.getChg_percent());
+                        contentValues.put(CapstoneContract.IndexEtfOrShortInfoDetailEntity.TIMESTAMP, fieldsEntity.getTs());
+                        contentValues.put(CapstoneContract.IndexEtfOrShortInfoDetailEntity.UTCTIME, fieldsEntity.getUtctime());
+                        contentValues.put(CapstoneContract.IndexEtfOrShortInfoDetailEntity.DAY_HIGHT, fieldsEntity.getDay_high());
+                        contentValues.put(CapstoneContract.IndexEtfOrShortInfoDetailEntity.DAY_LOW, fieldsEntity.getDay_low());
+                        contentValues.put(CapstoneContract.IndexEtfOrShortInfoDetailEntity.YEAR_HIGHT, fieldsEntity.getYear_high());
+                        contentValues.put(CapstoneContract.IndexEtfOrShortInfoDetailEntity.YEAR_LOW, fieldsEntity.getYear_low());
+                        contentValues.put(CapstoneContract.IndexEtfOrShortInfoDetailEntity.VOLUME, fieldsEntity.getVolume());
+                        Uri uri = CapstoneContract.IndexEtfOrShortInfoDetailEntity.buildIndexDetailWithSymbol(fieldsEntity.getSymbol());
                         getContentResolver().insert(uri, contentValues);
                     }
                 } else {

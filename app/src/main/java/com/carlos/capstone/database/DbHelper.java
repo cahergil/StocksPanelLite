@@ -66,21 +66,21 @@ public class DbHelper extends SQLiteOpenHelper {
                 CapstoneContract.DebugEntity.ELAPSED + " TEXT NOT NULL" +
                 ")";
 
-        final String SQL_CREATE_INDEX_DETAIL_TABLE="CREATE TABLE " + CapstoneContract.IndexDetailEntity.TABLE_NAME + " (" +
-                CapstoneContract.IndexDetailEntity._ID + " INTEGER PRIMARY KEY," +
-                CapstoneContract.IndexDetailEntity.INDEX_TICKER + " TEXT NOT NULL," +
-                CapstoneContract.IndexDetailEntity.INDEX_NAME + " TEXT," +
-                CapstoneContract.IndexDetailEntity.PRICE + " REAL NOT NULL," +
-                CapstoneContract.IndexDetailEntity.CHANGE + " REAL NOT NULL," +
-                CapstoneContract.IndexDetailEntity.CHANGE_PERCENT + " REAL NOT NULL," +
-                CapstoneContract.IndexDetailEntity.TIMESTAMP + " REAL," +
-                CapstoneContract.IndexDetailEntity.UTCTIME + " TEXT," +
-                CapstoneContract.IndexDetailEntity.DAY_HIGHT + " REAL," +
-                CapstoneContract.IndexDetailEntity.DAY_LOW + " REAL," +
-                CapstoneContract.IndexDetailEntity.YEAR_HIGHT + " REAL," +
-                CapstoneContract.IndexDetailEntity.YEAR_LOW + " REAL," +
-                CapstoneContract.IndexDetailEntity.VOLUME + " REAL," +
-                "UNIQUE (" + CapstoneContract.IndexDetailEntity.INDEX_TICKER + ") ON CONFLICT IGNORE)";
+        final String SQL_CREATE_INDEX_DETAIL_TABLE="CREATE TABLE " + CapstoneContract.IndexEtfOrShortInfoDetailEntity.TABLE_NAME + " (" +
+                CapstoneContract.IndexEtfOrShortInfoDetailEntity._ID + " INTEGER PRIMARY KEY," +
+                CapstoneContract.IndexEtfOrShortInfoDetailEntity.INDEX_TICKER + " TEXT NOT NULL," +
+                CapstoneContract.IndexEtfOrShortInfoDetailEntity.INDEX_NAME + " TEXT," +
+                CapstoneContract.IndexEtfOrShortInfoDetailEntity.PRICE + " REAL NOT NULL," +
+                CapstoneContract.IndexEtfOrShortInfoDetailEntity.CHANGE + " REAL NOT NULL," +
+                CapstoneContract.IndexEtfOrShortInfoDetailEntity.CHANGE_PERCENT + " REAL NOT NULL," +
+                CapstoneContract.IndexEtfOrShortInfoDetailEntity.TIMESTAMP + " REAL," +
+                CapstoneContract.IndexEtfOrShortInfoDetailEntity.UTCTIME + " TEXT," +
+                CapstoneContract.IndexEtfOrShortInfoDetailEntity.DAY_HIGHT + " REAL," +
+                CapstoneContract.IndexEtfOrShortInfoDetailEntity.DAY_LOW + " REAL," +
+                CapstoneContract.IndexEtfOrShortInfoDetailEntity.YEAR_HIGHT + " REAL," +
+                CapstoneContract.IndexEtfOrShortInfoDetailEntity.YEAR_LOW + " REAL," +
+                CapstoneContract.IndexEtfOrShortInfoDetailEntity.VOLUME + " REAL," +
+                "UNIQUE (" + CapstoneContract.IndexEtfOrShortInfoDetailEntity.INDEX_TICKER + ") ON CONFLICT IGNORE)";
 
         final String SQL_CREATE_INDEX_COMPONENT_TABLE="CREATE TABLE " + CapstoneContract.IndexComponentEntity.TABLE_NAME + " (" +
                 CapstoneContract.IndexComponentEntity._ID + " INTEGER PRIMARY KEY," +
@@ -241,7 +241,7 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + CapstoneContract.FavoritesEntity.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + CapstoneContract.IndexesEntity.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + CapstoneContract.NewsEntity.TABLE_NAME);
-        db.execSQL("DROP TABLE IF EXISTS " + CapstoneContract.IndexDetailEntity.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + CapstoneContract.IndexEtfOrShortInfoDetailEntity.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + CapstoneContract.IndexComponentEntity.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + CapstoneContract.CompanyEntity.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + CapstoneContract.StockDetailEntity.TABLE_NAME);

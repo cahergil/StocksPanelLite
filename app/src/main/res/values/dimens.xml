@@ -43,6 +43,7 @@
     <dimen name="si_percent_margin_top">8dp</dimen>
     <dimen name="si_price_text_size">25sp</dimen>
     <dimen name="si_label_day">12sp</dimen>
+    <dimen name="si_label_date">12sp</dimen>
     <dimen name="si_min_padding_top">5dp</dimen>
     <dimen name="si_card_view_content_padding">5dp</dimen>
     <dimen name="si_card_view_elevation">1dp</dimen>
