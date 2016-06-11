@@ -2,7 +2,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
     <string name="ga_trackingId">UA-76114734-1</string>
     <string name="ga_autoActivityTracking">false</string>
-
+    <bool name="ga_reportUncaughtExceptions">true</bool>
 
     <!-- The screen names that will appear in reports -->
     <screenName name="com.carlos.capstone.MainActivity">MainActivity</screenName>

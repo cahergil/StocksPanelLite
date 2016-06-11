@@ -19,6 +19,12 @@
     <!-- has to be placed here at the end, otherwise it fails!! -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+    <supports-screens android:smallScreens="true"
+        android:normalScreens="true"
+        android:largeScreens="true"
+        android:xlargeScreens="true"
+        android:requiresSmallestWidthDp="7200" />
+
     <application
         android:name=".utils.MyApplication"
         android:allowBackup="true"
@@ -201,6 +207,9 @@
             android:permission="android.permission.BIND_REMOTEVIEWS" />
         <service android:name=".services.UpdateWidgetService" />
         <service android:name=".services.WidgetSwitchLauncherService" />
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="8f88b8d12e0ea1dc8db4e7888942e102c45bd5cb" />
     </application>
 
 </manifest>

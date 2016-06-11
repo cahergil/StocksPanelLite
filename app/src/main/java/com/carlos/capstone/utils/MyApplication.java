@@ -9,12 +9,14 @@ import com.carlos.capstone.jsonpconverter.JsonpGsonConverterFactory;
 import com.carlos.capstone.models.HistoricalDataResponseDate;
 import com.carlos.capstone.models.HistoricalDataResponseTimestamp;
 import com.carlos.capstone.models.IndexDataUnit;
+import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Logger;
 import com.google.android.gms.analytics.Tracker;
 import com.squareup.okhttp.Dispatcher;
 import com.squareup.okhttp.OkHttpClient;
 
+import io.fabric.sdk.android.Fabric;
 import java.util.ArrayList;
 
 import retrofit.Response;
@@ -45,6 +47,7 @@ public class MyApplication extends Application {
     public static Observable<Response<HistoricalDataResponseDate>> mObservableMonths=Observable.empty();
     @Override public void onCreate() {
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
       //  LeakCanary.install(this);
 
     }
@@ -124,13 +127,14 @@ public class MyApplication extends Application {
             ga.enableAutoActivityReports(this);
 
             //to enable advertising features(demographics and interest reports)
+            //requires authorization from the client, so set to false for the moment
             ga.enableAdvertisingIdCollection(true);
 
             // Set the log level to verbose.
             ga.getLogger().setLogLevel(Logger.LogLevel.VERBOSE);
 
             //Disables reporting when app runs on debug ,setDryRun(BuildConfig.DEBUG);
-            ga.setDryRun(true);
+            ga.setDryRun(false);
         }
     }
 

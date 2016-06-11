@@ -35,6 +35,7 @@ public class DetailStockActivity extends AppCompatActivity {
                     .add(R.id.detail_stock_container, fragmentStockDetail)
                     .commit();
         }
+
     }
 
     @Override
