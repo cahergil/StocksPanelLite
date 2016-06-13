@@ -8,15 +8,16 @@
     <string name="banner3_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
 
     <!-- Strings related to Settings -->
-    <string name="pref_animation_key" >animation</string>
-    <string name="pref_animation_default">true</string>
-    <string name="pref_share_title">Share screenshot of:</string>
-    <string name="pref_share_key">share</string>
-    <string name="pref_share_default">chart</string>
-    <string name="pref_share_screen">screen</string>
-    <string name="pref_share_chart">chart</string>
-    <string name="pref_share_value_change">value_change</string>
-    <string name="pref_share_trading_info">trading_info</string>
+
+    <string name="pref_animation_key" translatable="false">animation</string>
+    <string name="pref_animation_default" translatable="false">true</string>
+    <string name="pref_share_title" translatable="false">Share screenshot of:</string>
+    <string name="pref_share_key" translatable="false">share</string>
+    <string name="pref_share_default" translatable="false">chart</string>
+    <string name="pref_share_screen" translatable="false">screen</string>
+    <string name="pref_share_chart" translatable="false">chart</string>
+    <string name="pref_share_value_change" translatable="false">value_change</string>
+    <string name="pref_share_trading_info" translatable="false">trading_info</string>
     <string-array name="pref_share_entries" translatable="true">
         <item>entire screen</item>
         <item>only chart</item>
@@ -29,6 +30,26 @@
         <item>@string/pref_share_value_change</item>
         <item>@string/pref_share_trading_info</item>
     </string-array>
+    <string name="pref_email_key" translatable="false">email</string>
+    <string name="mailto" translatable="false">chernandezgil@gmail.com</string>
+    <string name="subject" translatable="true">Comment about the app Stock Panel Lite</string>
+    <string name="email_string">Tell us any recommendation or comment about the app</string>
+    <string name="email_title">Send an e-mail to developer</string>
+    <string name="app_play_store_address" translatable="false">https://play.google.com/store/apps/details?id=com.carlos.capstone</string>
+
+    <string name="pref_share_app_key" translatable="false">share app</string>
+    <string name="share_app_string">Tell a friend about us</string>
+    <string name="share_app_title">Share this app with friends</string>
+
+    <string name="pref_version_key" translatable="false">version</string>
+    <string name="version_title">Version</string>
+
+    <string name="pref_rate_key" translatable="false">rate</string>
+    <string name="rate_app" translatable="true">If you liked the app, please rate it in Play Store</string>
+    <string name="rate_app_title" translatable="true">Rate the app</string>
+
+    <string name="pref_title_first_section" translatable="true">App</string>
+    <string name="pref_title_second_section" translatable="true">Other</string>
     <!-- strings related to Sync Adapter -->
     <string name="sync_account_type">captsone.carlos.com</string>
     <string name="content_authority">com.carlos.capstone</string>

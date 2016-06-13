@@ -62,6 +62,8 @@
     <color name="blue_grey_500">#607D8B</color>
     <color name="blue_gray_700">#455A64</color>
     <color name="blue_gray_200">#B0BEC5</color>
+    <color name="gold_metallic">#D4AF37</color>
+    <color name="rate_star_color">#FFCC00</color>
 
 
 </resources>
