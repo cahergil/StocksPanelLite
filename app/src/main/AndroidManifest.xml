@@ -50,7 +50,7 @@
             android:name=".MainActivity"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme1"
-            android:windowSoftInputMode="adjustPan" >
+             >
         </activity>
         <activity
             android:name=".DetailNewsActivity"

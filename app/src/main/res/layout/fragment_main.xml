@@ -87,6 +87,7 @@
                 android:background="?attr/colorPrimary"
                 app:tabIndicatorHeight="3dp"
                 app:tabMode="fixed"
+
                 app:tabSelectedTextColor="@android:color/white"
                 app:tabTextAppearance="@style/TabTextAppearance" />
 

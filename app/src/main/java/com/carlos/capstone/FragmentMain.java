@@ -135,8 +135,6 @@ public class FragmentMain extends Fragment  implements OnChartGestureListener,
         setHasOptionsMenu(true);
         Log.d(LOG_TAG,"onCreateView FragmentMain");
         View view=inflater.inflate(R.layout.fragment_main,container);
-      //  final AppBarLayout myAppBarLayout= (AppBarLayout)view.findViewById(R.id.appbar);
-
 
         mCoordinatorContainer= (CoordinatorLayout) view.findViewById(R.id.containerView);
         collapsingToolbarLayout= (CollapsingToolbarLayout)view.findViewById(R.id.collapsing_toolbar);
@@ -144,17 +142,14 @@ public class FragmentMain extends Fragment  implements OnChartGestureListener,
         collapsingToolbarLayout.setTitleEnabled(false);
 
         mToolbar = (Toolbar)view.findViewById(R.id.toolbar);
-//        TextView title= (TextView) view.findViewById(R.id.toolbar_title);
-//        Typeface typeFace=Typeface.createFromAsset(getActivity().getResources().getAssets(), "stock_market_narrow.ttf");
-//        title.setTypeface(typeFace);
-//        title.setText(getString(R.string.app_name));
+
         ((AppCompatActivity)getActivity()).setSupportActionBar(mToolbar);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
         mProgressBar= (ProgressBar) view.findViewById(R.id.progressBar);
       //  mProgressBar.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(getActivity(),R.color.red_900), PorterDuff.Mode.SRC_IN);
 
         mViewPager= (ViewPager) view.findViewById(R.id.viewpagerMain);
-        //final PagerAdapter pagerAdapter=new Adapter(getActivity().getSupportFragmentManager());
+        // this line from fragments is wrong!->final PagerAdapter pagerAdapter=new Adapter(getActivity().getSupportFragmentManager());
         final PagerAdapter pagerAdapter=new Adapter(getChildFragmentManager());
         mViewPager.setAdapter(pagerAdapter);
         mViewPager.setOffscreenPageLimit(3);

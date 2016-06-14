@@ -155,7 +155,7 @@ public class FragmentFavorites extends Fragment implements LoaderManager.LoaderC
             public boolean onClose() {
                 if(mAddToFavoritIntent) {
                     mAddToFavoritIntent =false;
-                    mFab.requestFocus();
+                  //  mFab.requestFocus();
                 }
 
                 return false;
