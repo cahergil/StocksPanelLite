@@ -110,18 +110,46 @@ public class FragmentMain extends Fragment  implements OnChartGestureListener,
 
     }
 
+//
+//    @Override
+//    public boolean dispatchTouchEvent(MotionEvent ev) {
+//        try {
+//
+//            AppBarLayout myAppBarLayout= (AppBarLayout)getView().findViewById(R.id.appbar);
+//            if (ev.getAction() == ev.ACTION_UP) {
+//                if ((collapsingToolbarLayout.getBottom() - collapsingToolbarLayout.getTop()) > appBarLayout.getBottom() * 2) {
+//                    appBarLayout.setExpanded(false);
+//                } else {
+//                    appBarLayout.setExpanded(true);
+//                }
+//            }
+//            return super.dispatchTouchEvent(ev);
+//        } catch (Exception e) {
+//            Log.e(TAG, "dispatchTouchEvent " + e.toString());
+//            return false;
+//        }
+//    }
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         Log.d(LOG_TAG,"onCreateView FragmentMain");
         View view=inflater.inflate(R.layout.fragment_main,container);
+      //  final AppBarLayout myAppBarLayout= (AppBarLayout)view.findViewById(R.id.appbar);
+
+
         mCoordinatorContainer= (CoordinatorLayout) view.findViewById(R.id.containerView);
         collapsingToolbarLayout= (CollapsingToolbarLayout)view.findViewById(R.id.collapsing_toolbar);
         collapsingToolbarLayout.setTitle(" ");
         collapsingToolbarLayout.setTitleEnabled(false);
+
         mToolbar = (Toolbar)view.findViewById(R.id.toolbar);
+//        TextView title= (TextView) view.findViewById(R.id.toolbar_title);
+//        Typeface typeFace=Typeface.createFromAsset(getActivity().getResources().getAssets(), "stock_market_narrow.ttf");
+//        title.setTypeface(typeFace);
+//        title.setText(getString(R.string.app_name));
         ((AppCompatActivity)getActivity()).setSupportActionBar(mToolbar);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
         mProgressBar= (ProgressBar) view.findViewById(R.id.progressBar);
       //  mProgressBar.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(getActivity(),R.color.red_900), PorterDuff.Mode.SRC_IN);
 

@@ -12,7 +12,7 @@
         android:layout_height="?attr/actionBarSize"
         android:layout_alignParentTop="true"
         android:background="?attr/colorPrimary"
-        android:backgroundTint="@color/black"
+        android:backgroundTint="@color/colorPrimary"
         android:elevation="4dp"
         android:orientation="vertical">
 
@@ -20,6 +20,7 @@
 
 
     </RelativeLayout>
+
 
     <!-- This is used as a strut to create two columns in our RelativeLayout -->
     <android.support.v4.widget.Space

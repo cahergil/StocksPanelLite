@@ -589,10 +589,26 @@ public class Utilities {
             List<Double> yValuesCopy = new ArrayList<Double>();
             List<Double> yValuesMVCopy = new ArrayList<Double>();
             List<String> xValuesCopy = new ArrayList<String>();
+//            FATAL EXCEPTION: pool-10-thread-3
+//            java.lang.IndexOutOfBoundsException: Invalid index 0, size is 0
+//            at java.util.ArrayList.throwIndexOutOfBoundsException(ArrayList.java:255)
+//            at java.util.ArrayList.get(ArrayList.java:308)
+//            at com.carlos.capstone.utils.Utilities.normalizeDataUnits(Utilities.java:598)
+//
+//           598     yValuesMVCopy.add(yValuesMV.get(j));
+//
+//            at com.carlos.capstone.sync.CapstoneSyncAdapter.sendDataUnitToFragmentMain(CapstoneSyncAdapter.java:527)
+//            at com.carlos.capstone.sync.CapstoneSyncAdapter$WorkerThreadAmerica.run(CapstoneSyncAda
             for (int j = 0; j < min; j++) {
-                yValuesCopy.add(yValues.get(j));
-                yValuesMVCopy.add(yValuesMV.get(j));
-                xValuesCopy.add(xValues.get(j));
+                if(yValues!=null && yValues.size()!=0) {
+                    yValuesCopy.add(yValues.get(j));
+                }
+                if(yValuesMV!=null && yValuesMV.size()!=0) {
+                    yValuesMVCopy.add(yValuesMV.get(j));
+                }
+                if(xValues!=null && xValues.size()!=0) {
+                    xValuesCopy.add(xValues.get(j));
+                }
             }
             IndexDataUnit indexDataUnit = new IndexDataUnit();
             indexDataUnit.setName(list.get(i).getName());

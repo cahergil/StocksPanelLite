@@ -3,10 +3,13 @@ package com.carlos.capstone;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 
 import com.carlos.capstone.interfaces.Callback;
 import com.carlos.capstone.utils.MyApplication;
@@ -226,7 +229,37 @@ public class MainActivity extends AppCompatActivity implements Callback {
 
     }
 
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        try {
+            AppBarLayout appBarLayout;
+            appBarLayout = ((AppBarLayout) findViewById(R.id.appbar));
+            CollapsingToolbarLayout collapsingToolbarLayout= (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
 
+            if (ev.getAction() == ev.ACTION_UP) {
+                Log.d(LOG_TAG,"Appbar->getBottom:"+appBarLayout.getBottom());
+                Log.d(LOG_TAG,"collapsingToolbarLayout->getBottom:"+collapsingToolbarLayout.getBottom());
+                if(appBarLayout.getBottom()<379) {
+
+//                    AppBarLayout.LayoutParams p = (AppBarLayout.LayoutParams)     collapsingToolbarLayout.getLayoutParams();
+//                    p.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SNAP);
+//                    collapsingToolbarLayout.setLayoutParams(p);
+
+
+
+                }
+//                if ((collapsingToolbarLayout.getBottom() - collapsingToolbarLayout.getTop()) > appBarLayout.getBottom() * 2) {
+//                    appBarLayout.setExpanded(false);
+//                } else {
+//                    appBarLayout.setExpanded(true);
+//                }
+            }
+            return super.dispatchTouchEvent(ev);
+        } catch (Exception e) {
+            Log.e(LOG_TAG, "dispatchTouchEvent " + e.toString());
+            return false;
+        }
+    }
 
     @Override
     protected void onDestroy() {

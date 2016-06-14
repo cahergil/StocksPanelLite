@@ -23,7 +23,7 @@
         android:normalScreens="true"
         android:largeScreens="true"
         android:xlargeScreens="true"
-        android:requiresSmallestWidthDp="7200" />
+         />
 
     <application
         android:name=".utils.MyApplication"
