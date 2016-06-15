@@ -21,6 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="0.5"
+            android:layout_marginRight="10dp"
             android:gravity="end"
             android:text="@string/wd_title"
             android:textColor="@color/white"

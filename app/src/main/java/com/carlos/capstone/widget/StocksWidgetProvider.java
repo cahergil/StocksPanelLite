@@ -25,6 +25,8 @@ import java.util.Date;
  */
 public class StocksWidgetProvider extends AppWidgetProvider {
     private static final String LOG_TAG=StocksWidgetProvider.class.getSimpleName();
+    public static final String ACTION_DATA_UPDATED ="com.carlos.capstone.ACTION_DATA_UPDATED";
+
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         Log.d(LOG_TAG,"onUpdate");
@@ -72,19 +74,29 @@ public class StocksWidgetProvider extends AppWidgetProvider {
             // Tell the AppWidgetManager to perform an update on the current app widget
             appWidgetManager.updateAppWidget(appWidgetId, view);
 
-            Log.d(LOG_TAG,"UpdateWidget");
+            Log.d(LOG_TAG,"UpdatedWidget");
 
         }
     }
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        super.onReceive(context, intent);
-        Log.d(LOG_TAG, "onReceive Widget");
-        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(
-                new ComponentName(context, getClass()));
-        appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.widgetList);
+
+        Log.d(LOG_TAG, "inside onReceive widget");
+        if(ACTION_DATA_UPDATED.equals(intent.getAction())) {
+            try {
+                AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+                int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(context, getClass()));
+                if(appWidgetIds.length==0) {
+                    Log.d(LOG_TAG,"zero length appWidgetId array");
+                }
+                appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.widgetList);
+                Log.d(LOG_TAG, "after notifyAppWidgetViewDataChanged");
+            }catch (Exception e) {
+                Log.d(LOG_TAG,"error in onReceive widget:"+e.getMessage());
+            }
+        }
+        super.onReceive(context, intent); //moved here instead of the first line
     }
 
     /**

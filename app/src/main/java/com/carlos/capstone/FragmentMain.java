@@ -173,7 +173,7 @@ public class FragmentMain extends Fragment  implements OnChartGestureListener,
         mAdContainer= (LinearLayout) view.findViewById(R.id.advBottomBar);
         //http://stackoverflow.com/questions/33509371/adview-causes-memory-leak
         mAdView = new AdView(getActivity().getApplicationContext());
-        mAdView.setAdUnitId(getString(R.string.banner1_ad_unit_id));
+        mAdView.setAdUnitId(getString(R.string.banner_1_main_ad_unit_id));
         mAdView.setAdSize(AdSize.BANNER);
         mAdView.setFocusable(true);
         mAdView.setContentDescription(getString(R.string.talkback_fm_admob));
@@ -190,8 +190,8 @@ public class FragmentMain extends Fragment  implements OnChartGestureListener,
         // get test ads on a physical device. e.g.
         // "Use AdRequest.Builder.addTestDevice("ABCDEF012345") to get test ads on this device."
         AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                .addTestDevice("065886d30aca98cd")
+               // .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                //.addTestDevice("065886d30aca98cd")
                 .build();
         mAdView.loadAd(adRequest);
         mAdView.setAdListener(new AdvertisementListener(getActivity(),"banner 1 click"));

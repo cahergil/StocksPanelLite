@@ -3,9 +3,9 @@
     <string name="action_settings" translatable="true">Settings</string>
     <string name="title_activity_settings" translatable="true">Settings</string>
     <string name="log_tag" translatable="false">VILLANUEVA</string>
-    <string name="banner1_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="banner2_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="banner3_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="banner_1_main_ad_unit_id"     >ca-app-pub-2403313283268463/2040824439</string>
+    <string name="banner_2_stock_ad_unit_id"    >ca-app-pub-2403313283268463/5773020039</string>
+    <string name="banner_3_index_etf_ad_unit_id">ca-app-pub-2403313283268463/7947757231</string>
 
     <!-- Strings related to Settings -->
 

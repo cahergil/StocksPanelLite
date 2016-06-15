@@ -1,6 +1,7 @@
 package com.carlos.capstone.utils;
 
 import android.app.Activity;
+import android.util.Log;
 
 import com.carlos.capstone.R;
 import com.google.android.gms.ads.AdListener;
@@ -13,6 +14,7 @@ import com.google.android.gms.analytics.Tracker;
 public class AdvertisementListener extends AdListener {
     private Activity context;
     private String action;
+    private static final String LOG_TAG=AdvertisementListener.class.getSimpleName();
 
     public AdvertisementListener() {
         super();
@@ -25,12 +27,12 @@ public class AdvertisementListener extends AdListener {
 
     @Override
     public void onAdLoaded() {
-        // Code to be executed when an ad finishes loading.
+        Log.d(LOG_TAG,"Ad successfully loaded");
     }
 
     @Override
     public void onAdFailedToLoad(int errorCode) {
-        // Code to be executed when an ad request fails.
+        Log.d(LOG_TAG,"Ad failed to load, errorCode:"+errorCode);
     }
 
     @Override

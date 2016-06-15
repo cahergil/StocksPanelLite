@@ -77,15 +77,15 @@ public class FragmentIndexDetail extends Fragment implements TabLayout.OnTabSele
         mAdContainer= (LinearLayout) view.findViewById(R.id.advBottomBarRight);
         //http://stackoverflow.com/questions/33509371/adview-causes-memory-leak
         mAdView = new AdView(getActivity().getApplicationContext());
-        mAdView.setAdUnitId(getString(R.string.banner3_ad_unit_id));
+        mAdView.setAdUnitId(getString(R.string.banner_3_index_etf_ad_unit_id));
         mAdView.setAdSize(AdSize.BANNER);
         mAdContainer.addView(mAdView);
         // Create an ad request. Check logcat output for the hashed device ID to
         // get test ads on a physical device. e.g.
         // "Use AdRequest.Builder.addTestDevice("ABCDEF012345") to get test ads on this device."
         AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                .addTestDevice("065886d30aca98cd")
+            //    .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+            //    .addTestDevice("065886d30aca98cd")
                 .build();
         mAdView.loadAd(adRequest);
         mAdView.setAdListener(new AdvertisementListener(getActivity(),"banner 3 click"));

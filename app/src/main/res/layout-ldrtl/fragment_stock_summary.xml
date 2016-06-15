@@ -142,6 +142,7 @@
                 tools:visibility="visible"
                 android:visibility="gone"
                 android:background="@drawable/progress"
+                android:indeterminateTint="@color/blue_gray_700"
                 android:id="@+id/progressBar"
                 android:layout_width="@dimen/fss_progress_bar"
                 android:layout_height="@dimen/fss_progress_bar"

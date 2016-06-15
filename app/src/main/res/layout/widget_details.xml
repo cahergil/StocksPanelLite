@@ -24,6 +24,7 @@
             android:layout_gravity="center_vertical"
             android:layout_weight="0.5"
             android:gravity="start"
+            android:layout_marginLeft="10dp"
             android:text="@string/wd_title"
             android:textColor="@color/white"
 
