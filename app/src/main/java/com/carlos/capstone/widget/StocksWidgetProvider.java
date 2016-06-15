@@ -87,11 +87,18 @@ public class StocksWidgetProvider extends AppWidgetProvider {
             try {
                 AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
                 int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(context, getClass()));
-                if(appWidgetIds.length==0) {
-                    Log.d(LOG_TAG,"zero length appWidgetId array");
+                //testing
+                if(appWidgetIds!=null && appWidgetIds.length==0) {
+                    Log.d(LOG_TAG,"zero appWidgetId array");
+                } else if(appWidgetIds!=null && appWidgetIds.length>0) {
+                    Log.d(LOG_TAG,"non zero appWidgetId array");
+                } else if(appWidgetIds==null) {
+                    Log.d(LOG_TAG,"null appWidgetId array");
                 }
+
                 appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.widgetList);
                 Log.d(LOG_TAG, "after notifyAppWidgetViewDataChanged");
+
             }catch (Exception e) {
                 Log.d(LOG_TAG,"error in onReceive widget:"+e.getMessage());
             }

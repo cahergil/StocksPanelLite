@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:alpha="0.9"
     android:id="@+id/widget"
-    android:background="@color/colorPrimary"
+    android:background="@color/gray800"
     android:focusable="true"
     android:clickable="true"
     android:orientation="vertical">
@@ -15,16 +15,17 @@
 
         android:layout_width="match_parent"
         android:layout_height="@dimen/wd_hight_bar"
-        android:background="@color/orange_900"
+        android:background="@color/gray800"
         android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_gravity="center_vertical"
-            android:layout_weight="0.5"
+            android:layout_weight="0.02"
+            android:src="@drawable/ic_launcher"
             android:gravity="start"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="7dp"
             android:text="@string/wd_title"
             android:textColor="@color/white"
 
@@ -38,7 +39,7 @@
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:gravity="left"
-            android:paddingLeft="30dp"
+            android:paddingLeft="80dp"
             android:text="03/05/16 12:37"
             android:textColor="@color/white"
 
