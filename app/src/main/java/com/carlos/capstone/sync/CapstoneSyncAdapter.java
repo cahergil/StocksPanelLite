@@ -522,11 +522,11 @@ public class CapstoneSyncAdapter extends AbstractThreadedSyncAdapter {
 
         }
         if (region.equals(FragmentMain.REGION_AMERICA)|| region.equals(FragmentMain.REGION_EUROPE)) {
-            Log.d(LOG_TAG, "PREnormalize: 1:" + sendList.get(0).getName() + ",2:" + sendList.get(1).getName() + ",3:" + sendList.get(2).getName());
+         //   Log.d(LOG_TAG, "PREnormalize: 1:" + sendList.get(0).getName() + ",2:" + sendList.get(1).getName() + ",3:" + sendList.get(2).getName());
         }
         sendList=Utilities.normalizeDataUnits(sendList);
         if (region.equals(FragmentMain.REGION_AMERICA)|| region.equals(FragmentMain.REGION_EUROPE)) {
-            Log.d(LOG_TAG, "POSTtnormalize: 1:" + sendList.get(0).getName() + ",2:" + sendList.get(1).getName() + ",3:" + sendList.get(2).getName());
+         //   Log.d(LOG_TAG, "POSTtnormalize: 1:" + sendList.get(0).getName() + ",2:" + sendList.get(1).getName() + ",3:" + sendList.get(2).getName());
         }
 
         //this will be true only after the installation of the app

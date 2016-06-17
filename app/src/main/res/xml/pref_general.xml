@@ -16,7 +16,7 @@
 
     <PreferenceCategory android:title="@string/pref_title_second_section">
         <Preference
-            android:icon="@drawable/star"
+
             android:key="@string/pref_rate_key"
             android:summary="@string/rate_app"
             android:title="@string/rate_app_title">

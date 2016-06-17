@@ -1,7 +1,9 @@
 package com.carlos.capstone.customcomponents;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.support.v4.content.ContextCompat;
+import android.util.DisplayMetrics;
 import android.widget.TextView;
 
 import com.carlos.capstone.R;
@@ -84,14 +86,35 @@ public class CustomIndexMarkerView extends MarkerView {
     @Override
     public int getXOffset(float xpos) {
 
-        return -(getWidth() / 2);
+        //si hacemos -xpos estamos diciendo que pinte quite toda la longitud donde se hizo click
+        //que se reste y pinte ahi. Son coordenadas relativas
+
+        //me da un getXOffset muy pequeno, no se porque deberia coger todo el ancho
+        // al final pongo 136dp.
+        //YAxis yAxis=chart.getAxisRight();
+        //float rightAxisSpace=chart.getWidth()-yAxis.getXOffset();
+        if(xpos>=(chart.getWidth()/2)) {
+            //return -(getWidth() / 2);
+            return -(int) (xpos - convertDpToPixel(10, context));
+        } else {
+            //la anchura del custom_index_markerview es fija, de 100dp y anadimos 36 dp que es el
+            //espacio que hay al final donde estan las label de %
+            return (int) (-xpos +(chart.getWidth()-convertDpToPixel(136,context)));
+        }
     }
 
     @Override
     public int getYOffset(float ypos) {
 
-        return -(getHeight());
+
+        return -(int)(ypos-convertDpToPixel(12,context));
     }
 
+    public static float convertDpToPixel(float dp, Context context){
+        Resources resources = context.getResources();
+        DisplayMetrics metrics = resources.getDisplayMetrics();
+        float px = dp * ((float)metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT);
+        return px;
+    }
 
 }

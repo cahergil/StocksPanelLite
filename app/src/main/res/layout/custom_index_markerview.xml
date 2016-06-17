@@ -14,7 +14,7 @@
         <TextView
             android:text="@string/cim_var"
             android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_weight="1.4"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:textSize="@dimen/cim_text_size"
@@ -73,7 +73,7 @@
         <TextView
             android:text="@string/cim_time"
             android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_weight="1.4"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:textSize="@dimen/cim_text_size"

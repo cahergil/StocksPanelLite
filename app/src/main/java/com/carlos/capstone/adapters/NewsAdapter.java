@@ -58,8 +58,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(NewsAdapter.ViewHolder holder, int position) {
         mCursor.moveToPosition(position);
-
-
         holder.titulo.setText(mCursor.getString(COL_TITLE));
         holder.fecha.setText(Utilities.stripOutParentheses(mCursor.getString(COL_DATE)));
         holder.publisher.setText(mCursor.getString(COL_PUBLISHER));

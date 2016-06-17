@@ -7,6 +7,7 @@ import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -135,6 +136,14 @@ public class FragmentMain extends Fragment  implements OnChartGestureListener,
         setHasOptionsMenu(true);
         Log.d(LOG_TAG,"onCreateView FragmentMain");
         View view=inflater.inflate(R.layout.fragment_main,container);
+        AppBarLayout appBarLayout;
+        appBarLayout = ((AppBarLayout)view.findViewById(R.id.appbar));
+        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                Log.d(LOG_TAG,"verticalOffset:"+verticalOffset);
+            }
+        });
 
         mCoordinatorContainer= (CoordinatorLayout) view.findViewById(R.id.containerView);
         collapsingToolbarLayout= (CollapsingToolbarLayout)view.findViewById(R.id.collapsing_toolbar);
