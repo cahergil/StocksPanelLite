@@ -89,7 +89,7 @@ public class CustomIndexMarkerView extends MarkerView {
         //si hacemos -xpos estamos diciendo que pinte quite toda la longitud donde se hizo click
         //que se reste y pinte ahi. Son coordenadas relativas
 
-        //me da un getXOffset muy pequeno, no se porque deberia coger todo el ancho
+        //me da un getXOffset muy pequeno, no se porque deberia coger to do el ancho
         // al final pongo 136dp.
         //YAxis yAxis=chart.getAxisRight();
         //float rightAxisSpace=chart.getWidth()-yAxis.getXOffset();
