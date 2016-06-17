@@ -40,18 +40,23 @@
     <color name="components_price">#424242</color>
     <color name="triangle_up_color">#4CAF50</color>
     <color name="triangle_down_color">#E53935</color>
-    <color name="green_500">#4CAF50</color>
+
     <color name="suggestions_background">#1A212121</color>
     <color name="brown_500">#795548</color>
     <color name="brown_700">#5D4037</color>
     <color name="indigo_700">#1976D2</color>
     <color name="indigo_500">#2196F3</color>
-    <color name="red_700">#D32F2F</color>
+
+    <color name="green_300">#81C784</color>
+    <color name="green_500">#4CAF50</color>
     <color name="green_700">#388E3C</color>
+    <color name="green_900">#1B5E20</color>
     <color name="pink_500">#E91E63</color>
     <color name="purple_500">#9C27B0</color>
     <color name="orange_900">#E65100</color>
+    <color name="red_300">#E57373</color>
     <color name="red_500">#F44336</color>
+    <color name="red_700">#D32F2F</color>
     <color name="red_900">#B71C1C</color>
     <color name="df">#a8a8a8</color>
     <color name="widget_item_text_color_main">@color/white</color>
