@@ -8,15 +8,14 @@
     android:fitsSystemWindows="true"
     tools:mContext=".FragmentMain">
 
-
-
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
-
         android:theme="@style/AppTheme.AppBarOverlay">
+
+
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
@@ -25,8 +24,8 @@
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
-           >
 
+           >
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -43,11 +42,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="212dp"
                     android:layout_marginLeft="5dp" />
-                <!---another way of changing the color of progressbar
-                android:indeterminateTintMode="src_atop"
-                    android:indeterminateTint="@color/blue_gray_300"
-                  -->
 
+                <!---another way of changing the color of progressbar
+               android:indeterminateTint with color defined in @drawable/progress
+                                 -->
                 <ProgressBar
                     android:id="@+id/progressBar"
                     android:layout_width="60dp"
@@ -61,11 +59,16 @@
                 </ProgressBar>
             </FrameLayout>
 
-
+            <!---another way of changing the color of progressbar
+                    104=56(toolbar)+48(tabs)
+                    see http://blog.grafixartist.com/parallax-scrolling-tabs-design-support-library/
+             If i leave the default height for toolbar=56, the toolbar
+             and the tabs overlapps
+                           -->
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="104dp"
                 android:gravity="top"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/AppTheme.PopupOverlay"
@@ -86,7 +89,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:layout_marginTop="0dp"
                 android:background="?attr/colorPrimary"
                 app:tabIndicatorHeight="3dp"
                 app:tabMode="fixed"
@@ -95,6 +97,7 @@
 
 
         </android.support.design.widget.CollapsingToolbarLayout>
+
 
 
     </android.support.design.widget.AppBarLayout>

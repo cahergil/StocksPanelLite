@@ -135,6 +135,24 @@ public class FragmentMain extends Fragment  implements OnChartGestureListener,
         setHasOptionsMenu(true);
         Log.d(LOG_TAG,"onCreateView FragmentMain");
         View view=inflater.inflate(R.layout.fragment_main,container);
+        //testing purposes
+//        AppBarLayout appBarLayout= (AppBarLayout) view.findViewById(R.id.appbar);
+//        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+//            @Override
+//            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+//                Log.d(LOG_TAG,"verticalOffset:"+verticalOffset);
+//                Log.d(LOG_TAG,"getTotalScrollRange:"+appBarLayout.getTotalScrollRange());
+//                Log.d(LOG_TAG,"mToolbar:"+mToolbar.getHeight());
+//                Log.d(LOG_TAG,"diff:"+(appBarLayout.getTotalScrollRange() - mToolbar.getHeight()));
+//                if (Math.abs(verticalOffset) >= appBarLayout.getTotalScrollRange() - mToolbar.getHeight()) {
+//                    Log.d(LOG_TAG,"OK"); //678px-300px=378px
+////                    float flexibleSpace = appBarLayout.getTotalScrollRange() - offset;
+////                    float ratio = 1 - (flexibleSpace / mToolbar.getHeight());
+////                    float elevation = ratio * mTargetElevation;
+////                    setToolbarElevation(elevation);
+//                }
+//            }
+//        });
 
         mCoordinatorContainer= (CoordinatorLayout) view.findViewById(R.id.containerView);
         collapsingToolbarLayout= (CollapsingToolbarLayout)view.findViewById(R.id.collapsing_toolbar);
@@ -150,6 +168,7 @@ public class FragmentMain extends Fragment  implements OnChartGestureListener,
 
         mViewPager= (ViewPager) view.findViewById(R.id.viewpagerMain);
         // this line from fragments is wrong!->final PagerAdapter pagerAdapter=new Adapter(getActivity().getSupportFragmentManager());
+        //
         final PagerAdapter pagerAdapter=new Adapter(getChildFragmentManager());
         mViewPager.setAdapter(pagerAdapter);
         mViewPager.setOffscreenPageLimit(3);
