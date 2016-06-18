@@ -18,6 +18,8 @@
     android:orientation="vertical"
     android:background="@drawable/selector_security"
     android:elevation="1dp"
+    android:divider="?android:dividerHorizontal"
+    android:showDividers="end"
    >
 
         <LinearLayout
@@ -147,7 +149,7 @@
                     android:layout_weight="1"
                     android:paddingLeft="@dimen/si_padding_left"
                     android:paddingStart="@dimen/si_padding_left"
-                    android:textColor="@color/gray400"
+                    android:textColor="@color/colorPrimary"
                     android:gravity="end"
                     tools:text="716,49" />
 
@@ -160,7 +162,7 @@
                     android:paddingLeft="@dimen/si_padding_left"
                     android:paddingStart="@dimen/si_padding_left"
                     android:gravity="end"
-                    android:textColor="@color/gray400"
+                    android:textColor="@color/colorPrimary"
                     tools:text="706,02" />
 
 

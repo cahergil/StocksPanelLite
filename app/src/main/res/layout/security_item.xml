@@ -18,6 +18,8 @@
     android:background="@drawable/selector_security"
     android:orientation="vertical"
     android:elevation="1dp"
+    android:divider="?android:dividerHorizontal"
+    android:showDividers="end"
 
     >
 
@@ -147,7 +149,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:textColor="@color/gray400"
+                    android:textColor="@color/colorPrimary"
                     android:gravity="end"
                     tools:text="716,49" />
 
@@ -158,7 +160,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:textColor="@color/gray400"
+                    android:textColor="@color/colorPrimary"
                     tools:text="706,02" />
 
 

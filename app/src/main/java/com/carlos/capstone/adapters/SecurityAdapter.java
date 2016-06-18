@@ -96,7 +96,7 @@ public class SecurityAdapter extends RecyclerView.Adapter<SecurityAdapter.ViewHo
                 changePerct);
         holder.tvChangePercent.setContentDescription(context.
                 getString(R.string.sa_talkback_change_percent)+changePerct);
-        Utilities.setUpDownColorsMaterial(holder.tvChangePercent,(double)change,context);
+        Utilities.setUpDownColorsMaterial(holder.tvChangePercent,(double)changePercent,context);
 
 
         //max

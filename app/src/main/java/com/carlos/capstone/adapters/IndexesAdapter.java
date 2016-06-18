@@ -93,32 +93,22 @@ public class IndexesAdapter extends CursorAdapter {
 
         int color = 0;
         //padder rectangle color
-//        switch (region) {
-//            case AMERICA:
-//                color= ContextCompat.getColor(context,R.color.padder_america);
-//                break;
-//            case EUROPE:
-//                color=ContextCompat.getColor(context,R.color.padder_europe);
-//                break;
-//            case ASIA:
-//                color= ContextCompat.getColor(context, R.color.padder_asia);
-//
-//        }
+
         float change_percent = cursor.getFloat(COL_CHANGE_PERCENT);
         if (change_percent >= 0 && change_percent < 1) {
-            color = ContextCompat.getColor(context, R.color.green_300);
-        } else if (change_percent >= 1 && change_percent < 3) {
             color = ContextCompat.getColor(context, R.color.green_500);
-        } else if (change_percent >= 3 && change_percent < 6) {
+        } else if (change_percent >= 1 && change_percent < 3) {
             color = ContextCompat.getColor(context, R.color.green_700);
+        } else if (change_percent >= 3 && change_percent < 6) {
+            color = ContextCompat.getColor(context, R.color.green_900);
         } else if (change_percent >= 6) {
             color = ContextCompat.getColor(context, R.color.green_900);
         } else if (change_percent <= 0 && change_percent > -1) {
-            color = ContextCompat.getColor(context, R.color.red_300);
-        } else if (change_percent <= -1 && change_percent > -3) {
             color = ContextCompat.getColor(context, R.color.red_500);
-        } else if (change_percent <= -3 && change_percent > -6) {
+        } else if (change_percent <= -1 && change_percent > -3) {
             color = ContextCompat.getColor(context, R.color.red_700);
+        } else if (change_percent <= -3 && change_percent > -6) {
+            color = ContextCompat.getColor(context, R.color.red_900);
         } else if (change_percent <= -6) {
             color = ContextCompat.getColor(context, R.color.red_900);
         }
@@ -173,7 +163,7 @@ public class IndexesAdapter extends CursorAdapter {
         viewHolder.tvDate.setText(formattedDate);
 
 
-        Utilities.setUpDownColorsMaterial(viewHolder.tvChangePercent, (double) cursor.getFloat(COL_CHANGE), context);
+        Utilities.setUpDownColorsMaterial(viewHolder.tvChangePercent, (double) cursor.getFloat(COL_CHANGE_PERCENT), context);
         viewHolder.tvChangePercent.setText(context.getString(R.string.format_change_percent_without_parenthesis, cursor.getFloat(COL_CHANGE_PERCENT)));
         viewHolder.tvChangePercent.setContentDescription(context.getString(R.string.talkback_is_change_percent) + context.getString(R.string.format_change_percent_without_parenthesis, cursor.getFloat(COL_CHANGE_PERCENT)));
 

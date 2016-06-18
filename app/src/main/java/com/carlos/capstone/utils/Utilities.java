@@ -13,6 +13,7 @@ import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -220,22 +221,39 @@ public class Utilities {
         textView.setTextColor(color);
     }
 
-    public static void setUpDownColorsMaterial(AutoResizeTextView textView, Double change, Context context) {
-        Drawable drawable = null;
+    public static void setUpDownColorsMaterial(AutoResizeTextView textView, Double change_percent, Context context) {
+
+        int color=0;
         int sdk = Build.VERSION.SDK_INT;
-        if (change < 0) {
-            drawable = ContextCompat.getDrawable(context, R.drawable.percent_change_red_box);
-        } else if (change > 0) {
-            drawable = ContextCompat.getDrawable(context, R.drawable.percent_change_green_box);
-        } else if (change == 0) {
-            drawable = ContextCompat.getDrawable(context, R.drawable.percent_change_equal_box);
-        }//if
+        if (change_percent >= 0 && change_percent < 1) {
+            color = ContextCompat.getColor(context, R.color.green_500);
+        } else if (change_percent >= 1 && change_percent < 3) {
+            color = ContextCompat.getColor(context, R.color.green_700);
+        } else if (change_percent >= 3 && change_percent < 6) {
+            color = ContextCompat.getColor(context, R.color.green_900);
+        } else if (change_percent >= 6) {
+            color = ContextCompat.getColor(context, R.color.green_900);
+        } else if (change_percent <= 0 && change_percent > -1) {
+            color = ContextCompat.getColor(context, R.color.red_500);
+        } else if (change_percent <= -1 && change_percent > -3) {
+            color = ContextCompat.getColor(context, R.color.red_700);
+        } else if (change_percent <= -3 && change_percent > -6) {
+            color = ContextCompat.getColor(context, R.color.red_900);
+        } else if (change_percent <= -6) {
+            color = ContextCompat.getColor(context, R.color.red_900);
+        }
+
+
         if (sdk >= Build.VERSION_CODES.JELLY_BEAN) {
-            textView.setBackground(drawable);
+            GradientDrawable bgShape = new GradientDrawable();
+            bgShape.setShape(GradientDrawable.RECTANGLE);
+            bgShape.setColor(color);
+            bgShape.setCornerRadius(10);
+            textView.setBackground(bgShape);
             textView.setTextColor(ContextCompat.getColor(context, R.color.white));
             textView.setTypeface(null, Typeface.BOLD);
         } else {
-            setUpDownColors(textView, change, context);
+            setUpDownColors(textView, change_percent, context);
         }
 
 

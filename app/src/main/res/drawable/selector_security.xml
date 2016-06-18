@@ -11,5 +11,5 @@
 
     </item>
     <item android:state_pressed="true" android:drawable="@color/colorAccent"/>
-    <item android:drawable="@color/white" />
+    <item android:drawable="@color/watchlist" />
 </selector>

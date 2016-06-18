@@ -23,7 +23,7 @@
             </item>
 
 
-            <item android:drawable="@color/white" />
+            <item android:drawable="@color/watchlist" />
         </selector>
     </item>
 </ripple>
