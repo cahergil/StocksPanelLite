@@ -7,7 +7,6 @@ import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -136,14 +135,6 @@ public class FragmentMain extends Fragment  implements OnChartGestureListener,
         setHasOptionsMenu(true);
         Log.d(LOG_TAG,"onCreateView FragmentMain");
         View view=inflater.inflate(R.layout.fragment_main,container);
-        AppBarLayout appBarLayout;
-        appBarLayout = ((AppBarLayout)view.findViewById(R.id.appbar));
-        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-            @Override
-            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                Log.d(LOG_TAG,"verticalOffset:"+verticalOffset);
-            }
-        });
 
         mCoordinatorContainer= (CoordinatorLayout) view.findViewById(R.id.containerView);
         collapsingToolbarLayout= (CollapsingToolbarLayout)view.findViewById(R.id.collapsing_toolbar);
@@ -189,11 +180,11 @@ public class FragmentMain extends Fragment  implements OnChartGestureListener,
         mAdContainer.addView(mAdView);
 
         //for debugging purposes
-        ViewTreeObserver vto=mCoordinatorContainer.getViewTreeObserver();
-        if(vto.isAlive()) {
-            Log.d(LOG_TAG,"");
-            vto.addOnGlobalFocusChangeListener(this);
-        }
+//        ViewTreeObserver vto=mCoordinatorContainer.getViewTreeObserver();
+//        if(vto.isAlive()) {
+//            Log.d(LOG_TAG,"");
+//            vto.addOnGlobalFocusChangeListener(this);
+//        }
 
         // Create an ad request. Check logcat output for the hashed device ID to
         // get test ads on a physical device. e.g.

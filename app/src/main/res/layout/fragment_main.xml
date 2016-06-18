@@ -104,7 +104,7 @@
         android:id="@+id/viewpagerMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="50dp"
         android:layout_marginTop="0dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
     <!-- http://antonioleiva.com/floating-action-button/-->

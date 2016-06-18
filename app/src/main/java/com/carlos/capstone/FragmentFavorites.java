@@ -75,12 +75,12 @@ public class FragmentFavorites extends Fragment implements LoaderManager.LoaderC
         }
         securityList.setHasFixedSize(true);
         securityList.setAdapter(mSecurityAdapter);
-        securityList.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                Log.d(LOG_TAG,"focusChange"+hasFocus);
-            }
-        });
+//        securityList.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//                Log.d(LOG_TAG,"focusChange"+hasFocus);
+//            }
+//        });
 
 
         mFab= (FloatingActionButton) getActivity().findViewById(R.id.fabMain);

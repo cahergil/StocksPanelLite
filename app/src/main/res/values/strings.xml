@@ -31,7 +31,7 @@
         <item>@string/pref_share_trading_info</item>
     </string-array>
     <string name="pref_email_key" translatable="false">email</string>
-    <string name="mailto" translatable="false">chernandezgil@gmail.com</string>
+    <string name="mailto" translatable="false">stockspanellite@gmail.com</string>
     <string name="subject" translatable="true">Comment about the app Stock Panel Lite</string>
     <string name="email_string">Tell us any recommendation or comment about the app</string>
     <string name="email_title">Send an e-mail to developer</string>

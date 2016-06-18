@@ -7,6 +7,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -17,6 +18,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.annotation.IntDef;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -56,6 +58,7 @@ import com.carlos.capstone.services.IndexEtfOrShortInfoSummaryService;
 import com.carlos.capstone.services.StockSummaryService;
 import com.carlos.capstone.utils.MyApplication;
 import com.carlos.capstone.utils.Utilities;
+import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.CombinedChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
@@ -730,8 +733,7 @@ public class FragmentStockSummary extends Fragment implements View.OnClickListen
             mChart.setHardwareAccelerationEnabled(false);
         }
         //mChart.setDoubleTapToZoomEnabled(true);
-        //animations
-        // mChart.animateX(200);
+
         // legend
         Legend legend = mChart.getLegend();
         legend.setForm(Legend.LegendForm.CIRCLE);
@@ -797,17 +799,25 @@ public class FragmentStockSummary extends Fragment implements View.OnClickListen
         combinedData.setData(generateBardata());
         combinedData.setData(generateLineData(chartMode));
         mChart.setData(combinedData);
-        mChart.invalidate();
         Handler handler = new Handler();
+        //animations
+        SharedPreferences sp= PreferenceManager.getDefaultSharedPreferences(getActivity());
+        if(sp.getBoolean(getString(R.string.pref_animation_key),false)){
+//            handler.postDelayed(new Runnable() {
+//                public void run() {
+            mChart.animateX(getActivity().getResources().getInteger(R.integer.animation_duration),
+                    Easing.EasingOption.EaseInOutQuad );
+//                }
+//            }, 100);
+
+        }
+        mChart.invalidate();
+
         if (!(getActivity() instanceof DetailStockActivity)) {
             mChart.setVisibility(View.VISIBLE);
         }
-        handler.postDelayed(new Runnable() {
-            public void run() {
-                // acciones que se ejecutan tras los milisegundos
-                //     updateShareActionProvider();
-            }
-        }, 200);
+
+
 
     }
 
