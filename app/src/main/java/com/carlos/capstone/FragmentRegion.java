@@ -18,6 +18,7 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.support.v4.widget.NestedScrollView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -28,7 +29,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.inputmethod.EditorInfo;
-import android.widget.ScrollView;
 import android.widget.SearchView;
 import android.widget.TextView;
 
@@ -53,7 +53,7 @@ import java.util.Date;
 public class FragmentRegion extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
     private LinearListView mNewsListView;
     private LinearListView mIndexesListView;
-    private ScrollView mScrollView;
+    private NestedScrollView mScrollView;
     private static final String KEY_POSX="x_pos";
     private static final String KEY_POSY="y_pos";
     private static final int NEWS_LOADER=0;
@@ -158,7 +158,7 @@ public class FragmentRegion extends Fragment implements LoaderManager.LoaderCall
         mNewsListView = (LinearListView) view.findViewById(R.id.newsList);
         mIndexesListView=(LinearListView) view.findViewById(R.id.indexesList);
 
-        mScrollView= (ScrollView) view.findViewById(R.id.scrollView);
+        mScrollView= (NestedScrollView) view.findViewById(R.id.scrollView);
 
 
 

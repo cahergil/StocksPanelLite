@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/selector_index"
-    android:divider="?android:dividerHorizontal"
-    android:showDividers="end"
+
     android:focusable="true"
     android:clickable="true"
     android:orientation="vertical"

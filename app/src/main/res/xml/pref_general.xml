@@ -5,7 +5,7 @@
             android:defaultValue="true"
             android:key="@string/pref_animation_key"
             android:summary="enabled"
-            android:title="Show chart animation" />
+            android:title="@string/pref_animation_title" />
         <ListPreference
             android:defaultValue="@string/pref_share_default"
             android:entries="@array/pref_share_entries"

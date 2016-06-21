@@ -11,6 +11,7 @@
 
     <string name="pref_animation_key" translatable="false">animation</string>
     <string name="pref_animation_default" translatable="false">true</string>
+    <string name="pref_animation_title" translatable="false">Show chart animation(Lollipop+)</string>
     <string name="pref_share_title" translatable="false">Share screenshot of:</string>
     <string name="pref_share_key" translatable="false">share</string>
     <string name="pref_share_default" translatable="false">chart</string>
