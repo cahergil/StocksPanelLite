@@ -521,6 +521,9 @@ public class CapstoneSyncAdapter extends AbstractThreadedSyncAdapter {
 
 
         }
+        if((sendList==null) || (sendList!=null && sendList.size()==0) ) {
+            return;
+        }
         if (region.equals(FragmentMain.REGION_AMERICA)|| region.equals(FragmentMain.REGION_EUROPE)) {
          //   Log.d(LOG_TAG, "PREnormalize: 1:" + sendList.get(0).getName() + ",2:" + sendList.get(1).getName() + ",3:" + sendList.get(2).getName());
         }

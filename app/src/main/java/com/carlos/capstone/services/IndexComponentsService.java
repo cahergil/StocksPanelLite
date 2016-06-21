@@ -71,7 +71,7 @@ public class IndexComponentsService extends IntentService {
                     if (itemsEntity == null) return;
                     List<Components.QueryEntity.ResultsEntity.ItemsEntity.ItemEntity> item = itemsEntity.getItem();
                     if (item==null) return;
-                    //now it is fine to delete old records(assuming this response ALWAYS has records)
+                    //now it is fine to delete old records
                     //we always perform a delete-insert operation, thus preventing the situation where
                     //the components in the index change, specially when there are components that no
                     //longer form part of the index.

@@ -589,6 +589,12 @@ public class Utilities {
     }
 
     public static ArrayList<IndexDataUnit> normalizeDataUnits(List<IndexDataUnit> list) {
+
+        if((list!=null && list.size()==0) || list==null) {
+
+            return new ArrayList<IndexDataUnit>();
+        }
+
         int[] xSizes = new int[3];
         ArrayList<IndexDataUnit> copy = new ArrayList<IndexDataUnit>();
         for (int i = 0; i < list.size(); i++) {
