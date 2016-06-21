@@ -64,7 +64,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:textColor="@color/blue_gray_700"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:gravity="right"
                 tools:text="Alphabet Inc." />
@@ -149,7 +149,7 @@
                     android:layout_weight="1"
                     android:paddingLeft="@dimen/si_padding_left"
                     android:paddingStart="@dimen/si_padding_left"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/gray800"
                     android:gravity="end"
                     tools:text="716,49" />
 
@@ -162,7 +162,7 @@
                     android:paddingLeft="@dimen/si_padding_left"
                     android:paddingStart="@dimen/si_padding_left"
                     android:gravity="end"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/gray800"
                     tools:text="706,02" />
 
 

@@ -68,6 +68,7 @@ public class FragmentFavorites extends Fragment implements LoaderManager.LoaderC
 
         mSwipeContainer = (SwipeRefreshLayout)view.findViewById(R.id.swipeContainer);
         mSwipeContainer.setOnRefreshListener(this);
+
         mSwipeContainer.setColorSchemeColors(R.color.colorPrimary);
         //for api>=21 set elevation in layout security_item.xml and disable DividerItemDecoration
         if(Build.VERSION.SDK_INT<Build.VERSION_CODES.LOLLIPOP) {

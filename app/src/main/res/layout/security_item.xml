@@ -19,10 +19,7 @@
     android:orientation="vertical"
     android:divider="?android:dividerHorizontal"
     android:showDividers="end"
-
-
     >
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -68,7 +65,7 @@
                 android:layout_weight="3"
                 android:maxLines="1"
                 android:ellipsize="end"
-                android:textColor="@color/blue_gray_700"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 tools:text="Alphabet Inc." />
             <TextView
@@ -149,7 +146,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/gray800"
                     android:gravity="end"
                     tools:text="716,49" />
 
@@ -161,7 +158,7 @@
                     android:layout_weight="1"
                     android:gravity="end"
                     android:layout_marginBottom="5dp"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/gray800"
                     tools:text="706,02" />
 
 

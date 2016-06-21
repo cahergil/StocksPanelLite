@@ -26,7 +26,8 @@ import retrofit.Retrofit;
 public class IndexComponentsService extends IntentService {
     private String mTickerQuery;
     private String mTickerIndex;
-    private static final String LOG_TAG =IndexComponentsService.class.getSimpleName();
+    private static final String LOG_TAG = IndexComponentsService.class.getSimpleName();
+
     /**
      * Creates an IntentService.  Invoked by your subclass's constructor.
      *
@@ -35,14 +36,16 @@ public class IndexComponentsService extends IntentService {
     public IndexComponentsService(String name) {
         super(name);
     }
+
     public IndexComponentsService() {
         super(LOG_TAG);
     }
+
     @Override
     protected void onHandleIntent(Intent intent) {
-        Bundle bundle=intent.getExtras();
-        mTickerIndex=bundle.getString(getString(R.string.ticker_bundle_key));
-        mTickerQuery=bundle.getString(getString(R.string.ticker_query_key));
+        Bundle bundle = intent.getExtras();
+        mTickerIndex = bundle.getString(getString(R.string.ticker_bundle_key));
+        mTickerQuery = bundle.getString(getString(R.string.ticker_query_key));
         loadComponents();
     }
 
@@ -57,9 +60,17 @@ public class IndexComponentsService extends IntentService {
             @Override
             public void onResponse(Response<Components> response, Retrofit retrofit) {
 
-                if(response.isSuccess()) {
+                if (response.isSuccess()) {
                     Components components = response.body();
-
+                    if (components == null) return;
+                    Components.QueryEntity queryEntity = components.getQuery();
+                    if (queryEntity == null) return;
+                    Components.QueryEntity.ResultsEntity resultsEntity = queryEntity.getResults();
+                    if (resultsEntity == null) return;
+                    Components.QueryEntity.ResultsEntity.ItemsEntity itemsEntity = resultsEntity.getItems();
+                    if (itemsEntity == null) return;
+                    List<Components.QueryEntity.ResultsEntity.ItemsEntity.ItemEntity> item = itemsEntity.getItem();
+                    if (item==null) return;
                     //now it is fine to delete old records(assuming this response ALWAYS has records)
                     //we always perform a delete-insert operation, thus preventing the situation where
                     //the components in the index change, specially when there are components that no
@@ -69,12 +80,7 @@ public class IndexComponentsService extends IntentService {
                     String[] selectionArgs = new String[]{mTickerIndex};
                     int rowsDeleted = getContentResolver().delete(uri_delete, where, selectionArgs);
                     Log.d(LOG_TAG, "Index Components rows deleted" + rowsDeleted);
-                    //me ha dado npe aqui
-                    //java.lang.NullPointerException: Attempt to invoke virtual method 'java.util.List com.carlos.capstone.models.Components$QueryEntity$ResultsEntity$ItemsEntity.getItem()' on a null object reference
-                    if(components==null) return;
-                    //otro npe //java.lang.NullPointerException: Attempt to invoke virtual method 'java.util.List com.carlos.capstone.models.Components$QueryEntity$ResultsEntity$ItemsEntity.getItem()' on a null object reference
-                    List<Components.QueryEntity.ResultsEntity.ItemsEntity.ItemEntity> item = components.
-                            getQuery().getResults().getItems().getItem();
+
                     Vector<ContentValues> values = new Vector<ContentValues>();
                     for (int i = 0; i < item.size(); i++) {
                         ContentValues contentValues = new ContentValues();

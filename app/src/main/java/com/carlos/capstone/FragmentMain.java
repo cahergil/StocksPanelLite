@@ -429,7 +429,7 @@ public class FragmentMain extends Fragment  implements OnChartGestureListener,
             lineDataSetTicker.setValueTextColor(ContextCompat.getColor(getActivity(),android.R.color.black));
             lineDataSetTicker.setLabel(indexDataUnit.getName());
             lineDataSetTicker.setHighlightEnabled(true);
-            lineDataSetTicker.setHighLightColor(ContextCompat.getColor(getActivity(),R.color.gray800));
+            lineDataSetTicker.setHighLightColor(ContextCompat.getColor(getActivity(),R.color.colorAccent));
             lineDataSetTicker.setHighlightLineWidth(1f);
             lineDataSetTicker.setAxisDependency(YAxis.AxisDependency.RIGHT);
             dataSets.add(lineDataSetTicker);

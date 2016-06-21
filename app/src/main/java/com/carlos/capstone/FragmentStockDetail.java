@@ -176,8 +176,8 @@ public class FragmentStockDetail extends Fragment implements TabLayout.OnTabSele
         mTabLayout.getTabAt(PAGE_NEWS).setIcon(R.drawable.rss);
 
         mTabLayout.getTabAt(PAGE_SUMMARY).getIcon().setColorFilter(ContextCompat.getColor(getActivity(),R.color.white),PorterDuff.Mode.SRC_IN);
-        mTabLayout.getTabAt(PAGE_STATS).getIcon().setColorFilter(ContextCompat.getColor(getActivity(),R.color.blue_gray_700),PorterDuff.Mode.SRC_IN);
-        mTabLayout.getTabAt(PAGE_NEWS).getIcon().setColorFilter(ContextCompat.getColor(getActivity(),R.color.blue_gray_700),PorterDuff.Mode.SRC_IN);
+        mTabLayout.getTabAt(PAGE_STATS).getIcon().setColorFilter(ContextCompat.getColor(getActivity(),R.color.blue_200),PorterDuff.Mode.SRC_IN);
+        mTabLayout.getTabAt(PAGE_NEWS).getIcon().setColorFilter(ContextCompat.getColor(getActivity(),R.color.blue_200),PorterDuff.Mode.SRC_IN);
 
     }
     public void showhelpKeyStats(){
@@ -249,7 +249,7 @@ public class FragmentStockDetail extends Fragment implements TabLayout.OnTabSele
 
     @Override
     public void onTabUnselected(TabLayout.Tab tab) {
-        int tabIconColor=ContextCompat.getColor(getContext(),R.color.blue_gray_700);
+        int tabIconColor=ContextCompat.getColor(getContext(),R.color.blue_200);
         tab.getIcon().setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN);
     }
 

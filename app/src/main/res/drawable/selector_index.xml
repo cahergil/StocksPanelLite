@@ -10,6 +10,6 @@
             </stroke>
         </shape>
     </item>
-    <item android:drawable="@color/orange_300" android:state_focused="true" />
+    <item android:drawable="@color/pink_300" android:state_focused="true" />
     <item android:drawable="@color/background_material_light" />
 </selector>

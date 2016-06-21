@@ -6,8 +6,8 @@
         android:thicknessRatio="16" android:useLevel="false">
         <size android:width="76dip" android:height="76dip" />
         <gradient android:type="sweep" android:useLevel="false"
-            android:startColor="@color/blue_gray_300"
-            android:endColor="@color/colorPrimary"
+            android:startColor="@color/pink_200"
+            android:endColor="@color/colorAccent"
             android:angle="0"
             />
     </shape>

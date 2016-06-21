@@ -840,7 +840,7 @@ public class FragmentIndexSummary extends Fragment implements View.OnClickListen
             LineDataSet lineDataSetOpen = new LineDataSet(valsOpen, getString(R.string.open));
             lineDataSetOpen.setDrawCircleHole(false);
             lineDataSetOpen.setDrawFilled(false);//dibuja relleno hasta eje x
-            lineDataSetOpen.setColor(ContextCompat.getColor(getActivity(), R.color.indigo_500));
+            lineDataSetOpen.setColor(ContextCompat.getColor(getActivity(), R.color.green_500));
             lineDataSetOpen.setCircleSize(0.f);
             lineDataSetOpen.setDrawValues(false);
             d.addDataSet(lineDataSetOpen);

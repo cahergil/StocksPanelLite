@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="350dp"
             android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
+            app:contentScrim="@color/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
 
            >
@@ -40,7 +40,7 @@
                 <com.github.mikephil.charting.charts.LineChart
                     android:id="@+id/chart"
                     android:layout_width="match_parent"
-                    android:layout_height="212dp"
+                    android:layout_height="218dp"
                     android:layout_marginLeft="5dp" />
 
                 <!---another way of changing the color of progressbar
@@ -51,7 +51,6 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_gravity="center"
-                    android:indeterminateTint="@color/blue_gray_700"
                     android:background="@drawable/progress"
                     android:visibility="visible"
                     tools:visibility="visible">
@@ -89,10 +88,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:background="?attr/colorPrimary"
+                android:background="@color/colorPrimary"
                 app:tabIndicatorHeight="3dp"
                 app:tabMode="fixed"
-                app:tabSelectedTextColor="@android:color/white"
+
+                app:tabTextColor="@color/blue_200"
+                app:tabSelectedTextColor="@color/white"
                 app:tabTextAppearance="@style/TabTextAppearance" />
 
 
