@@ -1,3 +1,4 @@
+
 #StocksPanelLite
 
 ### Description
@@ -36,8 +37,14 @@ The following is a list of the main features of the app:
 - Economic and financial news categorized by region.
 
 The app supports also RTL and D-PAD navigation.
+[![API](https://img.shields.io/badge/API-16%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=16)
 
 ### General Design
+SynAdapter
+ContentProvider
+Sqlite database
+App Widget
+
 ### 3rd party libraries used
 - [Retrofit v.2.0.0](https://github.com/square/retrofit)
 - [RxJava](https://github.com/ReactiveX/RxJava)
