@@ -4,6 +4,12 @@
 
 App to track equities, indexes and etfs quoted in the Stock Market.
 
+<img src="https://drive.google.com/file/d/0B0Em0Zgj9X-MTDJXV3RhYkQ0Nms/view?usp=sharing  alt="Fragment America">
+
+<img src="https://drive.google.com/file/d/0B0Em0Zgj9X-MTE5RQjB3djFfZlU/view?usp=sharing  alt="Index details">
+
+<img src="https://drive.google.com/file/d/0B0Em0Zgj9X-McjBhcGRkdmY0U28/view?usp=sharing  alt="Stock stats">
+
 ### Features
 
 Supports the more important markets and a  wide range of smaller countries. Due to supplier restrictions it doesn't provide real-time prices, it has a delay of several minutes.
