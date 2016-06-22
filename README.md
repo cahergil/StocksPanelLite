@@ -4,11 +4,21 @@
 
 App to track equities, indexes and etfs quoted in the Stock Market.
 
-<img src="https://drive.google.com/file/d/0B0Em0Zgj9X-MTDJXV3RhYkQ0Nms/view?usp=sharing  alt="Fragment America">
+|  Indexes America        | Index details | Stock statsistics |
+| ------------- | ------------- |------------- |
+| ![imagen mia](https://raw.githubusercontent.com/cahegi/Shareablefotos/master/fragmentMain_America.png)  | ![enter image description here](https://raw.githubusercontent.com/cahegi/Shareablefotos/master/index_detail.png) |![enter image description here](https://raw.githubusercontent.com/cahegi/Shareablefotos/master/stats.png)
+|
 
-<img src="https://drive.google.com/file/d/0B0Em0Zgj9X-MTE5RQjB3djFfZlU/view?usp=sharing  alt="Index details">
+|  Stock details        | Watchlist |
+| ------------- | ------------- |
+|![enter image description here](https://raw.githubusercontent.com/cahegi/Shareablefotos/master/stock.png)|![enter image description here](https://raw.githubusercontent.com/cahegi/Shareablefotos/master/watchlist.png)|
 
-<img src="https://drive.google.com/file/d/0B0Em0Zgj9X-McjBhcGRkdmY0U28/view?usp=sharing  alt="Stock stats">
+
+
+
+
+
+
 
 ### Features
 
