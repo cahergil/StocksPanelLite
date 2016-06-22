@@ -232,7 +232,7 @@
     <string name="format_millions"><xliff:g id="quantity">%1$1.2f</xliff:g>M</string>
     <string name="format_thounsands"><xliff:g id="quantity">%1$1.2f</xliff:g>K</string>
     <!-- strings related to FragmentStockStats-->
-    <string name="na" translatable="true">N/A</string>
+    <string name="na" translatable="true">n/a</string>
     <string name="stats_qParam_left" translatable="false" formatted="false">select%20*%20from%20yahoo.finance.keystats%20where%20symbol%3D%22</string>
     <string name="stats_qParam_right" translatable="false" formatted="false">%22</string>
     <string-array name="stats_header" translatable="true">

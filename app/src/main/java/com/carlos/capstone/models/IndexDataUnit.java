@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by Carlos on 23/01/2016.
  */
-public class IndexDataUnit implements Parcelable {
+public class IndexDataUnit implements Parcelable,Comparable<IndexDataUnit> {
     public String market;
     public String name;
     public String ticker;
@@ -105,6 +105,7 @@ public class IndexDataUnit implements Parcelable {
         in.readList(this.yValuesMarkerView, List.class.getClassLoader());
     }
 
+
     public static final Creator<IndexDataUnit> CREATOR = new Creator<IndexDataUnit>() {
         public IndexDataUnit createFromParcel(Parcel source) {
             return new IndexDataUnit(source);
@@ -114,4 +115,12 @@ public class IndexDataUnit implements Parcelable {
             return new IndexDataUnit[size];
         }
     };
+
+
+    @Override
+    public int compareTo(IndexDataUnit another) {
+       Integer int1= getxLabels().size();
+       Integer int2=another.getxLabels().size();
+        return int1.compareTo(int2);
+    }
 }

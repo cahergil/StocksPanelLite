@@ -53,6 +53,7 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -594,18 +595,20 @@ public class Utilities {
 
             return new ArrayList<IndexDataUnit>();
         }
-
-        int[] xSizes = new int[3];
         ArrayList<IndexDataUnit> copy = new ArrayList<IndexDataUnit>();
-        for (int i = 0; i < list.size(); i++) {
-            xSizes[i] = list.get(i).getxLabels().size();
-            if (list.size() == 1) {
-                xSizes[i + 2] = xSizes[i + 1] = xSizes[i];
-            } else if (list.size() == 2) {
-                xSizes[i + 1] = xSizes[i];
-            }
-        }
-        int min = Math.min(xSizes[0], Math.min(xSizes[1], xSizes[2]));
+        Collections.sort(list);
+        int min=list.get(0).getxLabels().size();
+//        int[] xSizes = new int[3];
+//        ArrayList<IndexDataUnit> copy = new ArrayList<IndexDataUnit>();
+//        for (int i = 0; i < list.size(); i++) {
+//            xSizes[i] = list.get(i).getxLabels().size();
+//            if (list.size() == 1) {
+//                xSizes[i + 2] = xSizes[i + 1] = xSizes[i];
+//            } else if (list.size() == 2) {
+//                xSizes[i + 1] = xSizes[i];
+//            }
+//        }
+//        int min = Math.min(xSizes[0], Math.min(xSizes[1], xSizes[2]));
 
         // IndexDataUnit indexDataUnit=new IndexDataUnit();
         for (int i = 0; i < list.size(); i++) {
@@ -615,16 +618,6 @@ public class Utilities {
             List<Double> yValuesCopy = new ArrayList<Double>();
             List<Double> yValuesMVCopy = new ArrayList<Double>();
             List<String> xValuesCopy = new ArrayList<String>();
-//            FATAL EXCEPTION: pool-10-thread-3
-//            java.lang.IndexOutOfBoundsException: Invalid index 0, size is 0
-//            at java.util.ArrayList.throwIndexOutOfBoundsException(ArrayList.java:255)
-//            at java.util.ArrayList.get(ArrayList.java:308)
-//            at com.carlos.capstone.utils.Utilities.normalizeDataUnits(Utilities.java:598)
-//
-//           598     yValuesMVCopy.add(yValuesMV.get(j));
-//
-//            at com.carlos.capstone.sync.CapstoneSyncAdapter.sendDataUnitToFragmentMain(CapstoneSyncAdapter.java:527)
-//            at com.carlos.capstone.sync.CapstoneSyncAdapter$WorkerThreadAmerica.run(CapstoneSyncAda
             for (int j = 0; j < min; j++) {
                 if(yValues!=null && yValues.size()!=0) {
                     yValuesCopy.add(yValues.get(j));
