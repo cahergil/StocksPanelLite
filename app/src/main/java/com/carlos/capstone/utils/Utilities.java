@@ -596,6 +596,7 @@ public class Utilities {
             return new ArrayList<IndexDataUnit>();
         }
         ArrayList<IndexDataUnit> copy = new ArrayList<IndexDataUnit>();
+
         Collections.sort(list);
         int min=list.get(0).getxLabels().size();
 //        int[] xSizes = new int[3];
