@@ -34,7 +34,7 @@ import android.widget.ProgressBar;
 
 import com.carlos.capstone.customcomponents.CustomIndexMarkerView;
 import com.carlos.capstone.models.IndexDataUnit;
-import com.carlos.capstone.services.RegionChartAndIndexLoaderService;
+import com.carlos.capstone.services.RegionChartLoaderService;
 import com.carlos.capstone.utils.AdvertisementListener;
 import com.carlos.capstone.utils.MyApplication;
 import com.carlos.capstone.utils.Utilities;
@@ -547,8 +547,8 @@ public class FragmentMain extends Fragment  implements OnChartGestureListener,
                 mProgressBar.setVisibility(View.VISIBLE);
                 if(Utilities.getNeedEuropeSync(getActivity())) {
                     Utilities.setNeedEuropeSync(getActivity(),false);
-                    Intent intentAmerica = new Intent(getActivity(), RegionChartAndIndexLoaderService.class);
-                    intentAmerica.setAction(RegionChartAndIndexLoaderService.FETCH_EUROPE_DATA);
+                    Intent intentAmerica = new Intent(getActivity(), RegionChartLoaderService.class);
+                    intentAmerica.setAction(RegionChartLoaderService.FETCH_EUROPE_DATA);
                     getActivity().startService(intentAmerica);
                 } else {
                     mProgressBar.setVisibility(View.INVISIBLE);
@@ -561,8 +561,8 @@ public class FragmentMain extends Fragment  implements OnChartGestureListener,
                 mProgressBar.setVisibility(View.VISIBLE);
                 if(Utilities.getNeedAsiaSync(getActivity())) {
                     Utilities.setNeedAsiaSync(getActivity(),false);
-                    Intent intentAsia = new Intent(getActivity(), RegionChartAndIndexLoaderService.class);
-                    intentAsia.setAction(RegionChartAndIndexLoaderService.FETCH_ASIA_DATA);
+                    Intent intentAsia = new Intent(getActivity(), RegionChartLoaderService.class);
+                    intentAsia.setAction(RegionChartLoaderService.FETCH_ASIA_DATA);
                     getActivity().startService(intentAsia);
                 } else {
                     mProgressBar.setVisibility(View.INVISIBLE);

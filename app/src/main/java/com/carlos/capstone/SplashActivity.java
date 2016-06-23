@@ -20,7 +20,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.carlos.capstone.services.RegionChartAndIndexLoaderService;
+import com.carlos.capstone.services.RegionChartLoaderService;
 import com.carlos.capstone.sync.CapstoneSyncAdapter;
 import com.carlos.capstone.utils.Utilities;
 
@@ -63,8 +63,8 @@ public class SplashActivity extends AppCompatActivity {
             } else {
                 //it is a hot start, the app is not in background, otherwiese only onResume() would be executed
                 //CapstoneSyncAdapter.syncImmediately(this);
-                Intent intentAmerica = new Intent(this, RegionChartAndIndexLoaderService.class);
-                intentAmerica.setAction(RegionChartAndIndexLoaderService.FETCH_AMERICA_DATA);
+                Intent intentAmerica = new Intent(this, RegionChartLoaderService.class);
+                intentAmerica.setAction(RegionChartLoaderService.FETCH_AMERICA_DATA);
                 startService(intentAmerica);
             }
         }

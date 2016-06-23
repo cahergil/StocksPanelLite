@@ -31,9 +31,9 @@ import retrofit.Retrofit;
 /**
  * Created by Carlos on 18/02/2016.
  */
-public class RegionChartAndIndexLoaderService extends IntentService {
+public class RegionChartLoaderService extends IntentService {
 
-    private static final String LOG_TAG =RegionChartAndIndexLoaderService.class.getSimpleName();
+    private static final String LOG_TAG =RegionChartLoaderService.class.getSimpleName();
     public static final String FETCH_EUROPE_DATA="com.carlos.capstone.services.action.FETCH_EUROPE_CHART_AND_INDEXES";
     public static final String FETCH_ASIA_DATA="com.carlos.capstone.services.action.FETCH_ASIA_CHART_AND_INDEXES";
     public static final String FETCH_AMERICA_DATA="com.carlos.capstone.services.action.FETCH_AMERICA_CHART";
@@ -47,12 +47,12 @@ public class RegionChartAndIndexLoaderService extends IntentService {
      *
      * @param name Used to name the worker thread, important only for debugging.
      */
-    public RegionChartAndIndexLoaderService(String name) {
+    public RegionChartLoaderService(String name) {
         super(name);
         tm=new TimeMeasure(LOG_TAG);
     }
-    public RegionChartAndIndexLoaderService(){
-        super("RegionChartAndIndexLoaderService");
+    public RegionChartLoaderService(){
+        super("RegionChartLoaderService");
         tm=new TimeMeasure(LOG_TAG);
     }
 

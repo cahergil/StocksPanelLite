@@ -138,7 +138,7 @@
             android:name=".customtabs.KeepAliveService"
             android:exported="true" />
         <service
-            android:name=".services.RegionChartAndIndexLoaderService"
+            android:name=".services.RegionChartLoaderService"
             android:exported="false" >
         </service>
         <service
