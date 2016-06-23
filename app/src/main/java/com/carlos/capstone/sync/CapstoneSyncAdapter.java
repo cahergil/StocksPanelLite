@@ -83,7 +83,7 @@ public class CapstoneSyncAdapter extends AbstractThreadedSyncAdapter {
     private static final String SYNC_TYPE="sync_type";
     private static int mTotalCount=0;
     private static final int LOAD_PARTIAL =1;
-    private static final int LOAD_FULL=6;
+    private static final int LOAD_FULL=8;
     private static int total_loads =0;
     private Context mContext;
     private ExecutorService mExecutorIndexes;
@@ -240,7 +240,7 @@ public class CapstoneSyncAdapter extends AbstractThreadedSyncAdapter {
 
             total_loads = LOAD_FULL;
             tm.log("======= BEGIN LoadIndexes ");
-            loadIndexesData();
+            loadIndexes();
 
             tm.log("======== BEGIN LOAD1dDataChartAmerica");
             load1dDataChartAmerica();
@@ -427,11 +427,15 @@ public class CapstoneSyncAdapter extends AbstractThreadedSyncAdapter {
 
 
     }
-    private void loadIndexesData(){
+    private void loadIndexes(){
 
         IndexOrShortInfoRApi.IIndexOrShortInfoData service= IndexOrShortInfoRApi.getMyService();
         Call<IndexOrShortInfoDataResponse> call=service.getIndexesAmerica();
+        Call<IndexOrShortInfoDataResponse> call2=service.getIndexesEurope();
+        Call<IndexOrShortInfoDataResponse> call3=service.getIndexesAsia();
         call.enqueue(retrofitCallbackIndexes(mContext.getString(R.string.region_america)));
+        call2.enqueue(retrofitCallbackIndexes(mContext.getString(R.string.region_europe)));
+        call3.enqueue(retrofitCallbackIndexes(mContext.getString(R.string.region_asia)));
 
 
 

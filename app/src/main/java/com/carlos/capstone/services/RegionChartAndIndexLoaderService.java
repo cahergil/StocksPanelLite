@@ -65,15 +65,13 @@ public class RegionChartAndIndexLoaderService extends IntentService {
             if(action.equals(FETCH_EUROPE_DATA)) {
                 tm.log("--BEGIN load1dDataChartEurope");
                 load1dDataChartEurope();
-                tm.log("--BEING loadIndexEuropa");
-
-                loadIndexEuropa();
+               // tm.log("--BEING loadIndexEuropa");
+               // loadIndexEuropa();
             } else if (action.equals(FETCH_ASIA_DATA)) {
                 tm.log("--BEGIN Load1dDataChartAsia");
                 load1dDataChartAsia();
-                tm.log("--BEING loadIndexAsia");
-
-                loadIndexAsia();
+              //  tm.log("--BEING loadIndexAsia");
+             //   loadIndexAsia();
             } else if(action.equals(FETCH_AMERICA_DATA)) {
                 tm.log("--BEGIN Load1dDataChartAmerica");
                 load1dDataChartAmerica();
