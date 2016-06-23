@@ -1,1 +1,2 @@
-include ':app'
+include ':StocksPanelLite'
+project(':StocksPanelLite').projectDir=new File('app')
