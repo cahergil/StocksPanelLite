@@ -71,6 +71,8 @@ public class Utilities {
     public static final int ONE_THOUSAND = 1000;
 
 
+
+
     public static String getDateFromStringDate(String dateToFormat) {
         Date date;
 
@@ -400,6 +402,10 @@ public class Utilities {
         return networkInfo != null && networkInfo.isConnectedOrConnecting();
     }
 
+    public static boolean isNetworkAvailable() {
+        Context context=MyApplication.getMyContext();
+        return isNetworkAvailable(context);
+    }
 
     public static String formatValueMonetaryUnits(String value) {
         if (value.equals("")) {

@@ -1,2 +1,3 @@
+// this is to change the default name app for StocksPanelLite
 include ':StocksPanelLite'
 project(':StocksPanelLite').projectDir=new File('app')

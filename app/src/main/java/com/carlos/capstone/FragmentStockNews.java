@@ -44,16 +44,6 @@ public class FragmentStockNews extends Fragment implements LoaderManager.LoaderC
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.addItemDecoration(new DividerItemDecoration(getActivity()));
         recyclerView.setHasFixedSize(true);
-//        recyclerView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//            @Override
-//            public void onFocusChange(View v, boolean hasFocus) {
-//                Log.i("ONFOCUSCHANGE- reclist", "focus has changed I repeat the focus has changed! current focus = " +hasFocus);
-//                if(hasFocus){
-//                  recyclerView.getChildAt(0).requestFocus();
-//                }
-//
-//            }
-//        });
         mEmptyView=view.findViewById(R.id.emptyView);
         mAdapter=new NewsAdapter(getActivity(),mEmptyView);
         recyclerView.setAdapter(mAdapter);

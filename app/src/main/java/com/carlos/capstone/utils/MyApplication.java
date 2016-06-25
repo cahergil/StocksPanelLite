@@ -16,9 +16,9 @@ import com.google.android.gms.analytics.Tracker;
 import com.squareup.okhttp.Dispatcher;
 import com.squareup.okhttp.OkHttpClient;
 
-import io.fabric.sdk.android.Fabric;
 import java.util.ArrayList;
 
+import io.fabric.sdk.android.Fabric;
 import retrofit.Response;
 import retrofit.Retrofit;
 import retrofit.RxJavaCallAdapterFactory;
@@ -45,11 +45,16 @@ public class MyApplication extends Application {
     //initialize to empty in case there is no network(so that on rotation don't crasch)
     public static Observable<Response<HistoricalDataResponseTimestamp>> mObservableDays=Observable.empty();
     public static Observable<Response<HistoricalDataResponseDate>> mObservableMonths=Observable.empty();
+    public static Context myContext;
     @Override public void onCreate() {
         super.onCreate();
         Fabric.with(this, new Crashlytics());
       //  LeakCanary.install(this);
+        myContext=getApplicationContext();
+    }
 
+    public static Context getMyContext() {
+        return MyApplication.myContext;
     }
     //http://stackoverflow.com/questions/33035867/android-app-crashes-on-pre-lollipop-devices/33041346
     @Override

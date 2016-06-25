@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.text.Html;
 import android.text.format.DateUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.carlos.capstone.R;
 import com.carlos.capstone.utils.Utilities;
 
@@ -19,7 +23,7 @@ import com.carlos.capstone.utils.Utilities;
  * Created by Carlos on 25/01/2016.
  */
 public class RssNewsAdapter extends CursorAdapter {
-
+    private static final String LOG_TAG=RssNewsAdapter.class.getSimpleName();
     public static final int COL_REGION=1;
     public static final int COL_TITLE=2;
     public static final int COL_DATE=3;
@@ -27,7 +31,24 @@ public class RssNewsAdapter extends CursorAdapter {
     public static final int COL_IMG_URL=5;
     public static final int COL_LINK_URL=6;
 
+    // adb shell setprop log.tag.GenericRequest DEBUG to enable
+    // adb shell setprop log.tag.GenericRequest ERROR to disable
+    private RequestListener<String, GlideDrawable> requestListener = new RequestListener<String, GlideDrawable>() {
+        @Override
+        public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
+            // to do log exception
+            Log.d(LOG_TAG,"target:"+target);
+            Log.d(LOG_TAG,"exception:"+e.getMessage());
+            // important to return false so the error placeholder can be placed
+            return false;
+        }
 
+        @Override
+        public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+
+            return false;
+        }
+    };
     public static class ViewHolder{
 
         public final TextView txtTitulo;
@@ -88,6 +109,7 @@ public class RssNewsAdapter extends CursorAdapter {
         } else {
             Glide.with(context)
                     .load(cursor.getString(COL_IMG_URL))
+                   // .listener(requestListener)
                     .error(R.drawable.noimage)
                     .centerCrop()
                     .into(viewHolder.ivImagen);

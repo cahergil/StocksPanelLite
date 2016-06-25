@@ -298,7 +298,7 @@ public class FragmentStockSummary extends Fragment implements View.OnClickListen
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        Log.i(LOG_TAG, "onCreateView");
+        Log.i(LOG_TAG, "onCreateView FragmentStockSummary");
         mView = inflater.inflate(R.layout.fragment_stock_summary, container, false);
 
 

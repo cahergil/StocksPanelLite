@@ -26,6 +26,7 @@ import retrofit.Retrofit;
  */
 public class StockNewsService extends IntentService {
     private String mSymbol;
+    private static String LOG_TAG= StockNewsService.class.getSimpleName();
     /**
      * Creates an IntentService.  Invoked by your subclass's constructor.
      *
@@ -35,7 +36,7 @@ public class StockNewsService extends IntentService {
         super(name);
     }
     public StockNewsService() {
-        super("StockNewsService");
+        super(LOG_TAG);
     }
     @Override
     protected void onHandleIntent(Intent intent) {
@@ -48,12 +49,11 @@ public class StockNewsService extends IntentService {
     public void getYahooNews(){
         NewsRApi.IStockNews myService = NewsRApi.getMyApiClient();
         String qParam = "select%20*%20from%20html%20where%20url%3D'http%3A%2F%2Ffinance.yahoo.com%2Fq%3Fs%3D" + mSymbol + "'%20%20%0Aand%20xpath%3D'%2F%2Fdiv%5B%40id%3D%22yfi_headlines%22%5D%2Fdiv%5B2%5D%2Ful%2Fli'";
-
         Call<YahooNewsResponse> call=myService.getNewsByStock(qParam);
         call.enqueue(new Callback<YahooNewsResponse>() {
             @Override
             public void onResponse(retrofit.Response<YahooNewsResponse> response, Retrofit retrofit) {
-                Log.i("VILLANUEVA", "retrofit getNewsByStock" + response.raw());
+                Log.i(LOG_TAG, "retrofit getNewsByStock" + response.raw());
                 if(response.isSuccess()) {
                     YahooNewsResponse resp = response.body();
                     YahooNewsResponse.QueryEntity queryEntity = resp.getQuery();
@@ -66,7 +66,7 @@ public class StockNewsService extends IntentService {
                                 CapstoneContract.StockNewsEntity.SYMBOL+"=?",
                                 new String[]{mSymbol});
                         if(deletedRows>0) {
-                            Log.i("VILLANUEVA", "deleted rows from StockNews " + deletedRows);
+                            Log.i(LOG_TAG, "deleted rows from StockNews " + deletedRows);
                         }
                         ArrayList<YahooNewsResponse.QueryEntity.ResultsEntity.LiEntity> lista = (ArrayList<YahooNewsResponse.QueryEntity.ResultsEntity.LiEntity>) resultsEntity.getLi();
                         Vector<ContentValues> values=new Vector<ContentValues>();
@@ -90,10 +90,11 @@ public class StockNewsService extends IntentService {
                         ContentValues[] values_array=new ContentValues[values.size()];
                         values.toArray(values_array);
                         inserted_data=getContentResolver().bulkInsert(uri,values_array);
-                        Log.d("VILLANUEVA","insert YahooNews into Database Succesfully Inserted : " + inserted_data);
+                        Log.d(LOG_TAG,"insert YahooNews into Database Succesfully Inserted : " + inserted_data);
                     }
 
                 } else {
+
                     // bad networks request(400) or 404
                     // bnr cuando las tablas estan caidas
                 }
@@ -103,6 +104,7 @@ public class StockNewsService extends IntentService {
             public void onFailure(Throwable t) {
 
                 if (t instanceof IOException) {
+                    Log.i(LOG_TAG, "retrofit getNewsByStock" + t.getMessage());
                    // Toast.makeText(getActivity(), "There was a network problem:"+t.getMessage(), Toast.LENGTH_SHORT).show();
                     if(!Utilities.isNetworkAvailable(getApplicationContext())){
 
