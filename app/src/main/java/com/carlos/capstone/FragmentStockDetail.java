@@ -172,12 +172,12 @@ public class FragmentStockDetail extends Fragment implements TabLayout.OnTabSele
     private void setTabIcons(){
 
         mTabLayout.getTabAt(PAGE_SUMMARY).setIcon(R.drawable.chart_line);
-        mTabLayout.getTabAt(PAGE_STATS).setIcon(R.drawable.beta);
-        mTabLayout.getTabAt(PAGE_NEWS).setIcon(R.drawable.rss);
+    //    mTabLayout.getTabAt(PAGE_STATS).setIcon(R.drawable.beta);
+    //    mTabLayout.getTabAt(PAGE_NEWS).setIcon(R.drawable.rss);
 
         mTabLayout.getTabAt(PAGE_SUMMARY).getIcon().setColorFilter(ContextCompat.getColor(getActivity(),R.color.white),PorterDuff.Mode.SRC_IN);
-        mTabLayout.getTabAt(PAGE_STATS).getIcon().setColorFilter(ContextCompat.getColor(getActivity(),R.color.blue_200),PorterDuff.Mode.SRC_IN);
-        mTabLayout.getTabAt(PAGE_NEWS).getIcon().setColorFilter(ContextCompat.getColor(getActivity(),R.color.blue_200),PorterDuff.Mode.SRC_IN);
+    //    mTabLayout.getTabAt(PAGE_STATS).getIcon().setColorFilter(ContextCompat.getColor(getActivity(),R.color.blue_200),PorterDuff.Mode.SRC_IN);
+    //    mTabLayout.getTabAt(PAGE_NEWS).getIcon().setColorFilter(ContextCompat.getColor(getActivity(),R.color.blue_200),PorterDuff.Mode.SRC_IN);
 
     }
     public void showhelpKeyStats(){
@@ -295,7 +295,7 @@ public class FragmentStockDetail extends Fragment implements TabLayout.OnTabSele
        }
        @Override
         public int getCount() {
-            return 3;
+            return 1;
         }
 
         @Override

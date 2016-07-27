@@ -4,11 +4,13 @@ package com.carlos.capstone.iretrofit;
 import com.carlos.capstone.models.StockDataResponse;
 import com.carlos.capstone.models.StockStatsResponse;
 
-import retrofit.Call;
-import retrofit.GsonConverterFactory;
-import retrofit.Retrofit;
-import retrofit.http.GET;
-import retrofit.http.Query;
+import okhttp3.OkHttpClient;
+import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.GET;
+import retrofit2.http.Query;
+
 
 /**
  * Created by Carlos on 26/12/2015.
@@ -26,12 +28,15 @@ public class QueryRApi {
 
     }
     public static IQuery getMyQueryService() {
+        OkHttpClient client=new OkHttpClient.Builder()
+                .addInterceptor(new HeaderInterceptor())
+                .build();
 
         if(myQueryService ==null){
             Retrofit retrofit=new Retrofit.Builder()
                     .baseUrl("http://query.yahooapis.com/")
                     .addConverterFactory(GsonConverterFactory.create())
-
+                    .client(client)
                     .build();
             myQueryService=retrofit.create(IQuery.class);
             return myQueryService;

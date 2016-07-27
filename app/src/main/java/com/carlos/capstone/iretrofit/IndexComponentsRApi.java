@@ -2,11 +2,12 @@ package com.carlos.capstone.iretrofit;
 
 import com.carlos.capstone.models.Components;
 
-import retrofit.Call;
-import retrofit.GsonConverterFactory;
-import retrofit.Retrofit;
-import retrofit.http.GET;
-import retrofit.http.Query;
+import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.GET;
+import retrofit2.http.Query;
+
 
 /**
  * Created by Carlos on 13/02/2016.

@@ -16,10 +16,9 @@ import com.carlos.capstone.utils.Utilities;
 import java.io.IOException;
 import java.util.List;
 
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.Response;
-import retrofit.Retrofit;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by Carlos on 01/03/2016.
@@ -59,10 +58,10 @@ public class StockStatsService extends IntentService {
     public Callback<StockStatsResponse> retrofitCallbackStockStats(){
         return new Callback<StockStatsResponse>() {
             @Override
-            public void onResponse(Response<StockStatsResponse> response, Retrofit retrofit) {
+            public void onResponse(Call<StockStatsResponse> call, Response<StockStatsResponse> response) {
 
                 Log.i(LOG_TAG,"retrofitCallbackStockStats"+response.raw());
-                if(response.isSuccess()) {
+                if(response.isSuccessful()) {
                     StockStatsResponse resp=response.body();
                     StockStatsResponse.QueryEntity query=resp.getQuery();
                     StockStatsResponse.QueryEntity.ResultsEntity results=query.getResults();
@@ -76,7 +75,7 @@ public class StockStatsService extends IntentService {
             }
 
             @Override
-            public void onFailure(Throwable t) {
+            public void onFailure(Call<StockStatsResponse> call,Throwable t) {
                 if (t instanceof IOException) {
                     Log.d(LOG_TAG,"There was a network problem"+ t.getMessage());
                     if(!Utilities.isNetworkAvailable(getApplicationContext())){

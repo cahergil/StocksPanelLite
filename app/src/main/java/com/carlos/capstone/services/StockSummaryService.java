@@ -15,10 +15,10 @@ import com.carlos.capstone.utils.Utilities;
 
 import java.io.IOException;
 
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.Response;
-import retrofit.Retrofit;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 /**
  * Created by Carlos on 01/03/2016.
@@ -62,10 +62,10 @@ public class StockSummaryService extends IntentService {
 
         return new Callback<StockDataResponse>() {
             @Override
-            public void onResponse(Response<StockDataResponse> response, Retrofit retrofit) {
+            public void onResponse(Call<StockDataResponse> call,Response<StockDataResponse> response) {
                 count++;
                 Log.i(LOG_TAG,"retrofitCallbackStockData"+response.raw());
-                if (response.isSuccess()) {
+                if (response.isSuccessful()) {
 
                     StockDataResponse stockDataResponse = response.body();
                     StockDataResponse.QueryEntity queryEntity = stockDataResponse.getQuery();
@@ -127,9 +127,9 @@ public class StockSummaryService extends IntentService {
                         if(count>1) return;
                         String alternativQParam="use%20%22http%3A%2F%2Fgithub.com%2Fspullara%2Fyql-tables%2Fraw%2Fd60732fd4fbe72e5d5bd2994ff27cf58ba4d3f84%2Fyahoo%2Ffinance%2Fyahoo.finance.quotes.xml%22%20as%20quotes%0A%09%09select%20*%20from%20quotes%20where%20symbol%20in%20(%22"+mSymbol+"%22)";
                         QueryRApi.IQuery myService=QueryRApi.getMyQueryService();
-                        Call<StockDataResponse> call=null;
-                        call=myService.getDataByStockAlternative(alternativQParam);
-                        call.enqueue(retrofitCallbackStockData());
+//                        Call<StockDataResponse> call=null;
+//                        call=myService.getDataByStockAlternative(alternativQParam);
+//                        call.enqueue(retrofitCallbackStockData());
                     }
                     // bad networks request(400) or 404
                     // bnr cuando las tablas estan caidas
@@ -137,7 +137,7 @@ public class StockSummaryService extends IntentService {
             }
 
             @Override
-            public void onFailure(Throwable t) { //socket time out, unknown host
+            public void onFailure(Call<StockDataResponse> call,Throwable t) { //socket time out, unknown host
 
                 if (t instanceof IOException) {
                  //   Toast.makeText(getActivity(), "There was a network problem:"+t.getMessage(), Toast.LENGTH_SHORT).show();

@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Stocks Panel Lite.iml" filepath="$PROJECT_DIR$/Stocks Panel Lite.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/StocksPanelLite.iml" filepath="$PROJECT_DIR$/app/StocksPanelLite.iml" />
+      <module fileurl="file://$PROJECT_DIR$/StocksPanelLite.iml" filepath="$PROJECT_DIR$/StocksPanelLite.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/StocksPanelLite-StocksPanelLite.iml" filepath="$PROJECT_DIR$/app/StocksPanelLite-StocksPanelLite.iml" />
     </modules>
   </component>
 </project>

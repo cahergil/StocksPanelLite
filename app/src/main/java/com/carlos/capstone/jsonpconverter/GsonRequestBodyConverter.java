@@ -5,8 +5,7 @@ package com.carlos.capstone.jsonpconverter;
  */
 
 import com.google.gson.Gson;
-import com.squareup.okhttp.MediaType;
-import com.squareup.okhttp.RequestBody;
+
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -14,8 +13,11 @@ import java.io.Writer;
 import java.lang.reflect.Type;
 import java.nio.charset.Charset;
 
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 import okio.Buffer;
-import retrofit.Converter;
+import retrofit2.Converter;
+
 
 final class GsonRequestBodyConverter<T> implements Converter<T, RequestBody> {
     private static final MediaType MEDIA_TYPE = MediaType.parse("application/json; charset=UTF-8");

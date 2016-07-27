@@ -3,19 +3,20 @@ package com.carlos.capstone.iretrofit;
 import com.carlos.capstone.models.YahooNewsResponse;
 import com.carlos.capstone.utils.MyApplication;
 import com.carlos.capstone.utils.Utilities;
-import com.squareup.okhttp.Cache;
-import com.squareup.okhttp.Interceptor;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Response;
+
 
 import java.io.File;
 import java.io.IOException;
 
-import retrofit.Call;
-import retrofit.GsonConverterFactory;
-import retrofit.Retrofit;
-import retrofit.http.GET;
-import retrofit.http.Query;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Response;
+import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.GET;
+import retrofit2.http.Query;
+
 
 /**
  * Created by Carlos on 21/12/2015.
@@ -30,22 +31,18 @@ public class NewsRApi {
     }
 
     public static IStockNews getMyApiClient() {
-        OkHttpClient okHttpClient = new OkHttpClient();
-        okHttpClient.interceptors().add(provideOfflineCacheInterceptor);//setup cache
-        File httpCacheDirectory = new File(MyApplication.getMyContext().getCacheDir(), "responses");
-        int cacheSize = 10 * 1024 * 1024; // 10 MiB
-        Cache cache = new Cache(httpCacheDirectory, cacheSize);
+        OkHttpClient client=new OkHttpClient.Builder()
+                .addInterceptor(new HeaderInterceptor())
+                .build();
 
-        //add cache to the client
-        okHttpClient.setCache(cache);
 
         if (myNewsService == null) {
-            Retrofit client = new Retrofit.Builder()
+            Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl("https://query.yahooapis.com/")
                     .addConverterFactory(GsonConverterFactory.create())
-                    //.client(okHttpClient)
+                    .client(client)
                     .build();
-            myNewsService = client.create(IStockNews.class);
+            myNewsService = retrofit.create(IStockNews.class);
             return myNewsService;
         } else {
             return myNewsService;

@@ -13,17 +13,19 @@ import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Logger;
 import com.google.android.gms.analytics.Tracker;
-import com.squareup.okhttp.Dispatcher;
-import com.squareup.okhttp.OkHttpClient;
+
 
 import java.util.ArrayList;
 
 import io.fabric.sdk.android.Fabric;
-import retrofit.Response;
-import retrofit.Retrofit;
-import retrofit.RxJavaCallAdapterFactory;
-import retrofit.http.GET;
-import retrofit.http.Path;
+
+import okhttp3.Dispatcher;
+import okhttp3.OkHttpClient;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.http.GET;
+import retrofit2.http.Path;
 import rx.Observable;
 
 /**
@@ -81,10 +83,13 @@ public class MyApplication extends Application {
     }
 
     public static IStockChart getMyApiService() {
-        OkHttpClient client=new OkHttpClient();
+
         Dispatcher dispatcher=new Dispatcher();
         dispatcher.setMaxRequests(3);
-        client.setDispatcher(dispatcher);
+        OkHttpClient client=new OkHttpClient.Builder()
+                .dispatcher(dispatcher)
+                .build();
+
         // OkHttpClient client = new OkHttpClient();
         //  HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         //  interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);

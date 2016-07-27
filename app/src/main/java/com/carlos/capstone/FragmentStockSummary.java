@@ -82,7 +82,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import retrofit.Response;
+
+import retrofit2.Response;
 import rx.Observer;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
@@ -1232,7 +1233,7 @@ public class FragmentStockSummary extends Fragment implements View.OnClickListen
             Log.i(LOG_TAG, "On next WrapperObserbable Days:" + response.raw());
             mProgressBar.setVisibility(View.GONE);
             mChart.setVisibility(View.VISIBLE);
-            if (response.isSuccess()) {
+            if (response.isSuccessful()) {
                 HistoricalDataResponseTimestamp resp = response.body();
                 if (resp != null && resp.getSeries() != null && resp.getMeta() != null) {
                     resetCombinatedChartState();
@@ -1273,7 +1274,7 @@ public class FragmentStockSummary extends Fragment implements View.OnClickListen
             //there is a case(e.g:NA7.BE) trying to load graphic data, the response here is ok code=200 but in web there is an error
             Log.i(LOG_TAG, "On next WrapperObserbable months:" + response.raw());
             mProgressBar.setVisibility(View.GONE);
-            if (response.isSuccess()) {
+            if (response.isSuccessful()) {
                 HistoricalDataResponseDate resp = response.body();
                 if (resp != null && resp.getSeries() != null && resp.getMeta() != null) {
                     resetCombinatedChartState();

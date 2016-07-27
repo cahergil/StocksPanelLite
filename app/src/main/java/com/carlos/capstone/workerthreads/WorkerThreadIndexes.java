@@ -13,7 +13,8 @@ import com.carlos.capstone.utils.TimeMeasure;
 import java.util.List;
 import java.util.Vector;
 
-import retrofit.Response;
+import retrofit2.Response;
+
 
 /**
  * Created by Carlos on 18/02/2016.

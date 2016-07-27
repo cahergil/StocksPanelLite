@@ -17,9 +17,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Vector;
 
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.Retrofit;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 /**
  * Created by Carlos on 02/03/2016.
@@ -52,9 +53,9 @@ public class StockNewsService extends IntentService {
         Call<YahooNewsResponse> call=myService.getNewsByStock(qParam);
         call.enqueue(new Callback<YahooNewsResponse>() {
             @Override
-            public void onResponse(retrofit.Response<YahooNewsResponse> response, Retrofit retrofit) {
+            public void onResponse(Call<YahooNewsResponse> call, Response<YahooNewsResponse> response) {
                 Log.i(LOG_TAG, "retrofit getNewsByStock" + response.raw());
-                if(response.isSuccess()) {
+                if(response.isSuccessful()) {
                     YahooNewsResponse resp = response.body();
                     YahooNewsResponse.QueryEntity queryEntity = resp.getQuery();
                     YahooNewsResponse.QueryEntity.ResultsEntity resultsEntity = queryEntity.getResults();
@@ -101,7 +102,7 @@ public class StockNewsService extends IntentService {
             }
 
             @Override
-            public void onFailure(Throwable t) {
+            public void onFailure(Call<YahooNewsResponse> call,Throwable t) {
 
                 if (t instanceof IOException) {
                     Log.i(LOG_TAG, "retrofit getNewsByStock" + t.getMessage());

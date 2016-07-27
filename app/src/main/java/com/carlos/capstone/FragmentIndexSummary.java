@@ -80,7 +80,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import retrofit.Response;
+
+import retrofit2.Response;
 import rx.Observable;
 import rx.Observer;
 import rx.Subscription;
@@ -946,7 +947,7 @@ public class FragmentIndexSummary extends Fragment implements View.OnClickListen
             Log.i(LOG_TAG, "On next WrapperObserbable Days:" + response.raw());
             mProgressBar.setVisibility(View.GONE);
             mChart.setVisibility(View.VISIBLE);
-            if (response.isSuccess()) {
+            if (response.isSuccessful()) {
                 HistoricalDataResponseTimestamp resp = response.body();
                 if (resp != null && resp.getSeries() != null && resp.getMeta() != null) {
                     resetCombinatedChartState();
@@ -986,7 +987,7 @@ public class FragmentIndexSummary extends Fragment implements View.OnClickListen
         public void onNext(Response<HistoricalDataResponseDate> response) {
             Log.i(LOG_TAG, "On next WrapperObserbable Month:" + response.raw());
             mProgressBar.setVisibility(View.GONE);
-            if (response.isSuccess()) {
+            if (response.isSuccessful()) {
                 HistoricalDataResponseDate resp = response.body();
                 if (resp != null && resp.getSeries() != null && resp.getMeta() != null) {
                     resetCombinatedChartState();

@@ -53,10 +53,11 @@ import java.util.Vector;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.Response;
-import retrofit.Retrofit;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+
 
 /**
  * Created by Carlos on 25/01/2016.
@@ -67,7 +68,7 @@ public class CapstoneSyncAdapter extends AbstractThreadedSyncAdapter {
     // Interval at which to sync , in seconds.
     // 60 seconds (1 minute) * 7 = 7 minutes
 
-    public static final int SYNC_INTERVAL=60*7;
+    public static final int SYNC_INTERVAL=60*2;
     //  public static final int SYNC_FLEXTIME = SYNC_INTERVAL/3;
     public static final int SYNC_FLEXTIME = 0;
     private static final long DAY_IN_MILLIS = 1000 * 60 * 60 * 24;
@@ -354,10 +355,11 @@ public class CapstoneSyncAdapter extends AbstractThreadedSyncAdapter {
         } else {
              call = service.getSecurityShortInfoByTicker(helperVar);
         }
+
         call.enqueue(new Callback<IndexOrShortInfoDataResponse>() {
             @Override
-            public void onResponse(Response<IndexOrShortInfoDataResponse> response, Retrofit retrofit) {
-                if(response.isSuccess()) {
+            public void onResponse(Call<IndexOrShortInfoDataResponse> call,  Response<IndexOrShortInfoDataResponse> response) {
+                if(response.isSuccessful()) {
 
                     IndexOrShortInfoDataResponse resp=response.body();
                     IndexOrShortInfoDataResponse.ListEntity list=resp.getList();
@@ -416,13 +418,14 @@ public class CapstoneSyncAdapter extends AbstractThreadedSyncAdapter {
             }
 
             @Override
-            public void onFailure(Throwable t) {
-               if(belongsToSyncAdapter) {
+            public void onFailure(Call<IndexOrShortInfoDataResponse> call, Throwable t) {
+                if(belongsToSyncAdapter) {
                     tm.log("END LOAD FAVORITES WITH FAILURE");
                     testEndLoads(context, tm);
 
                 }
             }
+
         });
 
 
@@ -459,9 +462,9 @@ public class CapstoneSyncAdapter extends AbstractThreadedSyncAdapter {
 
         return new Callback<IndexOrShortInfoDataResponse>() {
             @Override
-            public void onResponse(Response<IndexOrShortInfoDataResponse> response, Retrofit retrofit) {
+            public void onResponse(Call<IndexOrShortInfoDataResponse> call,  Response<IndexOrShortInfoDataResponse> response) {
 
-                if(response.isSuccess()) {
+                if(response.isSuccessful()) {
                     Runnable workerThreadIndexes = new WorkerThreadIndexes(mContext, tm, response, region);
                     mExecutorIndexes.execute(workerThreadIndexes);
                 } else {
@@ -474,7 +477,7 @@ public class CapstoneSyncAdapter extends AbstractThreadedSyncAdapter {
             }
 
             @Override
-            public void onFailure(Throwable t) {
+            public void onFailure(Call<IndexOrShortInfoDataResponse> call, Throwable t) {
                 tm.log("END Load INDEXES with Failure " + region);
                 testEndLoads(mContext,tm);
             }
@@ -486,9 +489,9 @@ public class CapstoneSyncAdapter extends AbstractThreadedSyncAdapter {
 
         return new Callback<HistoricalDataResponseTimestamp>() {
             @Override
-            public void onResponse(Response<HistoricalDataResponseTimestamp> response, Retrofit retrofit) {
+            public void onResponse(Call<HistoricalDataResponseTimestamp> call,  Response<HistoricalDataResponseTimestamp> response) {
 
-                if(response.isSuccess()) {
+                if(response.isSuccessful()) {
                     Runnable workerThreadAmerica = new WorkerThreadAmerica(response);
                     mExecutorChart.execute(workerThreadAmerica);
                 } else {
@@ -499,7 +502,7 @@ public class CapstoneSyncAdapter extends AbstractThreadedSyncAdapter {
             }
 
             @Override
-            public void onFailure(Throwable t) {
+            public void onFailure(Call<HistoricalDataResponseTimestamp> call, Throwable t) {
                 tm.log("========= END LOAD1dDataChartAmerica with Failure");
                 testEndLoads(mContext,tm);
             }
@@ -685,6 +688,9 @@ public class CapstoneSyncAdapter extends AbstractThreadedSyncAdapter {
         public void run() {
             HistoricalDataResponseTimestamp resp= response.body();
             List<HistoricalDataResponseTimestamp.SeriesEntity> lista=resp.getSeries();
+
+            if(resp.getMeta().getCompany_name()==null)
+                return;
             IndexDataUnit indexDataUnit = Utilities.extractToIndexesData(lista, resp.getMeta().getPrevious_close());
             indexDataUnit.setMarket(resp.getMeta().getExchange_name());
             indexDataUnit.setName(resp.getMeta().getCompany_name());

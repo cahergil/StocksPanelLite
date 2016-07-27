@@ -23,10 +23,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.Response;
-import retrofit.Retrofit;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 /**
  * Created by Carlos on 18/02/2016.
@@ -85,7 +85,7 @@ public class RegionChartLoaderService extends IntentService {
 
         HistoricalRApi.IStockChart service=HistoricalRApi.getMyApiService();
 
-        Call<HistoricalDataResponseTimestamp> call1= service.get1DHistoricalDataByStock(getString(R.string.ticker_nasdaq));
+        Call<HistoricalDataResponseTimestamp> call1= service.get1DHistoricalDataByStock("^IXIC");
         Call<HistoricalDataResponseTimestamp> call2= service.get1DHistoricalDataByStock(getString(R.string.ticker_dow_jones));
         Call<HistoricalDataResponseTimestamp> call3= service.get1DHistoricalDataByStock(getString(R.string.ticker_sp500));
         call1.enqueue(retrofitCallback(getString(R.string.region_america)));
@@ -119,11 +119,13 @@ public class RegionChartLoaderService extends IntentService {
 
         return new Callback<HistoricalDataResponseTimestamp>() {
             @Override
-            public void onResponse(Response<HistoricalDataResponseTimestamp> response, Retrofit retrofit) {
+            public void onResponse(Call<HistoricalDataResponseTimestamp> call,Response<HistoricalDataResponseTimestamp> response) {
+                Log.d(LOG_TAG,"raw response"+response.raw());
+                if(response.isSuccessful()) {
 
-                if(response.isSuccess()) {
                     HistoricalDataResponseTimestamp resp= response.body();
                     List<HistoricalDataResponseTimestamp.SeriesEntity> lista=resp.getSeries();
+                    HistoricalDataResponseTimestamp.MetaEntity meta=resp.getMeta();
                     IndexDataUnit indexDataUnit = Utilities.extractToIndexesData(lista,resp.getMeta().getPrevious_close());
                     indexDataUnit.setMarket(resp.getMeta().getExchange_name());
                     indexDataUnit.setName(resp.getMeta().getCompany_name());
@@ -153,7 +155,7 @@ public class RegionChartLoaderService extends IntentService {
             }
 
             @Override
-            public void onFailure(Throwable t) {
+            public void onFailure(Call<HistoricalDataResponseTimestamp> cll,Throwable t) {
                 tm.log("========= END LOAD1dDataChart "+region + " onFailure");
                 sendFailureFeedBack(region);
             }
@@ -235,8 +237,8 @@ public class RegionChartLoaderService extends IntentService {
 
         return new Callback<IndexOrShortInfoDataResponse>() {
             @Override
-            public void onResponse(Response<IndexOrShortInfoDataResponse> response, Retrofit retrofit) {
-                if(response.isSuccess()) {
+            public void onResponse(Call<IndexOrShortInfoDataResponse> call,Response<IndexOrShortInfoDataResponse> response) {
+                if(response.isSuccessful()) {
                     IndexOrShortInfoDataResponse resp=response.body();
                     IndexOrShortInfoDataResponse.ListEntity list=resp.getList();
                     List<IndexOrShortInfoDataResponse.ListEntity.ResourcesEntity> resList=list.getResources();
@@ -276,7 +278,7 @@ public class RegionChartLoaderService extends IntentService {
             }
 
             @Override
-            public void onFailure(Throwable t) {
+            public void onFailure(Call<IndexOrShortInfoDataResponse> call,Throwable t) {
 
             }
         };

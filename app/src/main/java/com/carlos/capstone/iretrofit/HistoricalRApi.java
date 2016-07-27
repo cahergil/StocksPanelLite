@@ -3,13 +3,14 @@ package com.carlos.capstone.iretrofit;
 import com.carlos.capstone.jsonpconverter.JsonpGsonConverterFactory;
 import com.carlos.capstone.models.HistoricalDataResponseDate;
 import com.carlos.capstone.models.HistoricalDataResponseTimestamp;
-import com.squareup.okhttp.Dispatcher;
-import com.squareup.okhttp.OkHttpClient;
 
-import retrofit.Call;
-import retrofit.Retrofit;
-import retrofit.http.GET;
-import retrofit.http.Path;
+import okhttp3.Dispatcher;
+import okhttp3.OkHttpClient;
+import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.http.GET;
+import retrofit2.http.Path;
+
 
 /**
  * Created by Carlos on 22/12/2015.
@@ -31,10 +32,12 @@ public class HistoricalRApi {
 
     }
     public static IStockChart getMyApiService() {
-        OkHttpClient client=new OkHttpClient();
-        Dispatcher dispatcher=new Dispatcher();
-        dispatcher.setMaxRequests(3);
-        client.setDispatcher(dispatcher);
+        OkHttpClient client=new OkHttpClient.Builder()
+                .addInterceptor(new HeaderInterceptor())
+                .build();
+
+
+
        // OkHttpClient client = new OkHttpClient();
       //  HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
       //  interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -43,7 +46,7 @@ public class HistoricalRApi {
             Retrofit retrofit=new Retrofit.Builder()
                     .baseUrl("http://chartapi.finance.yahoo.com/")
                     .addConverterFactory(JsonpGsonConverterFactory.create())
-              //      .client(client)
+                    .client(client)
                     .build();
             myService=retrofit.create(IStockChart.class);
             return myService;

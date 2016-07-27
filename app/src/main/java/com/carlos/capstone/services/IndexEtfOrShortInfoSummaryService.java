@@ -15,10 +15,10 @@ import com.carlos.capstone.models.IndexOrShortInfoDataResponse;
 
 import java.util.List;
 
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.Response;
-import retrofit.Retrofit;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 /**
  * Created by Carlos on 02/03/2016.
@@ -49,9 +49,9 @@ public class IndexEtfOrShortInfoSummaryService extends IntentService {
         Call<IndexOrShortInfoDataResponse> call=myService.getSecurityShortInfoByTicker(mTicker);
         call.enqueue(new Callback<IndexOrShortInfoDataResponse>() {
             @Override
-            public void onResponse(Response<IndexOrShortInfoDataResponse> response, Retrofit retrofit) {
+            public void onResponse(Call<IndexOrShortInfoDataResponse> call, Response<IndexOrShortInfoDataResponse> response) {
                 Log.i(TAG,"getSecurityShortInfoByTicker:"+response.raw());
-                if(response.isSuccess()) {
+                if(response.isSuccessful()) {
                     IndexOrShortInfoDataResponse resp = response.body();
                     IndexOrShortInfoDataResponse.ListEntity list = resp.getList();
                     List<IndexOrShortInfoDataResponse.ListEntity.ResourcesEntity> resList = list.getResources();
@@ -85,7 +85,7 @@ public class IndexEtfOrShortInfoSummaryService extends IntentService {
             }
 
             @Override
-            public void onFailure(Throwable t) {
+            public void onFailure(Call<IndexOrShortInfoDataResponse> call,Throwable t) {
 
             }
         });

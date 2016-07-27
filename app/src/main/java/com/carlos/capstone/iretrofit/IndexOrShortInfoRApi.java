@@ -1,14 +1,16 @@
 package com.carlos.capstone.iretrofit;
 
 import com.carlos.capstone.models.IndexOrShortInfoDataResponse;
-import com.squareup.okhttp.Dispatcher;
-import com.squareup.okhttp.OkHttpClient;
 
-import retrofit.Call;
-import retrofit.GsonConverterFactory;
-import retrofit.Retrofit;
-import retrofit.http.GET;
-import retrofit.http.Path;
+
+import okhttp3.Dispatcher;
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.GET;
+import retrofit2.http.Path;
 
 /**
  * Created by Carlos on 29/01/2016.
@@ -28,10 +30,19 @@ public class IndexOrShortInfoRApi {
     }
 
     public static IIndexOrShortInfoData getMyService(){
-        OkHttpClient client=new OkHttpClient();
+        //OkHttpClient client=new OkHttpClient();
+
+        HttpLoggingInterceptor logging=new HttpLoggingInterceptor();
+        logging.setLevel(HttpLoggingInterceptor.Level.HEADERS);
         Dispatcher dispatcher=new Dispatcher();
         dispatcher.setMaxRequests(3);
-        client.setDispatcher(dispatcher);
+
+        OkHttpClient client=new OkHttpClient.Builder()
+                .dispatcher(dispatcher)
+                .addInterceptor(new HeaderInterceptor())
+                .addInterceptor(logging)
+                .build();
+
         if (myService==null) {
             Retrofit retrofit=new Retrofit.Builder()
                     .baseUrl("http://finance.yahoo.com/")

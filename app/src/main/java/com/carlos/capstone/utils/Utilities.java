@@ -581,6 +581,7 @@ public class Utilities {
     public static IndexDataUnit extractToIndexesData(List<HistoricalDataResponseTimestamp.SeriesEntity> lista,
                                                      double previousClose) {
         IndexDataUnit indexDataUnit = new IndexDataUnit();
+        if(lista==null) return null;
         for (int i = 0; i < lista.size(); i++) {
             indexDataUnit.getyValues().add(calculatePercentaje(lista.get(i).getClose(), previousClose));
             indexDataUnit.getxLabels().add(Utilities.formatXLabel(String.valueOf(lista.get(i).getTimestamp())));

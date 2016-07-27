@@ -2,7 +2,8 @@ package com.carlos.capstone.workerthreads;
 
 import com.carlos.capstone.models.HistoricalDataResponseTimestamp;
 
-import retrofit.Response;
+import retrofit2.Response;
+
 
 /**
  * Created by Carlos on 18/02/2016.

@@ -15,10 +15,10 @@ import com.carlos.capstone.models.Components;
 import java.util.List;
 import java.util.Vector;
 
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.Response;
-import retrofit.Retrofit;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 /**
  * Created by Carlos on 02/03/2016.
@@ -58,9 +58,9 @@ public class IndexComponentsService extends IntentService {
 
         call.enqueue(new Callback<Components>() {
             @Override
-            public void onResponse(Response<Components> response, Retrofit retrofit) {
+            public void onResponse(Call<Components> call, Response<Components> response) {
 
-                if (response.isSuccess()) {
+                if (response.isSuccessful()) {
                     Components components = response.body();
                     if (components == null) return;
                     Components.QueryEntity queryEntity = components.getQuery();
@@ -116,7 +116,7 @@ public class IndexComponentsService extends IntentService {
             }
 
             @Override
-            public void onFailure(Throwable t) {
+            public void onFailure(Call<Components> call,Throwable t) {
                 Log.d(LOG_TAG, "onFailure" + t.getMessage());
 
             }
