@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -21,6 +23,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -31,6 +34,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.carlos.capstone.customcomponents.CustomIndexMarkerView;
 import com.carlos.capstone.models.IndexDataUnit;
@@ -60,7 +64,7 @@ import java.util.List;
  * Created by Carlos on 19/01/2016.
  */
 public class FragmentMain extends Fragment  implements OnChartGestureListener,
-        TabLayout.OnTabSelectedListener,ViewTreeObserver.OnGlobalFocusChangeListener{
+        TabLayout.OnTabSelectedListener{
     private static final String LOG_TAG=FragmentMain.class.getSimpleName();
     private ViewPager mViewPager;
     private TabLayout mTabLayout;
@@ -99,6 +103,10 @@ public class FragmentMain extends Fragment  implements OnChartGestureListener,
     private AdView mAdView;
     private LinearLayout mAdContainer;
     private CoordinatorLayout mCoordinatorContainer;
+    private TextView tvTitle;
+    private AppBarLayout mBarLayout;
+
+
     public FragmentMain(){
 
     }
@@ -110,65 +118,52 @@ public class FragmentMain extends Fragment  implements OnChartGestureListener,
 
     }
 
-//
-//    @Override
-//    public boolean dispatchTouchEvent(MotionEvent ev) {
-//        try {
-//
-//            AppBarLayout myAppBarLayout= (AppBarLayout)getView().findViewById(R.id.appbar);
-//            if (ev.getAction() == ev.ACTION_UP) {
-//                if ((collapsingToolbarLayout.getBottom() - collapsingToolbarLayout.getTop()) > appBarLayout.getBottom() * 2) {
-//                    appBarLayout.setExpanded(false);
-//                } else {
-//                    appBarLayout.setExpanded(true);
-//                }
-//            }
-//            return super.dispatchTouchEvent(ev);
-//        } catch (Exception e) {
-//            Log.e(TAG, "dispatchTouchEvent " + e.toString());
-//            return false;
-//        }
-//    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         Log.d(LOG_TAG,"onCreateView FragmentMain");
         View view=inflater.inflate(R.layout.fragment_main,container);
-        //testing purposes
-//        AppBarLayout appBarLayout= (AppBarLayout) view.findViewById(R.id.appbar);
-//        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-//            @Override
-//            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-//                Log.d(LOG_TAG,"verticalOffset:"+verticalOffset);
-//                Log.d(LOG_TAG,"getTotalScrollRange:"+appBarLayout.getTotalScrollRange());
-//                Log.d(LOG_TAG,"mToolbar:"+mToolbar.getHeight());
-//                Log.d(LOG_TAG,"diff:"+(appBarLayout.getTotalScrollRange() - mToolbar.getHeight()));
-//                if (Math.abs(verticalOffset) >= appBarLayout.getTotalScrollRange() - mToolbar.getHeight()) {
-//                    Log.d(LOG_TAG,"OK"); //678px-300px=378px
-////                    float flexibleSpace = appBarLayout.getTotalScrollRange() - offset;
-////                    float ratio = 1 - (flexibleSpace / mToolbar.getHeight());
-////                    float elevation = ratio * mTargetElevation;
-////                    setToolbarElevation(elevation);
-//                }
-//            }
-//        });
-
-        mCoordinatorContainer= (CoordinatorLayout) view.findViewById(R.id.containerView);
-        collapsingToolbarLayout= (CollapsingToolbarLayout)view.findViewById(R.id.collapsing_toolbar);
-        collapsingToolbarLayout.setTitle(" ");
-        collapsingToolbarLayout.setTitleEnabled(false);
-
         mToolbar = (Toolbar)view.findViewById(R.id.toolbar);
-
         ((AppCompatActivity)getActivity()).setSupportActionBar(mToolbar);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
+        mToolbar.setTitle("");
+        mCoordinatorContainer= (CoordinatorLayout) view.findViewById(R.id.containerView);
+        collapsingToolbarLayout= (CollapsingToolbarLayout)view.findViewById(R.id.collapsing_toolbar);
+        //collapsingToolbarLayout.setTitle("Stock ");
+        collapsingToolbarLayout.setTitleEnabled(false);
+        mBarLayout = (AppBarLayout) view.findViewById(R.id.appbar);
+        mBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+
+            boolean isVisible = true;
+            int scrollRange = -1;
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+//                Log.d("log",""+verticalOffset);
+                if (scrollRange == -1) {
+                    scrollRange = appBarLayout.getTotalScrollRange();
+                }
+                if (verticalOffset == 0) {
+                    new Handler().post(new Runnable() {
+                        @Override
+                        public void run() {
+                            mToolbar.setTitle("Stock Panel Lite");
+                        }
+                    });
+
+                    isVisible = true;
+                } else if(isVisible) {
+                    mToolbar.setTitle(" ");
+                    isVisible = false;
+                }
+            }
+        });
+
+
         mProgressBar= (ProgressBar) view.findViewById(R.id.progressBar);
-      //  mProgressBar.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(getActivity(),R.color.red_900), PorterDuff.Mode.SRC_IN);
 
         mViewPager= (ViewPager) view.findViewById(R.id.viewpagerMain);
-        // this line from fragments is wrong!->final PagerAdapter pagerAdapter=new Adapter(getActivity().getSupportFragmentManager());
-        //
         final PagerAdapter pagerAdapter=new Adapter(getChildFragmentManager());
         mViewPager.setAdapter(pagerAdapter);
         mViewPager.setOffscreenPageLimit(3);
@@ -198,12 +193,6 @@ public class FragmentMain extends Fragment  implements OnChartGestureListener,
         mAdView.setContentDescription(getString(R.string.talkback_fm_admob));
         mAdContainer.addView(mAdView);
 
-        //for debugging purposes
-//        ViewTreeObserver vto=mCoordinatorContainer.getViewTreeObserver();
-//        if(vto.isAlive()) {
-//            Log.d(LOG_TAG,"");
-//            vto.addOnGlobalFocusChangeListener(this);
-//        }
 
         // Create an ad request. Check logcat output for the hashed device ID to
         // get test ads on a physical device. e.g.
@@ -286,15 +275,6 @@ public class FragmentMain extends Fragment  implements OnChartGestureListener,
 
     }
 
-    //for debugging purposes
-    @Override
-    public void onGlobalFocusChanged(View oldFocus, View newFocus) {
-        if(oldFocus!=null && newFocus!=null) {
-            Log.i(LOG_TAG, "Global focus changed-"
-                    + " old focus:"+oldFocus.getTag()
-                    + " new focus:"+newFocus.getTag());
-        }
-    }
 
     @Override
     public void onResume() {

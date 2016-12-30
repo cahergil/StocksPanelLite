@@ -39,9 +39,9 @@ public class SettingsActivity extends PreferenceActivity
 
         //http://developer.android.com/intl/es/reference/android/support/v7/appcompat/R.drawable.html
         //by default the color is pale grey
-        final Drawable upArrow = ContextCompat.getDrawable(this, R.drawable.abc_ic_ab_back_mtrl_am_alpha); //23.3
+       // final Drawable upArrow = ContextCompat.getDrawable(this, R.drawable.abc_ic_ab_back_mtrl_am_alpha); //23.3
         //  final Drawable upArrow= ContextCompat.getDrawable(this,R.drawable.ic_action_back);
-        //final Drawable upArrow= ContextCompat.getDrawable(this,R.drawable.abc_ic_ab_back_material); //23.2
+        final Drawable upArrow= ContextCompat.getDrawable(this,R.drawable.abc_ic_ab_back_material); //23.2
         //tint the arrow to white
         upArrow.setColorFilter(ContextCompat.getColor(this, R.color.white), PorterDuff.Mode.SRC_ATOP);
         toolBar.setNavigationIcon(upArrow);

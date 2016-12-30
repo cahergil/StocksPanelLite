@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements Callback {
             String ticker = "TX60.TS";
             Bundle bundle = new Bundle();
             bundle.putString(getString(R.string.ticker_bundle_key), ticker);
-            //not neccesary to remove fragment since replace removes the previous fragment
+            //not necessary to remove fragment since replace removes the previous fragment
             // http://stackoverflow.com/questions/20682248/difference-between-fragmenttransaction-add-and-fragmenttransaction-replace
             FragmentIndexDetail fragmentIndexDetail = new FragmentIndexDetail();
             fragmentIndexDetail.setArguments(bundle);

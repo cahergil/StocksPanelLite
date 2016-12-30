@@ -24,7 +24,6 @@
             android:fitsSystemWindows="true"
             app:contentScrim="@color/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
-
            >
 
             <FrameLayout
@@ -67,20 +66,12 @@
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="104dp"
-                android:gravity="top"
-                app:layout_collapseMode="pin"
+                android:layout_height="56dp"
+
+                app:layout_scrollFlags="scroll|enterAlways"
                 app:popupTheme="@style/AppTheme.PopupOverlay"
                 >
 
-                <TextView
-                    android:id="@+id/toolbar_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:textColor="@color/white"
-                    android:textSize="22dp"
-                    android:text="@string/app_name" />
             </android.support.v7.widget.Toolbar>
 
             <android.support.design.widget.TabLayout
@@ -91,7 +82,6 @@
                 android:background="@color/colorPrimary"
                 app:tabIndicatorHeight="3dp"
                 app:tabMode="fixed"
-
                 app:tabTextColor="@color/blue_200"
                 app:tabSelectedTextColor="@color/white"
                 app:tabTextAppearance="@style/TabTextAppearance" />

@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/rootSplash"
-    android:background="@drawable/background_activity_splash"
-    >
+    android:background="@drawable/background_activity_splash">
+
 <ImageView
     android:id="@+id/img"
     android:layout_centerVertical="true"

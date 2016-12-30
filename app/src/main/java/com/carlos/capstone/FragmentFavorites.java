@@ -207,6 +207,13 @@ public class FragmentFavorites extends Fragment implements LoaderManager.LoaderC
             }
         });
 
+        searchView.setOnSearchClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
 
         super.onCreateOptionsMenu(menu, inflater);
 
