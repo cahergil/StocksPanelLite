@@ -3,6 +3,8 @@
 
  [![minSdk](https://img.shields.io/badge/minSDK-16%2B-green.svg?style=flat)](https://android-arsenal.com/api?level=16#)
  [![targetSdk](https://img.shields.io/badge/targetSDK-25-orange.svg?style=flat)](http://source.android.com/source/build-numbers.html)
+
+
 ### Description
 
 App to track equities, indexes and etfs quoted in the Stock Market.
@@ -33,7 +35,7 @@ The following is a list of the main features of the app:
 - Economic and financial news categorized by region.
 
 The app supports also RTL and D-PAD navigation.
-[![API](https://img.shields.io/badge/API-16%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=16)
+
 
 ### General Design
 
