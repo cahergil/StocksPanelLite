@@ -1,6 +1,8 @@
 
 #StocksPanelLite
 
+ [![minSdk](https://img.shields.io/badge/minSDK-16%2B-green.svg?style=flat)](https://android-arsenal.com/api?level=16#)
+ [![targetSdk](https://img.shields.io/badge/targetSDK-25-orange.svg?style=flat)](http://source.android.com/source/build-numbers.html)
 ### Description
 
 App to track equities, indexes and etfs quoted in the Stock Market.
