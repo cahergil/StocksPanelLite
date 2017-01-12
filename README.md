@@ -9,15 +9,16 @@
 
 App to track equities, indexes and etfs quoted in the Stock Market.
 
-|  Indexes America        | Index details | Stock statsistics |
-| ------------- | ------------- |------------- |
-| ![imagen mia](https://raw.githubusercontent.com/cahergil/shareablefotos/master/spl/america.png)  | ![enter image description here](https://raw.githubusercontent.com/cahergil/shareablefotos/master/spl/index_nikkei.png) |![enter image description here](https://raw.githubusercontent.com/cahergil/shareablefotos/master/spl/sstats.png)
-|
+|  Indexes America        | Index details 
+| ------------- | ------------- 
+| ![imagen mia](https://raw.githubusercontent.com/cahergil/shareablefotos/master/spl/america.png)  | ![enter image description here](https://raw.githubusercontent.com/cahergil/shareablefotos/master/spl/index_nikkei.png) 
 
 |  Stock details        | Watchlist |
 | ------------- | ------------- |
 |![enter image description here](https://raw.githubusercontent.com/cahergil/shareablefotos/master/spl/goog_details.png)|![enter image description here](https://raw.githubusercontent.com/cahergil/shareablefotos/master/spl/watchlist.png)|
 
+
+![enter image description here](https://raw.githubusercontent.com/cahergil/shareablefotos/master/spl/settings.png)|
 
 ### Features
 
@@ -26,7 +27,7 @@ Supports the more important markets and a  wide range of smaller countries. Due 
 The following is a list of the main features of the app:
 
 - Provide information about the price of stocks(not real time).
-- Provide information about the price of indexes and etf’s(not real time).
+- Provide information about the price of indexes and etfâ€™s(not real time).
 - Historical information in form of graphic.
 - Financial and statistical indicators of traded stocks.
 - Real time news of stocks(not all) quoted in the market.
@@ -91,7 +92,7 @@ the RegionChartLoaderService.
 
 MIT License
 
-Copyright (c) 2016 Carlos Hernández Gil
+Copyright (c) 2016 Carlos HernÃ¡ndez Gil
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
