@@ -27,8 +27,8 @@ android {
         applicationId "com.carlos.capstone"
         minSdkVersion 16
         targetSdkVersion 25
-        versionCode 6
-        versionName "1.0.5"
+        versionCode 7
+        versionName "1.0.6"
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
 
@@ -37,7 +37,6 @@ android {
 
         release {
             minifyEnabled false
-            debuggable true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.config
         }

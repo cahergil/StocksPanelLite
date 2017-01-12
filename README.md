@@ -11,12 +11,12 @@ App to track equities, indexes and etfs quoted in the Stock Market.
 
 |  Indexes America        | Index details | Stock statsistics |
 | ------------- | ------------- |------------- |
-| ![imagen mia](https://raw.githubusercontent.com/cahegi/Shareablefotos/master/fragmentMain_America.png)  | ![enter image description here](https://raw.githubusercontent.com/cahegi/Shareablefotos/master/index_detail.png) |![enter image description here](https://raw.githubusercontent.com/cahegi/Shareablefotos/master/stats.png)
+| ![imagen mia](https://raw.githubusercontent.com/cahergil/shareablefotos/master/spl/america.png)  | ![enter image description here](https://raw.githubusercontent.com/cahergil/shareablefotos/master/spl/index_nikkei.png) |![enter image description here](https://raw.githubusercontent.com/cahergil/shareablefotos/master/spl/sstats.png)
 |
 
 |  Stock details        | Watchlist |
 | ------------- | ------------- |
-|![enter image description here](https://raw.githubusercontent.com/cahegi/Shareablefotos/master/stock.png)|![enter image description here](https://raw.githubusercontent.com/cahegi/Shareablefotos/master/watchlist.png)|
+|![enter image description here](https://raw.githubusercontent.com/cahergil/shareablefotos/master/spl/goog_details.png)|![enter image description here](https://raw.githubusercontent.com/cahergil/shareablefotos/master/spl/watchlist.png)|
 
 
 ### Features
@@ -47,8 +47,7 @@ in a RESTfull manner using the Retrofit 2 type-safe HTTP client for Android and 
 throught GSON convert it to Java plain objects.Finally the objects are inserted in the database.  For the news there isn't that conversion, are loaded
 directly into Sqlite. 
 
--Retrofit:As the endpoint of the network request differ there are serveral implementation of the the Retrofit Singleton pattern. They are lo
-cated inside the iretrofit package. For example HistoricalRApi gets the data used to draw the charts(1 day, 7 days and so on). IndexComponentsRApi fetches the
+-Retrofit: As the endpoint of the network request differs there are serveral implementation of the Retrofit Singleton pattern. They are located inside the iretrofit package. For example HistoricalRApi gets the data used to draw the charts(1 day, 7 days and so on). IndexComponentsRApi fetches the
 data for the indexes(only some of them, marked in the UI with an eye icon) components.IndexOrShortInfoRApi gets the stock market data of indexes,etf's 
 and the upper part(in Fragment_stock_summary.xml) the equities details. 
 
@@ -66,7 +65,7 @@ There hasn't been registered any crash so far.
 to open the app. The collection widget enables the user to scroll vertically the list inside and to navigate to the details view of each element. This
 scheme works for phone as well as for tablets.
 
--Tablet:The app also provides, for an enhanced user experience, the user with a two-pane version for 9 and 10 inches tablets.Notwidhstanding there is a bug in 6 inches tablets
+-Tablet: The app also provides, for an enhanced user experience, the user with a two-pane version for 9 and 10 inches tablets.Notwidhstanding there is a bug in 6 inches tablets
 that I couldn't resolve.
 
 -Splash screen: The app has also a Splash screen to avoid waiting time at the beginning. On first install the waiting time is big, since the app needs
