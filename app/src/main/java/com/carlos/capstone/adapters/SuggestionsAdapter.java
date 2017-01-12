@@ -62,7 +62,8 @@ public class SuggestionsAdapter extends CursorAdapter {
 
         //name
         //creo que esto no hace falta despues de anadir Charset.forName("windows-1252") in DownloadSecurityFromTxt
-        String name = Normalizer.normalize(cursor.getString(COL_NAME), Normalizer.Form.NFC);
+       // String name = Normalizer.normalize(cursor.getString(COL_NAME), Normalizer.Form.NFC);
+        String name = cursor.getString(COL_NAME);
         viewHolder.tvName.setText(name);
         viewHolder.tvName.setContentDescription(context.getString(R.string.sua_talkback_security_name)+name);
 

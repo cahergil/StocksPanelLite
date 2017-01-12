@@ -44,10 +44,16 @@ public class DownloadSecurityFromTxt extends IntentService {
     protected void onHandleIntent(Intent intent) {
         tm=new TimeMeasure(LOG_TAG);
         //https://dl.dropboxusercontent.com/s/1h37ke12q10nqwb/Security_list_indexes.txt?dl=0
+//        String[] endpoints=new String[]{
+//                "https://dl.dropboxusercontent.com/s/rwkxo6cp2hp6v45/Security_list11.txt",
+//                "https://dl.dropboxusercontent.com/s/1h37ke12q10nqwb/Security_list_indexes.txt",
+//                "https://dl.dropboxusercontent.com/s/z3zbpeowksyl08n/Security_list_etf.txt"
+//
+//        };
         String[] endpoints=new String[]{
-                "https://dl.dropboxusercontent.com/s/rwkxo6cp2hp6v45/Security_list11.txt",
-                "https://dl.dropboxusercontent.com/s/1h37ke12q10nqwb/Security_list_indexes.txt",
-                "https://dl.dropboxusercontent.com/s/z3zbpeowksyl08n/Security_list_etf.txt"
+                "https://www.dropbox.com/s/onjyf69jgullnfi/Security_list11.txt?dl=0",
+                "https://www.dropbox.com/s/byt3imrxzioc470/Security_list_etf.txt?dl=0",
+                "https://www.dropbox.com/s/2byrir8or3xg57e/Security_list_indexes.txt?dl=0"
 
         };
         //https://dl.dropboxusercontent.com/s/z3zbpeowksyl08n/Security_list_etf.txt

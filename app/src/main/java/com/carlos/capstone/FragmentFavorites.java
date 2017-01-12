@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -69,20 +70,13 @@ public class FragmentFavorites extends Fragment implements LoaderManager.LoaderC
         mSwipeContainer = (SwipeRefreshLayout)view.findViewById(R.id.swipeContainer);
         mSwipeContainer.setOnRefreshListener(this);
 
-        mSwipeContainer.setColorSchemeColors(R.color.colorPrimary);
+        mSwipeContainer.setColorSchemeColors(ContextCompat.getColor(getActivity(),R.color.colorPrimary));
         //for api>=21 set elevation in layout security_item.xml and disable DividerItemDecoration
         if(Build.VERSION.SDK_INT<Build.VERSION_CODES.LOLLIPOP) {
             securityList.addItemDecoration(new DividerItemDecoration(getActivity()));
         }
         securityList.setHasFixedSize(true);
         securityList.setAdapter(mSecurityAdapter);
-//        securityList.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//            @Override
-//            public void onFocusChange(View v, boolean hasFocus) {
-//                Log.d(LOG_TAG,"focusChange"+hasFocus);
-//            }
-//        });
-
 
         mFab= (FloatingActionButton) getActivity().findViewById(R.id.fabMain);
         securityList.setNextFocusDownId(mFab.getId());
@@ -95,10 +89,6 @@ public class FragmentFavorites extends Fragment implements LoaderManager.LoaderC
             getLoaderManager().restartLoader(SUGGESTIONS_LOADER,null,this);
         }
         
-        //change the color windowbackground only for this fragment
-//        ColorDrawable cd = new ColorDrawable(ContextCompat.getColor(getActivity(),R.color.ltgray));
-//        getActivity().getWindow().setBackgroundDrawable(cd);
-
         return view;
     }
 
