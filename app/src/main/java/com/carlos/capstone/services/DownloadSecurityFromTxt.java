@@ -51,9 +51,9 @@ public class DownloadSecurityFromTxt extends IntentService {
 //
 //        };
         String[] endpoints=new String[]{
-                "https://www.dropbox.com/s/onjyf69jgullnfi/Security_list11.txt?dl=0",
-                "https://www.dropbox.com/s/byt3imrxzioc470/Security_list_etf.txt?dl=0",
-                "https://www.dropbox.com/s/2byrir8or3xg57e/Security_list_indexes.txt?dl=0"
+                "https://www.dropbox.com/s/onjyf69jgullnfi/Security_list11.txt?dl=1",
+                "https://www.dropbox.com/s/byt3imrxzioc470/Security_list_etf.txt?dl=1",
+                "https://www.dropbox.com/s/2byrir8or3xg57e/Security_list_indexes.txt?dl=1"
 
         };
         //https://dl.dropboxusercontent.com/s/z3zbpeowksyl08n/Security_list_etf.txt
