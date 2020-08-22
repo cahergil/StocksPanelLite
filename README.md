@@ -6,6 +6,7 @@
 
 
 ### Description
+Depreated!!
 
 App to track equities, indexes and etfs quoted in the Stock Market.
 
